@@ -2,6 +2,7 @@ package game
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import game.play.PlayWorld;
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
@@ -19,15 +20,14 @@ package game
 		public function Main():void 
 		{
 			super(WIDTH, HEIGHT);
+			FP.screen.color = 0xFFFFFF;
 		}
 		
 		override public function init():void 
 		{
 			super.init();
 			
-			var world:World = new World();
-			FP.world = world;
-			world.addGraphic(new Text("hello world"));
+			FP.world = new PlayWorld();
 		}
 		
 	}
