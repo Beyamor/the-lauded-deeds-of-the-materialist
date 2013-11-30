@@ -6,6 +6,8 @@ package game
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Key;
 	import net.flashpunk.World;
 	
 	/**
@@ -26,6 +28,11 @@ package game
 		override public function init():void 
 		{
 			super.init();
+			
+			Input.define("move-up", Key.W);
+			Input.define("move-down", Key.S);
+			Input.define("move-left", Key.A);
+			Input.define("move-right", Key.D);
 			
 			FP.world = new PlayWorld();
 		}
