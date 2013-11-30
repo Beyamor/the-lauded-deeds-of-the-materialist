@@ -33,6 +33,10 @@ package game
 			Input.define("move-down", Key.S);
 			Input.define("move-left", Key.A);
 			Input.define("move-right", Key.D);
+			Input.define("shoot-up", Key.UP);
+			Input.define("shoot-down", Key.DOWN);
+			Input.define("shoot-left", Key.LEFT);
+			Input.define("shoot-right", Key.RIGHT);
 			
 			FP.world = new PlayWorld();
 		}

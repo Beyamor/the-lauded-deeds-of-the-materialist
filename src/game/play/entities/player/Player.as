@@ -1,5 +1,6 @@
 package game.play.entities.player 
 {
+	import game.play.entities.shot.Shot;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -23,9 +24,10 @@ package game.play.entities.player
 		{
 			super.update();
 			
-			var	dx:Number	= 0,
-				dy:Number	= 0;
-				
+			var	dx:Number, dy:Number;
+			
+			// moving
+			dx = dy = 0;
 			if (Input.check("move-up"))		dy -= 1;
 			if (Input.check("move-down"))	dy += 1;
 			if (Input.check("move-left"))	dx -= 1;
@@ -39,6 +41,26 @@ package game.play.entities.player
 			
 			x += dx * SPEED * FP.elapsed;
 			y += dy * SPEED * FP.elapsed;
+			
+			// shooting
+			dx = dy = 0;
+			var tryingToShoot:Boolean = false;
+			if (Input.check("shoot-up"))	{ dy -= 1; tryingToShoot = true; }
+			if (Input.check("shoot-down"))	{ dy += 1; tryingToShoot = true; }
+			if (Input.check("shoot-left"))	{ dx -= 1; tryingToShoot = true; }
+			if (Input.check("shoot-right"))	{ dx += 1; tryingToShoot = true; }
+			
+			
+			if (tryingToShoot) {
+				
+				if (dx != 0 && dy != 0) {
+					
+					dx *= Math.SQRT1_2;
+					dy *= Math.SQRT1_2;
+				}
+				
+				world.add(new Shot(x, y, Math.atan2(dy, dx)));
+			}
 		}
 	}
 
