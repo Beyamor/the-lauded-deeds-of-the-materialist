@@ -23,7 +23,7 @@ package game.levels.constructors
 			
 			do {
 				level = new Level();
-				var	numberOfWalls:int 			= Random.choice(3, 3, 4, 4, 4, 5, 5, 6),
+				var	numberOfWalls:int 			= Random.choice(2, 2, 3, 3, 3, 4),
 					possibleWalls:Vector.<Cell>	= new Vector.<Cell>,
 					walls:Vector.<Cell>			= new Vector.<Cell>
 					
