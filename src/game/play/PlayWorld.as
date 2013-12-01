@@ -1,5 +1,7 @@
 package game.play 
 {
+	import game.levels.constructors.Constructor;
+	import game.levels.constructors.MirrorBothConstructor;
 	import game.levels.Level;
 	import game.play.entities.player.Player;
 	import net.flashpunk.Entity;
@@ -29,7 +31,8 @@ package game.play
 			var player:Entity = new Player(100, 100);
 			add(player);
 			
-			var level:Level				= new Level(),
+			var constructor:Constructor	= new MirrorBothConstructor(),
+				level:Level				= constructor.construct(),
 				reifier:LevelReifier	= new LevelReifier();
 				
 			for each (var entity:Entity in reifier.reify(level)) {
