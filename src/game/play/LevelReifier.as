@@ -20,7 +20,7 @@ package game.play
 			
 			var entities:Vector.<Entity> = new Vector.<Entity>;
 			
-			for each (var cell:Cell in level.cells) {
+			for each (var cell:Cell in level.cellList) {
 				
 				switch (cell.type) {
 					
