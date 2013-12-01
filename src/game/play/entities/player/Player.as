@@ -11,13 +11,17 @@ package game.play.entities.player
 	 */
 	public class Player extends Entity 
 	{
-		public static const	SPEED:Number	= 300;
+		public static const	SPEED:Number	= 300,
+							WIDTH:int		= 48,
+							HEIGHT:int		= 48;
 		
 		public function Player(x:Number, y:Number) 
 		{
 			super(x, y, new PlayerSprite());
 			
-			width = height = 48;
+			width	= WIDTH;
+			height	= HEIGHT;
+			centerOrigin();
 		}
 		
 		override public function update():void 

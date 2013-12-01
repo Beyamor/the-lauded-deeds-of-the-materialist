@@ -15,6 +15,8 @@ package game.play.entities.shot
 			_graphics.lineStyle(3, 0x202060);
 			_graphics.drawCircle(Shot.WIDTH / 2, Shot.HEIGHT / 2, Shot.WIDTH / 2);
 			_graphics.endFill();
+			
+			center(Shot.WIDTH, Shot.HEIGHT);
 		}
 		
 	}

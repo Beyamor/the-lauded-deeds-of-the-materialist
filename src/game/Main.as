@@ -29,6 +29,8 @@ package game
 		{
 			super.init();
 			
+			FP.console.enable();
+			
 			Input.define("move-up", Key.W);
 			Input.define("move-down", Key.S);
 			Input.define("move-left", Key.A);

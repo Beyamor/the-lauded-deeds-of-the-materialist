@@ -15,7 +15,8 @@ package util
 	public class ProgrammaticGraphic extends Graphic 
 	{
 		private var _buffer:Shape	= new Shape,
-					_matrix:Matrix	= FP.matrix;
+					_matrix:Matrix	= FP.matrix,
+					_origin:Point	= new Point;
 					
 		protected var	_graphics:Graphics;
 		
@@ -25,14 +26,20 @@ package util
 			_graphics = _buffer.graphics;
 		}
 		
+		public function center(width:Number, height:Number):void {
+			
+			_origin.x = width / 2;
+			_origin.y = height / 2;
+		}
+		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 
 		{
 			_point.x	= point.x - camera.x;
 			_point.y	= point.y - camera.y;
 			
 			_matrix.b = _matrix.c = 0;			
-			_matrix.tx	= _point.x;
-			_matrix.ty	= _point.y;
+			_matrix.tx	= -_origin.x + _point.x;
+			_matrix.ty	= -_origin.y + _point.y;
 			
 			target.draw(_buffer, _matrix);
 		}

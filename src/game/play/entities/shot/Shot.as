@@ -23,6 +23,10 @@ package game.play.entities.shot
 			
 			vx = Math.cos(direction) * SPEED;
 			vy = Math.sin(direction) * SPEED;
+			
+			width	= WIDTH;
+			height	= HEIGHT;
+			centerOrigin();
 		}
 		
 		override public function update():void 

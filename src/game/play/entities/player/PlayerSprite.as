@@ -15,6 +15,8 @@ package game.play.entities.player
 			_graphics.lineStyle(3, 0x404040);
 			_graphics.drawCircle(24, 24, 20);
 			_graphics.endFill();
+			
+			center(Player.WIDTH, Player.HEIGHT);
 		}
 	}
 
