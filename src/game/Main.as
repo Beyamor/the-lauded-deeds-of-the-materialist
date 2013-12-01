@@ -16,8 +16,8 @@ package game
 	 */
 	public class Main extends Engine 
 	{
-		public static const	WIDTH:int	= 800,
-							HEIGHT:int	= 600;
+		public static const	WIDTH:int	= 640,
+							HEIGHT:int	= 480;
 		
 		public function Main():void 
 		{

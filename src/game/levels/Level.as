@@ -6,10 +6,10 @@ package game.levels
 	 */
 	public class Level 
 	{
-		public const	WIDTH:int			= 12,
-						HEIGHT:int			= 12,
-						INNER_WIDTH:int		= WIDTH - 2,
-						INNER_HEIGHT:int	= HEIGHT - 2;
+		public static const	WIDTH:int			= 12,
+							HEIGHT:int			= 12,
+							INNER_WIDTH:int		= WIDTH - 2,
+							INNER_HEIGHT:int	= HEIGHT - 2;
 						
 		protected var	_cells:Vector.<Vector.<Cell>>
 		
