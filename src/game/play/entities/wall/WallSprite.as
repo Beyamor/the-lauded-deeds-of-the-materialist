@@ -1,6 +1,6 @@
 package game.play.entities.wall 
 {
-	import game.Consts;
+	import game.levels.Cell;
 	import util.ProgrammaticGraphic;
 	import util.Random;
 	
@@ -16,7 +16,7 @@ package game.play.entities.wall
 			var color:uint = Random.choice(0x202020, 0x242424, 0x282828, 0x2c2c2c);
 			
 			_graphics.beginFill(color);
-			_graphics.drawRect(0, 0, Consts.CELL_WIDTH, Consts.CELL_HEIGHT);
+			_graphics.drawRect(0, 0, Cell.WIDTH, Cell.HEIGHT);
 			_graphics.endFill();
 		}
 		

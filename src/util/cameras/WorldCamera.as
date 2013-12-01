@@ -1,7 +1,6 @@
 package util.cameras 
 {
 	import flash.geom.Point;
-	import game.Consts;
 	import game.Main;
 	import net.flashpunk.World;
 	/**

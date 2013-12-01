@@ -9,7 +9,9 @@ package game.levels
 		public static const	WIDTH:int			= 12,
 							HEIGHT:int			= 12,
 							INNER_WIDTH:int		= WIDTH - 2,
-							INNER_HEIGHT:int	= HEIGHT - 2;
+							INNER_HEIGHT:int	= HEIGHT - 2,
+							PIXEL_WIDTH:int		= WIDTH * Cell.WIDTH,
+							PIXEL_HEIGHT:int	= WIDTH * Cell.HEIGHT;
 						
 		protected var	_cells:Vector.<Vector.<Cell>>
 		

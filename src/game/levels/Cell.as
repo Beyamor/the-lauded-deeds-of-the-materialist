@@ -7,7 +7,9 @@ package game.levels
 	public class Cell 
 	{
 		public static const	EMPTY:String	= "empty",
-							WALL:String		= "wall";
+							WALL:String		= "wall",
+							WIDTH:int		= 64,
+							HEIGHT:int		= 64;
 							
 		public var	type:String,
 					x:int,

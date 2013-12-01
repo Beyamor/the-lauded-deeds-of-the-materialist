@@ -1,6 +1,6 @@
 package game.play.entities.wall 
 {
-	import game.Consts;
+	import game.levels.Cell;
 	import net.flashpunk.Entity;
 	
 	/**
@@ -11,7 +11,7 @@ package game.play.entities.wall
 	{
 		public function Wall(cellX:int, cellY:int) 
 		{
-			super(cellX * Consts.CELL_WIDTH, cellY * Consts.CELL_HEIGHT, new WallSprite);
+			super(cellX * Cell.WIDTH, cellY * Cell.HEIGHT, new WallSprite);
 			
 			level = 200;
 		}

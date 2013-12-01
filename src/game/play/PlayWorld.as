@@ -1,6 +1,5 @@
 package game.play 
 {
-	import game.Consts;
 	import game.levels.Level;
 	import game.play.entities.player.Player;
 	import net.flashpunk.Entity;
@@ -38,7 +37,7 @@ package game.play
 				add(entity);
 			}
 			
-			_camera = new BoundedCamera(0, 0, Level.WIDTH * Consts.CELL_WIDTH, Level.HEIGHT * Consts.CELL_HEIGHT,
+			_camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
 						new EntityCamera(player,
 							new WorldCamera(this)));
 		}

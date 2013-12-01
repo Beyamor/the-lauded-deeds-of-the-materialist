@@ -1,5 +1,6 @@
 package game.play.entities.shot 
 {
+	import game.levels.Level;
 	import game.Main;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -36,7 +37,7 @@ package game.play.entities.shot
 			x += vx * FP.elapsed;
 			y += vy * FP.elapsed;
 			
-			if (!collideRect(x, y, 0, 0, Main.WIDTH, Main.HEIGHT)) {
+			if (!collideRect(x, y, 0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT)) {
 				
 				if (world) world.remove(this);
 			}
