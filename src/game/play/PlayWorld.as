@@ -1,6 +1,8 @@
 package game.play 
 {
+	import game.levels.Level;
 	import game.play.entities.player.Player;
+	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	
 	/**
@@ -20,6 +22,14 @@ package game.play
 			super.begin();
 			
 			add(new Player(0, 0));
+			
+			var level:Level				= new Level(),
+				reifier:LevelReifier	= new LevelReifier();
+				
+			for each (var entity:Entity in reifier.reify(level)) {
+				
+				add(entity);
+			}
 		}
 	}
 
