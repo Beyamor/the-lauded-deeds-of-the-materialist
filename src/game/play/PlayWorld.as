@@ -5,6 +5,8 @@ package game.play
 	import game.levels.Level;
 	import game.play.entities.player.Player;
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
+	import net.flashpunk.utils.Input;
 	import net.flashpunk.World;
 	import util.cameras.BoundedCamera;
 	import util.cameras.Camera;
@@ -49,6 +51,8 @@ package game.play
 		{
 			super.update();
 			_camera.update();
+			
+			if (Input.pressed("restart")) FP.world = new PlayWorld();
 		}
 	}
 

@@ -39,6 +39,7 @@ package game
 			Input.define("shoot-down", Key.DOWN);
 			Input.define("shoot-left", Key.LEFT);
 			Input.define("shoot-right", Key.RIGHT);
+			Input.define("restart", Key.R);
 			
 			FP.world = new PlayWorld();
 		}
