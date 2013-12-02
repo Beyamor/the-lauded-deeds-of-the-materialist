@@ -31,9 +31,6 @@ package game.play
 		{
 			super.begin();
 			
-			var player:Entity = new Player(170, 170);
-			add(player);
-			
 			var constructor:Constructor	= new MirrorBothConstructor(),
 				level:Level				= constructor.construct(),
 				reifier:LevelReifier	= new LevelReifier();
@@ -43,10 +40,8 @@ package game.play
 				add(entity);
 			}
 			
-			add(new Wanderer(300, 170));
-			
 			_camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
-						new EntityCamera(player,
+						new EntityCamera(reifier.player,
 							new WorldCamera(this)));
 		}
 		
