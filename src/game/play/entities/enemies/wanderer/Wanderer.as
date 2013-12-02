@@ -2,9 +2,7 @@ package game.play.entities.enemies.wanderer
 {
 	import game.levels.Level;
 	import game.play.entities.enemies.Enemy;
-	import game.play.entities.gold.Gold;
-	import game.play.entities.PlayEntity;
-	import util.Fn;
+	import util.Angle;
 	import util.Random;
 	import util.Timer;
 	
@@ -12,7 +10,7 @@ package game.play.entities.enemies.wanderer
 	 * ...
 	 * @author beyamor
 	 */
-	public class Wanderer extends PlayEntity implements Enemy
+	public class Wanderer extends Enemy
 	{
 		public static const	SPEED:Number	= 300;
 		
@@ -20,18 +18,8 @@ package game.play.entities.enemies.wanderer
 		
 		public function Wanderer(x:Number, y:Number) 
 		{
-			width = height = 48;
-			centerOrigin();
-			
-			super(x, y, new WandererSprite(this));
-			
-			type = "enemy";
-			
-			collisionHandlers = {
-				wall: Fn.constantly(true),
-				player: Fn.constantly(true),
-				enemy: Fn.constantly(true)
-			}
+			super(100, x, y);
+			graphic = new WandererSprite(this);
 			
 			var that:Wanderer = this;
 			_wanderTimer = new Timer( {
@@ -47,11 +35,7 @@ package game.play.entities.enemies.wanderer
 		
 		private function wander():void {
 			
-			var	targetX:Number	= Random.inRange(0, Level.PIXEL_WIDTH),
-				targetY:Number	= Random.inRange(0, Level.PIXEL_HEIGHT),
-				dx:Number		= targetX - x,
-				dy:Number		= targetY - y,
-				theta:Number	= Math.atan2(dy, dx);
+			var	theta:Number	= Angle.between(this, { x: targetX, y: targetY } );
 				
 			xVel = Math.cos(theta) * SPEED;
 			yVel = Math.sin(theta) * SPEED;
@@ -62,14 +46,6 @@ package game.play.entities.enemies.wanderer
 			super.update();
 			
 			_wanderTimer.update();
-		}
-		
-		public function hit():void {
-			
-			if (world) {
-				Gold.drop(world, x, y, 100);
-				removeFromWorld();
-			}
 		}
 	}
 
