@@ -3,6 +3,7 @@ package game.play
 	import game.levels.Cell;
 	import game.levels.Level;
 	import game.play.entities.enemies.wanderer.Wanderer;
+	import game.play.entities.floor.Floor;
 	import game.play.entities.player.Player;
 	import game.play.entities.wall.Wall;
 	import net.flashpunk.Entity;
@@ -33,6 +34,7 @@ package game.play
 						entities.push(new Wall(cell.x, cell.y));
 						break;
 					case Cell.EMPTY:
+						entities.push(new Floor(cell.x, cell.y));
 						freeCells.push(cell);
 						break;
 				}
