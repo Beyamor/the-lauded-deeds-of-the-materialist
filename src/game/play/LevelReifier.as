@@ -2,6 +2,7 @@ package game.play
 {
 	import game.levels.Cell;
 	import game.levels.Level;
+	import game.play.entities.enemies.seeker.Seeker;
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.floor.Floor;
 	import game.play.entities.player.Player;
@@ -47,7 +48,8 @@ package game.play
 			
 			for each (cell in freeCells) {
 				
-				var enemy:Entity = new Wanderer((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
+				//var enemy:Entity = new Wanderer((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
+				var enemy:Entity = new Seeker((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
 				entities.push(enemy);
 			}
 			
