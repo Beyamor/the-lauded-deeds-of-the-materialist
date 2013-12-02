@@ -66,8 +66,10 @@ package game.play.entities.enemies.wanderer
 		
 		public function hit():void {
 			
-			Gold.drop(world, x, y, 100);
-			removeFromWorld();
+			if (world) {
+				Gold.drop(world, x, y, 100);
+				removeFromWorld();
+			}
 		}
 	}
 
