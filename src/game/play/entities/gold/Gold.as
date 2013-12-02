@@ -3,6 +3,7 @@ package game.play.entities.gold
 	import game.play.entities.PlayEntity;
 	import game.play.entities.player.Player;
 	import game.play.PlayWorld;
+	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
@@ -36,7 +37,11 @@ package game.play.entities.gold
 			super(x, y, new GoldSprite(this));
 			
 			collisionHandlers = {
-				player: Fn.bind(this, Fn.always(removeFromWorld))
+				player: Fn.bind(this, function(_:Entity):void {
+					
+					_player.gold += value;
+					removeFromWorld();
+				})
 			};
 			
 			_accel = Random.inRange(MIN_ACCEL, MAX_ACCEL);
