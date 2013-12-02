@@ -24,11 +24,11 @@ package game.play.entities.player
 							
 		public function Player(x:Number, y:Number) 
 		{
-			super(x, y, new PlayerSprite());
-			
 			width	= WIDTH;
 			height	= HEIGHT;
 			centerOrigin();
+			
+			super(x, y, new PlayerSprite(this));
 			
 			type = "player";
 			

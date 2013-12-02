@@ -1,22 +1,21 @@
 package game.play.entities.shot 
 {
-	import util.graphics.ProgrammaticGraphic;
+	import net.flashpunk.Entity;
+	import util.graphics.CircularEntitySprite;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class ShotSprite extends ProgrammaticGraphic 
+	public class ShotSprite extends CircularEntitySprite 
 	{
 		
-		public function ShotSprite() 
+		public function ShotSprite(entity:Entity) 
 		{
-			_graphics.beginFill(0, 0);
-			_graphics.lineStyle(3, 0x202060);
-			_graphics.drawCircle(Shot.WIDTH / 2, Shot.HEIGHT / 2, Shot.WIDTH / 2);
-			_graphics.endFill();
-			
-			center(Shot.WIDTH, Shot.HEIGHT);
+			super(entity, {
+				outline: 0x202060,
+				thickness: 3
+			});
 		}
 		
 	}

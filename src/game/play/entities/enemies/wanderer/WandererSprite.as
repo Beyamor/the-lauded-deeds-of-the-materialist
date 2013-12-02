@@ -1,21 +1,20 @@
 package game.play.entities.enemies.wanderer 
 {
 	import net.flashpunk.Entity;
-	import util.graphics.ProgrammaticGraphic;
+	import util.graphics.CircularEntitySprite;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class WandererSprite extends ProgrammaticGraphic
+	public class WandererSprite extends CircularEntitySprite
 	{
 		public function WandererSprite(entity:Entity) 
 		{
-			_graphics.lineStyle(3, 0x288025);
-			_graphics.drawCircle(entity.halfWidth + 2, entity.halfHeight + 2, entity.halfWidth - 2);
-			_graphics.endFill();
-			
-			center(entity.width, entity.height);
+			super(entity, {
+				outline: 0x288025,
+				thickness: 3
+			});
 		}
 		
 	}

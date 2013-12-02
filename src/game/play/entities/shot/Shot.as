@@ -23,14 +23,14 @@ package game.play.entities.shot
 		
 		public function Shot(x:Number, y:Number, direction:Number) 
 		{
-			super(x, y, new ShotSprite());
-			
-			xVel = Math.cos(direction) * SPEED;
-			yVel = Math.sin(direction) * SPEED;
-			
 			width	= WIDTH;
 			height	= HEIGHT;
 			centerOrigin();
+			
+			super(x, y, new ShotSprite(this));
+			
+			xVel = Math.cos(direction) * SPEED;
+			yVel = Math.sin(direction) * SPEED;
 			
 			var that:Shot = this;
 			

@@ -1,22 +1,19 @@
 package game.play.entities.player 
 {	
-	import util.graphics.ProgrammaticGraphic;
+	import net.flashpunk.Entity;
+	import util.graphics.CircularEntitySprite;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class PlayerSprite extends ProgrammaticGraphic 
+	public class PlayerSprite extends CircularEntitySprite 
 	{		
-		public function PlayerSprite() 
+		public function PlayerSprite(entity:Entity) 
 		{
-			super();
-			
-			_graphics.beginFill(0, 0);
-			_graphics.lineStyle(3, 0x404040);
-			_graphics.drawCircle(24, 24, 20);
-			_graphics.endFill();
-			
-			center(Player.WIDTH, Player.HEIGHT);
+			super(entity, {
+				outline: 0x404040,
+				thickness: 3
+			});
 		}
 	}
 
