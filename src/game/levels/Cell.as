@@ -13,7 +13,8 @@ package game.levels
 							
 		public var	type:String,
 					x:int,
-					y:int;
+					y:int,
+					isEdgeCell:Boolean;
 					
 		private var	_level:Level;
 		
@@ -23,16 +24,41 @@ package game.levels
 			this.x	= x;
 			this.y	= y;
 			type	= EMPTY;
+			
+			isEdgeCell = (x == 0) || (y == 0) || (x == Level.WIDTH - 1) || (y == Level.HEIGHT - 1);
 		}
+		
+		private function get hasWestNeighbours():Boolean { return x > 0; }
+		private function get hasNorthNeighbours():Boolean { return y > 0; }
+		private function get hasEastNeighbours():Boolean { return x < Level.WIDTH - 1; }
+		private function get hasSouthNeighbours():Boolean { return y < Level.HEIGHT - 1; }
+		
 		
 		public function get neighbours():Vector.<Cell> {
 			
 			var result:Vector.<Cell> = new Vector.<Cell>;
 			
-			if (x > 0)					result.push(_level.cells[x - 1][y]);
-			if (y > 0)					result.push(_level.cells[x][y - 1]);
-			if (x < Level.WIDTH - 1)	result.push(_level.cells[x + 1][y]);
-			if (y < Level.HEIGHT - 1)	result.push(_level.cells[x][y + 1]);
+			if (hasWestNeighbours)	result.push(_level.cells[x - 1][y]);
+			if (hasNorthNeighbours)	result.push(_level.cells[x][y - 1]);
+			if (hasEastNeighbours)	result.push(_level.cells[x + 1][y]);
+			if (hasSouthNeighbours)	result.push(_level.cells[x][y + 1]);
+			
+			return result;
+		}
+		
+		public function get diagonalNeighbours():Vector.<Cell> {
+			
+			var result:Vector.<Cell> = new Vector.<Cell>;
+			
+			if (hasNorthNeighbours) {
+				if (hasWestNeighbours)	result.push(_level.cells[x - 1][y - 1]);
+				if (hasEastNeighbours)	result.push(_level.cells[x + 1][y - 1]);
+			}
+			
+			if (hasSouthNeighbours) {
+				if (hasWestNeighbours)	result.push(_level.cells[x - 1][y + 1]);
+				if (hasEastNeighbours)	result.push(_level.cells[x + 1][y + 1]);
+			}
 			
 			return result;
 		}
