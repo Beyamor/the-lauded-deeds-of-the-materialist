@@ -6,7 +6,7 @@ package util
 	 */
 	public class Random 
 	{
-		public static function inRange(min:Number, max:Number):int {
+		public static function inRange(min:Number, max:Number):Number {
 			
 			return min + Math.random() * (max - min);
 		}
@@ -30,6 +30,11 @@ package util
 		public static function get coinFlip():Boolean {
 			
 			return Math.random() < 0.5;
+		}
+		
+		public static function get angle():Number {
+			
+			return inRange(0, Math.PI * 2);
 		}
 	}
 
