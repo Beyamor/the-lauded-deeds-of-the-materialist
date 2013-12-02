@@ -5,6 +5,7 @@ package game.play.entities.player
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import util.Fn;
+	import util.Timer;
 	
 	/**
 	 * ...
@@ -15,7 +16,10 @@ package game.play.entities.player
 		public static const	SPEED:Number	= 400,
 							WIDTH:int		= 48,
 							HEIGHT:int		= 48;
-		
+
+		private var	_canShoot:Boolean	= true,
+					_shotTimer:Timer;
+							
 		public function Player(x:Number, y:Number) 
 		{
 			super(x, y, new PlayerSprite());
@@ -30,6 +34,13 @@ package game.play.entities.player
 				wall: Fn.constantly(true),
 				enemy: Fn.constantly(true)
 			}
+			
+			_shotTimer = new Timer({
+				period:	0.25,
+				callback: Fn.bind(this, function():void {
+					_canShoot = true;
+				})
+			});
 		}
 		
 		override public function update():void 
@@ -63,7 +74,7 @@ package game.play.entities.player
 			if (Input.check("shoot-right"))	{ dx += 1; tryingToShoot = true; }
 			
 			
-			if (tryingToShoot) {
+			if (tryingToShoot && _canShoot) {
 				
 				if (dx != 0 && dy != 0) {
 					
@@ -72,7 +83,11 @@ package game.play.entities.player
 				}
 				
 				world.add(new Shot(x, y, Math.atan2(dy, dx)));
+				_canShoot = false;
+				_shotTimer.restart();
 			}
+			
+			_shotTimer.update();
 		}
 	}
 

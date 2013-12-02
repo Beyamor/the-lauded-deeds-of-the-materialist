@@ -12,6 +12,13 @@ package util
 				return value;
 			}
 		}
+		
+		public static function bind(self:Object, f:Function):Function {
+			
+			return function(... args):* {
+				return f.apply(self, args);
+			}
+		}
 	}
 
 }
