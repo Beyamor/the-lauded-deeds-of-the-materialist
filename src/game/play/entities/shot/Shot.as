@@ -32,18 +32,18 @@ package game.play.entities.shot
 			height	= HEIGHT;
 			centerOrigin();
 			
-			var that:Entity = this;
+			var that:Shot = this;
 			
 			collisionHandlers = {
 				
 				wall: function(wall:Wall):Boolean {
-					if (that.world) that.world.remove(that);
+					that.removeFromWorld();
 					return true;
 				},
 				
 				enemy: function(enemy:Entity):Boolean {
 					
-					if (that.world) that.world.remove(that);
+					that.removeFromWorld();
 					(enemy as Enemy).hit();
 					return true;
 				}

@@ -73,6 +73,10 @@ package game.play.entities
 				}
 			}
 		}
+		
+		public function removeFromWorld():void {
+			if (world) world.remove(this);
+		}
 	}
 
 }
