@@ -2,7 +2,9 @@ package game.play.entities.shot
 {
 	import game.levels.Level;
 	import game.Main;
+	import game.play.entities.enemies.Enemy;
 	import game.play.entities.PlayEntity;
+	import game.play.entities.wall.Wall;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	
@@ -31,10 +33,21 @@ package game.play.entities.shot
 			centerOrigin();
 			
 			var that:Entity = this;
-			collisionHandlers["wall"] = function():Boolean {
-				if (that.world) that.world.remove(that);
-				return true;
-			}
+			
+			collisionHandlers = {
+				
+				wall: function(wall:Wall):Boolean {
+					if (that.world) that.world.remove(that);
+					return true;
+				},
+				
+				enemy: function(enemy:Entity):Boolean {
+					
+					if (that.world) that.world.remove(that);
+					(enemy as Enemy).hit();
+					return true;
+				}
+			};
 		}
 	}
 

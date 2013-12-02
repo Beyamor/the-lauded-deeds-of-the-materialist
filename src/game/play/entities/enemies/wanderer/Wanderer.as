@@ -28,6 +28,7 @@ package game.play.entities.enemies.wanderer
 		
 		public function hit():void {
 			
+			if (world) world.remove(this);
 		}
 	}
 
