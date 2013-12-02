@@ -1,6 +1,6 @@
 package game.play.entities.shot 
 {
-	import util.ProgrammaticGraphic;
+	import util.graphics.ProgrammaticGraphic;
 	
 	/**
 	 * ...

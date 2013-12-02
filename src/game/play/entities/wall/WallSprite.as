@@ -1,7 +1,7 @@
 package game.play.entities.wall 
 {
 	import game.levels.Cell;
-	import util.ProgrammaticGraphic;
+	import util.graphics.ProgrammaticGraphic;
 	import util.Random;
 	
 	/**

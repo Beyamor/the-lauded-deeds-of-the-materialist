@@ -1,7 +1,7 @@
 package game.play.entities.gold 
 {
 	import net.flashpunk.Entity;
-	import util.ProgrammaticGraphic;
+	import util.graphics.ProgrammaticGraphic;
 	
 	/**
 	 * ...

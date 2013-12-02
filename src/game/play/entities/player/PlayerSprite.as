@@ -1,6 +1,6 @@
 package game.play.entities.player 
 {	
-	import util.ProgrammaticGraphic;
+	import util.graphics.ProgrammaticGraphic;
 	/**
 	 * ...
 	 * @author beyamor

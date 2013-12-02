@@ -1,13 +1,13 @@
 package game.play.entities.enemies.wanderer 
 {
 	import net.flashpunk.Entity;
-	import util.ProgrammaticGraphic;
+	import util.graphics.ProgrammaticGraphic;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class WandererSprite extends ProgrammaticGraphic 
+	public class WandererSprite extends ProgrammaticGraphic
 	{
 		public function WandererSprite(entity:Entity) 
 		{

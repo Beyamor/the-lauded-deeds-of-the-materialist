@@ -1,14 +1,14 @@
 package game.play.entities.floor 
 {
 	import game.levels.Cell;
-	import util.ProgrammaticGraphic;
+	import util.graphics.ProgrammaticGraphic;
 	import util.Random;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class FloorSprite extends ProgrammaticGraphic 
+	public class FloorSprite extends ProgrammaticGraphic
 	{
 		
 		public function FloorSprite() 
