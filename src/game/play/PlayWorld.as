@@ -22,6 +22,8 @@ package game.play
 	{
 		private var _camera:Camera;
 		
+		public var	player:Player;
+		
 		public function PlayWorld() 
 		{
 			super();
@@ -39,9 +41,10 @@ package game.play
 				
 				add(entity);
 			}
+			player = reifier.player;
 			
 			_camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
-						new EntityCamera(reifier.player,
+						new EntityCamera(player,
 							new WorldCamera(this)));
 		}
 		

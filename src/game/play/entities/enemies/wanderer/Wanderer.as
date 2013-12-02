@@ -2,6 +2,7 @@ package game.play.entities.enemies.wanderer
 {
 	import game.levels.Level;
 	import game.play.entities.enemies.Enemy;
+	import game.play.entities.gold.Gold;
 	import game.play.entities.PlayEntity;
 	import util.Fn;
 	import util.Random;
@@ -65,6 +66,7 @@ package game.play.entities.enemies.wanderer
 		
 		public function hit():void {
 			
+			world.add(new Gold(x, y));
 			removeFromWorld();
 		}
 	}

@@ -19,6 +19,14 @@ package util
 				return f.apply(self, args);
 			}
 		}
+		
+		public static function always(f:Function):Function {
+			
+			return function(... args):* {
+				
+				return f();
+			}
+		}
 	}
 
 }
