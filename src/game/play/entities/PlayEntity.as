@@ -12,11 +12,13 @@ package game.play.entities
 	{
 		public var	xVel:Number,
 					yVel:Number,
-					collisionHandlers:Object = { };
+					collisionHandlers:Object;
 		
 		public function PlayEntity(x:Number, y:Number, graphic:Graphic) 
 		{
 			super(x, y, graphic);
+			
+			if (!collisionHandlers) collisionHandlers = { };
 		}
 		
 		override public function update():void 

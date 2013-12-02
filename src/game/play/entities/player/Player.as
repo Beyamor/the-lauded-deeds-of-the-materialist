@@ -4,6 +4,7 @@ package game.play.entities.player
 	import game.play.entities.shot.Shot;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
+	import util.Fn;
 	
 	/**
 	 * ...
@@ -23,7 +24,12 @@ package game.play.entities.player
 			height	= HEIGHT;
 			centerOrigin();
 			
-			collisionHandlers["wall"] = function():Boolean { return true; }
+			type = "player";
+			
+			collisionHandlers = {
+				wall: Fn.constantly(true),
+				enemy: Fn.constantly(true)
+			}
 		}
 		
 		override public function update():void 

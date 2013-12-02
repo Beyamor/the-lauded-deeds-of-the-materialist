@@ -3,6 +3,7 @@ package game.play
 	import game.levels.constructors.Constructor;
 	import game.levels.constructors.MirrorBothConstructor;
 	import game.levels.Level;
+	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.player.Player;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -41,6 +42,8 @@ package game.play
 				
 				add(entity);
 			}
+			
+			add(new Wanderer(300, 170));
 			
 			_camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
 						new EntityCamera(player,
