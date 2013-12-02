@@ -6,6 +6,11 @@ package util
 	 */
 	public class Random 
 	{
+		public static function inRange(min:Number, max:Number):int {
+			
+			return min + Math.random() * (max - min);
+		}
+		
 		public static function intInRange(min:int, max:int):int {
 			
 			return min + Math.floor(Math.random() * (max - min));
