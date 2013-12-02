@@ -1,7 +1,7 @@
 package game.play.entities.player 
 {
+	import game.play.entities.PlayEntity;
 	import game.play.entities.shot.Shot;
-	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	
@@ -9,9 +9,9 @@ package game.play.entities.player
 	 * ...
 	 * @author beyamor
 	 */
-	public class Player extends Entity 
+	public class Player extends PlayEntity 
 	{
-		public static const	SPEED:Number	= 300,
+		public static const	SPEED:Number	= 400,
 							WIDTH:int		= 48,
 							HEIGHT:int		= 48;
 		
@@ -22,6 +22,8 @@ package game.play.entities.player
 			width	= WIDTH;
 			height	= HEIGHT;
 			centerOrigin();
+			
+			collisionHandlers["wall"] = function():Boolean { return true; }
 		}
 		
 		override public function update():void 
@@ -43,8 +45,8 @@ package game.play.entities.player
 				dy *= Math.SQRT1_2;
 			}
 			
-			x += dx * SPEED * FP.elapsed;
-			y += dy * SPEED * FP.elapsed;
+			xVel = dx * SPEED;
+			yVel = dy * SPEED;
 			
 			// shooting
 			dx = dy = 0;

@@ -13,7 +13,10 @@ package game.play.entities.wall
 		{
 			super(cellX * Cell.WIDTH, cellY * Cell.HEIGHT, new WallSprite);
 			
-			level = 200;
+			width	= Cell.WIDTH;
+			height	= Cell.HEIGHT;
+			level	= 200;
+			type	= "wall";
 		}
 		
 	}

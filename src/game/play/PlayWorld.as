@@ -30,7 +30,7 @@ package game.play
 		{
 			super.begin();
 			
-			var player:Entity = new Player(100, 100);
+			var player:Entity = new Player(170, 170);
 			add(player);
 			
 			var constructor:Constructor	= new MirrorBothConstructor(),

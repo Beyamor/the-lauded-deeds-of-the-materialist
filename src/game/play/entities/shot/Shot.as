@@ -2,6 +2,7 @@ package game.play.entities.shot
 {
 	import game.levels.Level;
 	import game.Main;
+	import game.play.entities.PlayEntity;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	
@@ -9,7 +10,7 @@ package game.play.entities.shot
 	 * ...
 	 * @author beyamor
 	 */
-	public class Shot extends Entity 
+	public class Shot extends PlayEntity 
 	{
 		public static const	SPEED:Number	= 500,
 							WIDTH:int		= 16,
@@ -22,24 +23,17 @@ package game.play.entities.shot
 		{
 			super(x, y, new ShotSprite());
 			
-			vx = Math.cos(direction) * SPEED;
-			vy = Math.sin(direction) * SPEED;
+			xVel = Math.cos(direction) * SPEED;
+			yVel = Math.sin(direction) * SPEED;
 			
 			width	= WIDTH;
 			height	= HEIGHT;
 			centerOrigin();
-		}
-		
-		override public function update():void 
-		{
-			super.update();
 			
-			x += vx * FP.elapsed;
-			y += vy * FP.elapsed;
-			
-			if (!collideRect(x, y, 0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT)) {
-				
-				if (world) world.remove(this);
+			var that:Entity = this;
+			collisionHandlers["wall"] = function():Boolean {
+				if (that.world) that.world.remove(that);
+				return true;
 			}
 		}
 	}
