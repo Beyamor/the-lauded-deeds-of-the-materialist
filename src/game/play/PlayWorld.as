@@ -5,6 +5,7 @@ package game.play
 	import game.levels.Level;
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.player.Player;
+	import game.play.paths.PathFinder;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -22,7 +23,8 @@ package game.play
 	{
 		private var _camera:Camera;
 		
-		public var	player:Player;
+		public var	player:Player,
+					pathFinder:PathFinder;
 		
 		public function PlayWorld() 
 		{
@@ -46,6 +48,8 @@ package game.play
 			_camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
 						new EntityCamera(player,
 							new WorldCamera(this)));
+							
+			pathFinder = new PathFinder(this, level);
 		}
 		
 		override public function update():void 

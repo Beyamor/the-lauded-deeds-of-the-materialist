@@ -8,8 +8,8 @@ package game.levels
 	{
 		public static const	EMPTY:String	= "empty",
 							WALL:String		= "wall",
-							WIDTH:int		= 128,
-							HEIGHT:int		= 128;
+							WIDTH:int		= 96,
+							HEIGHT:int		= WIDTH;
 							
 		public var	type:String,
 					x:int,
