@@ -39,7 +39,7 @@ package game.play
 					world.add(enemy);
 					
 					_timer.period = Random.inRange(1, 2);
-					//_timer.restart();
+					_timer.restart();
 				})
 			});
 		}

@@ -43,8 +43,8 @@ package util
 					
 				if (_elapsed >= period && !_stopped) {
 					
-					_callback();
 					_stopped = true;
+					_callback();
 				}
 			}
 		}

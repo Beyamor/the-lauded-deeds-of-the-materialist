@@ -19,7 +19,7 @@ package game.play.entities.enemies.seeker
 	public class Seeker extends Enemy
 	{
 		public static const	SPEED:Number					= 150,
-							FRAMES_PER_PATH_CALCULATION:int	= 3,
+							FRAMES_PER_PATH_CALCULATION:int	= 20,
 							DRAW_PATH:Boolean				= false;
 		
 		private var	_player:Player,
