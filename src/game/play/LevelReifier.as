@@ -29,15 +29,12 @@ package game.play
 			
 			for each (var cell:Cell in level.cellList) {
 				
-				switch (cell.type) {
-					
-					case Cell.WALL:
+				if (cell.isWall) {
 						entities.push(new Wall(cell.x, cell.y));
-						break;
-					case Cell.EMPTY:
+				}
+				else {
 						entities.push(new Floor(cell.x, cell.y));
 						freeCells.push(cell);
-						break;
 				}
 			}
 			

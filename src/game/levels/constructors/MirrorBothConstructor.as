@@ -39,7 +39,7 @@ package game.levels.constructors
 					for (var x:int = 2; x < Level.WIDTH / 2; ++x) {
 						for (var y:int = 2; y < Level.HEIGHT / 2; ++y) {
 							
-							if (level.cells[x][y].type == Cell.EMPTY) emptyCells.push(level.cells[x][y]);
+							if (level.cells[x][y].isEmpty) emptyCells.push(level.cells[x][y]);
 						}
 					}
 					
@@ -56,7 +56,7 @@ package game.levels.constructors
 								touchingEdge:Boolean			= false;
 								
 							for each (var neighbouringCell:Cell in emptyCell.neighbours) {
-								if (neighbouringCell.type == Cell.WALL)
+								if (neighbouringCell.isWall)
 									++neighbouringWalls;
 									
 								if (neighbouringCell.isEdgeCell)
@@ -64,7 +64,7 @@ package game.levels.constructors
 							}
 							
 							for each (neighbouringCell in emptyCell.diagonalNeighbours) {
-								if (neighbouringCell.type == Cell.WALL)
+								if (neighbouringCell.isWall)
 									++neighbouringDiagonalWalls;
 							}
 							
@@ -89,7 +89,7 @@ package game.levels.constructors
 							
 						for each (x in [wallCell.x, mirrorX]) {
 							for each (y in [wallCell.y, mirrorY]) {
-								level.cells[x][y].type = Cell.WALL;
+								level.cells[x][y].isWall = true;
 							}
 						}
 					}

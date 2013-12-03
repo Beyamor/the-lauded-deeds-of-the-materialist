@@ -6,15 +6,14 @@ package game.levels
 	 */
 	public class Cell 
 	{
-		public static const	EMPTY:String	= "empty",
-							WALL:String		= "wall",
-							WIDTH:int		= 64,
+		public static const	WIDTH:int		= 64,
 							HEIGHT:int		= WIDTH;
 							
 		public var	type:String,
 					x:int,
 					y:int,
-					isEdgeCell:Boolean;
+					isEdgeCell:Boolean,
+					isWall:Boolean;
 					
 		private var	_level:Level;
 		
@@ -23,9 +22,14 @@ package game.levels
 			_level	= level;
 			this.x	= x;
 			this.y	= y;
-			type	= EMPTY;
+			isWall	= false;
 			
 			isEdgeCell = (x == 0) || (y == 0) || (x == Level.WIDTH - 1) || (y == Level.HEIGHT - 1);
+		}
+		
+		public function get isEmpty():Boolean {
+			
+			return !isWall;
 		}
 		
 		private function get hasWestNeighbours():Boolean { return x > 0; }

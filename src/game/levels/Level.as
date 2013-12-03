@@ -31,14 +31,14 @@ package game.levels
 			}
 			
 			for (x = 0; x < WIDTH; ++x) {
-				_cells[x][0].type			= Cell.WALL;
-				_cells[x][HEIGHT - 1].type	= Cell.WALL;
+				_cells[x][0].isWall				= true;;
+				_cells[x][HEIGHT - 1].isWall	= true;
 			}
 			
 			for (y = 0; y < HEIGHT; ++y) {
 				
-				_cells[0][y].type			= Cell.WALL;
-				_cells[WIDTH - 1][y].type	= Cell.WALL;
+				_cells[0][y].isWall			= true;
+				_cells[WIDTH - 1][y].isWall	= true;
 			}
 		}
 		
@@ -65,13 +65,13 @@ package game.levels
 				
 			for each (var cell:Cell in cellList) {
 				
-				if (cell.type == Cell.EMPTY) unreachedCells.push(cell);
+				if (cell.isEmpty) unreachedCells.push(cell);
 			}
 			
 			if (unreachedCells.length == 0) return true;
 			
 			nextCells.push(unreachedCells.pop());
-			while (unreachedCells.length != 0) {
+			while (unreachedCells.length != 0) {;
 				
 				if (nextCells.length == 0) return false;
 				
@@ -82,7 +82,7 @@ package game.levels
 				unreachedCells.splice(unreachedIndex, 1);
 				for each (var neighbouringCell:Cell in nextCell.neighbours) {
 					
-					if (neighbouringCell.type != Cell.EMPTY) continue;
+					if (!neighbouringCell.isEmpty) continue;
 					if (nextCells.indexOf(neighbouringCell) != -1) continue;
 					if (reachedCells.indexOf(neighbouringCell) != -1) continue;
 					

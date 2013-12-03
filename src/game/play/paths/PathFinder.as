@@ -29,7 +29,7 @@ package game.play.paths
 					var	cellX:int	= x / Node.PER_CELL,
 						cellY:int	= y / Node.PER_CELL;
 						
-					if (level.cells[cellX][cellY].type == Cell.EMPTY) {
+					if (level.cells[cellX][cellY].isEmpty) {
 						
 						var node:Node = new Node(world, _nodes, x, y);
 						_nodes[x][y] = node;

@@ -84,7 +84,7 @@ package game.play
 				var	x:int	= Math.floor((start.x + step * dx) / Cell.WIDTH),
 					y:int	= Math.floor((start.y + step * dy) / Cell.HEIGHT);
 					
-				if (_level.cells[x][y].type == Cell.WALL) return true;
+				if (_level.cells[x][y].isWall) return true;
 			}
 			
 			return false;
