@@ -46,13 +46,6 @@ package game.play
 			player = new Player((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
 			entities.push(player);
 			
-			for each (cell in freeCells) {
-				
-				//var enemy:Entity = new Wanderer((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
-				var enemy:Entity = new Seeker((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
-				entities.push(enemy);
-			}
-			
 			return entities;
 		}
 	}

@@ -21,7 +21,8 @@ package game.play
 	 */
 	public class PlayWorld extends World 
 	{
-		private var _camera:Camera;
+		private var _camera:Camera,
+					_spawner:Spawner;
 		
 		public var	player:Player,
 					pathFinder:PathFinder;
@@ -50,12 +51,15 @@ package game.play
 							new WorldCamera(this)));
 							
 			pathFinder = new PathFinder(this, level);
+			
+			_spawner = new Spawner(this);
 		}
 		
 		override public function update():void 
 		{
 			super.update();
 			_camera.update();
+			_spawner.update();
 			
 			if (Input.pressed("restart")) FP.world = new PlayWorld();
 		}

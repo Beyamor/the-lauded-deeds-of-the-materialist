@@ -12,7 +12,7 @@ package game.play.entities.enemies.wanderer
 	 */
 	public class Wanderer extends Enemy
 	{
-		public static const	SPEED:Number	= 300;
+		public static const	SPEED:Number	= 150;
 		
 		private var _wanderTimer:Timer;
 		
@@ -35,7 +35,9 @@ package game.play.entities.enemies.wanderer
 		
 		private function wander():void {
 			
-			var	theta:Number	= Angle.between(this, { x: targetX, y: targetY } );
+			var	targetX:Number	= Random.inRange(0, Level.PIXEL_WIDTH),
+				targetY:Number	= Random.inRange(0, Level.PIXEL_HEIGHT),
+				theta:Number	= Angle.between(this, { x: targetX, y: targetY } );
 				
 			xVel = Math.cos(theta) * SPEED;
 			yVel = Math.sin(theta) * SPEED;

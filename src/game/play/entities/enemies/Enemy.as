@@ -23,8 +23,7 @@ package game.play.entities.enemies
 			
 			collisionHandlers = {
 				wall: Fn.constantly(true),
-				player: Fn.constantly(true),
-				enemy: Fn.constantly(true)
+				player: Fn.constantly(true)
 			}
 			
 			type = "enemy";
