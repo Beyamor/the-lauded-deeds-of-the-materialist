@@ -22,12 +22,14 @@ package game.play.paths
 					_x:int,
 					_y:int,
 					_world:World,
-					_rect:Rectangle;
+					_rect:Rectangle,
+					_h:Number,
+					_hCalculated:Boolean,
+					_target:*;
 					
 		public var	weight:Number,
 					center:Point,
 					parent:Node,
-					h:Number,
 					neighbours:Vector.<Node>;
 		
 		public function Node(world:World, nodes:Vector.<Vector.<Node>>, x:int, y:int) 
@@ -41,15 +43,12 @@ package game.play.paths
 			center	= new Point((_x + 0.5) * WIDTH, (_y + 0.5) * HEIGHT);
 		}
 		
-		public function initialize(end:*, collisionTypes:Array):void {
-			
-			var dx:Number	= end.x - center.x,
-				dy:Number	= end.y - center.y;
+		public function initialize(target:*, collisionTypes:Array):void {
 				
-			h = Math.sqrt(dx * dx + dy * dy);
-			
-			parent	= null;
-			weight	= WIDTH;
+			_hCalculated	= false;
+			parent			= null;
+			weight			= WIDTH;
+			_target			= target;
 			
 			for (var collisionType:String in collisionTypes) {
 				
@@ -94,6 +93,18 @@ package game.play.paths
 			var	result:Number = weight;
 			if (parent) result += parent.g;
 			return result;
+		}
+		
+		public function get h():Number {
+			
+			if (_hCalculated) return _h;
+		
+			var	dx:Number	= _target.x - center.x,
+				dy:Number	= _target.y - center.y;
+				
+			_h				= Math.sqrt(dx * dx + dy * dy);
+			_hCalculated	= true;
+			return _h;
 		}
 	}
 
