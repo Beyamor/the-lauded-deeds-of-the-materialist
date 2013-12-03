@@ -12,7 +12,7 @@ package game.levels.constructors
 		private static const NEIGHBOURING_WALL_WEIGHTS:Object = {
 			0: 3,
 			1: 4,
-			2: 1,
+			2: 0,
 			3: 10,
 			4: 10
 		}
@@ -31,13 +31,13 @@ package game.levels.constructors
 			do {
 				try {
 					level = new Level();
-					var	numberOfWalls:int 			= Random.choice(2, 2, 3, 3, 3, 4),
+					var	numberOfWalls:int 			= Random.choice(1, 1, 2, 2, 2, 3),
 						emptyCells:Vector.<Cell>	= new Vector.<Cell>,
 						walls:Vector.<Cell>			= new Vector.<Cell>,
 						possibleWalls:Vector.<Cell>;
 						
-					for (var x:int = 1; x < Level.WIDTH / 2; ++x) {
-						for (var y:int = 1; y < Level.HEIGHT / 2; ++y) {
+					for (var x:int = 2; x < Level.WIDTH / 2; ++x) {
+						for (var y:int = 2; y < Level.HEIGHT / 2; ++y) {
 							
 							if (level.cells[x][y].type == Cell.EMPTY) emptyCells.push(level.cells[x][y]);
 						}
@@ -63,16 +63,13 @@ package game.levels.constructors
 									touchingEdge = true;
 							}
 							
-							// nothing on the edges looks that good
-							if (touchingEdge) continue;
-							
 							for each (neighbouringCell in emptyCell.diagonalNeighbours) {
 								if (neighbouringCell.type == Cell.WALL)
 									++neighbouringDiagonalWalls;
 							}
 							
 							// walls touching at the diagonals looks awful
-							if (neighbouringDiagonalWalls != 0) continue;
+							if (neighbouringWalls == 0 && neighbouringDiagonalWalls != 0) continue;
 							
 							for (var weighter:int = 0; weighter < NEIGHBOURING_WALL_WEIGHTS[neighbouringWalls]; ++weighter) {
 								possibleWalls.push(emptyCell);
