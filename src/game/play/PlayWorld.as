@@ -8,6 +8,7 @@ package game.play
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.player.Player;
 	import game.play.paths.PathFinder;
+	import game.play.ui.HUD;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -56,6 +57,8 @@ package game.play
 			pathFinder = new PathFinder(this, _level);
 			
 			_spawner = new Spawner(this);
+			
+			add(new HUD(player));
 		}
 		
 		override public function update():void 
