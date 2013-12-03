@@ -10,8 +10,8 @@ package game.levels.constructors
 	public class MirrorBothConstructor implements Constructor 
 	{
 		private static const NEIGHBOURING_WALL_WEIGHTS:Object = {
-			0: 3,
-			1: 4,
+			0: 1,
+			1: 10,
 			2: 0,
 			3: 10,
 			4: 10
@@ -31,7 +31,7 @@ package game.levels.constructors
 			do {
 				try {
 					level = new Level();
-					var	numberOfWalls:int 			= Random.choice(1, 1, 2, 2, 2, 3),
+					var	numberOfWalls:int 			= Random.choice(1, 2, 2, 2, 3, 3),
 						emptyCells:Vector.<Cell>	= new Vector.<Cell>,
 						walls:Vector.<Cell>			= new Vector.<Cell>,
 						possibleWalls:Vector.<Cell>;
