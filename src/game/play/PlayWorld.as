@@ -1,5 +1,7 @@
 package game.play 
 {
+	import flash.geom.Point;
+	import game.levels.Cell;
 	import game.levels.constructors.Constructor;
 	import game.levels.constructors.MirrorBothConstructor;
 	import game.levels.Level;
@@ -22,7 +24,8 @@ package game.play
 	public class PlayWorld extends World 
 	{
 		private var _camera:Camera,
-					_spawner:Spawner;
+					_spawner:Spawner,
+					_level:Level;
 		
 		public var	player:Player,
 					pathFinder:PathFinder;
@@ -36,11 +39,11 @@ package game.play
 		{
 			super.begin();
 			
-			var constructor:Constructor	= new MirrorBothConstructor(),
-				level:Level				= constructor.construct(),
-				reifier:LevelReifier	= new LevelReifier();
-				
-			for each (var entity:Entity in reifier.reify(level)) {
+			var constructor:Constructor = new MirrorBothConstructor();
+			_level = constructor.construct();
+			
+			var reifier:LevelReifier = new LevelReifier();
+			for each (var entity:Entity in reifier.reify(_level)) {
 				
 				add(entity);
 			}
@@ -50,7 +53,7 @@ package game.play
 						new EntityCamera(player,
 							new WorldCamera(this)));
 							
-			pathFinder = new PathFinder(this, level);
+			pathFinder = new PathFinder(this, _level);
 			
 			_spawner = new Spawner(this);
 		}
@@ -62,6 +65,29 @@ package game.play
 			_spawner.update();
 			
 			if (Input.pressed("restart")) FP.world = new PlayWorld();
+		}
+		
+		public function lineIntersectsWall(start:Point, end:Point):Boolean {
+			
+			var	dx:Number		= end.x - start.x,
+				dy:Number		= end.y - start.y,
+				length:Number	= Math.sqrt(dx * dx + dy * dy),
+				steps:int		= Math.floor(length);
+				
+			if (length == 0) return false;
+			
+			dx /= length;
+			dy /= length;
+			
+			for (var step:int = 0; step < steps; ++step) {
+				
+				var	x:int	= Math.floor((start.x + step * dx) / Cell.WIDTH),
+					y:int	= Math.floor((start.y + step * dy) / Cell.HEIGHT);
+					
+				if (_level.cells[x][y].type == Cell.WALL) return true;
+			}
+			
+			return false;
 		}
 	}
 

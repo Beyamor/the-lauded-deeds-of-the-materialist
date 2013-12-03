@@ -3,6 +3,7 @@ package game.play.paths
 	import flash.geom.Point;
 	import game.levels.Cell;
 	import game.levels.Level;
+	import game.play.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	/**
@@ -13,9 +14,9 @@ package game.play.paths
 	{
 		private var	_nodes:Vector.<Vector.<Node>>,
 					_nodeList:Vector.<Node>,
-					_world:World;
+					_world:PlayWorld;
 		
-		public function PathFinder(world:World, level:Level) 
+		public function PathFinder(world:PlayWorld, level:Level) 
 		{
 			_world		= world;
 			_nodeList	= new Vector.<Node>;
@@ -150,10 +151,7 @@ package game.play.paths
 				currentPoint	= pathAlongNodes[pointIndex];
 				nextPoint		= pathAlongNodes[pointIndex + 1];
 				
-				var	collision:Entity	= _world.collideLine("wall",
-												previousPoint.x, previousPoint.y,
-												nextPoint.x, nextPoint.y),
-					canBeMerged:Boolean	= (collision == null);
+				var	canBeMerged:Boolean = !_world.lineIntersectsWall(previousPoint, nextPoint);
 					
 				if (!canBeMerged) {
 					
