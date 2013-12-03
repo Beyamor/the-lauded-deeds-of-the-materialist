@@ -19,7 +19,8 @@ package game.play.entities.enemies.seeker
 	public class Seeker extends Enemy
 	{
 		public static const	SPEED:Number					= 150,
-							FRAMES_PER_PATH_CALCULATION:int	= 3;
+							FRAMES_PER_PATH_CALCULATION:int	= 3,
+							DRAW_PATH:Boolean				= false;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,
@@ -62,14 +63,16 @@ package game.play.entities.enemies.seeker
 			
 				var	path:Vector.<Point> = _playWorld.pathFinder.find(this, _player, ["enemy"]);
 				
-				pathGraphics.clear();
-				pathGraphics.lineStyle(3, 0xff0000);
-				pathGraphics.moveTo(path[0].x, path[0].y);
-				for (var i:int = 1; i < path.length; ++i) {
-					
-					pathGraphics.lineTo(path[i].x, path[i].y);
+				if (DRAW_PATH) {
+					pathGraphics.clear();
+					pathGraphics.lineStyle(3, 0xff0000);
+					pathGraphics.moveTo(path[0].x, path[0].y);
+					for (var i:int = 1; i < path.length; ++i) {
+						
+						pathGraphics.lineTo(path[i].x, path[i].y);
+					}
+					pathGraphics.endFill();
 				}
-				pathGraphics.endFill();
 				
 				var	direction:Number = Angle.between(path[0], path[1]);
 				xVel = Math.cos(direction) * SPEED;
@@ -81,12 +84,14 @@ package game.play.entities.enemies.seeker
 		{
 			super.render();
 			
-			var matrix:Matrix = FP.matrix;
-			matrix.b = matrix.c = 0;
-			matrix.tx = -world.camera.x;
-			matrix.ty = -world.camera.y;
-			
-			FP.buffer.draw(pathShape, matrix);
+			if (DRAW_PATH) {
+				var matrix:Matrix = FP.matrix;
+				matrix.b = matrix.c = 0;
+				matrix.tx = -world.camera.x;
+				matrix.ty = -world.camera.y;
+				
+				FP.buffer.draw(pathShape, matrix);
+			}
 		}
 	}
 
