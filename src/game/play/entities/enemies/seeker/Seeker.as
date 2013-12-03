@@ -20,7 +20,7 @@ package game.play.entities.enemies.seeker
 	{
 		public static const	SPEED:Number					= 100,
 							FRAMES_PER_PATH_CALCULATION:int	= 20,
-							DRAW_PATH:Boolean				= false;
+							DRAW_PATH:Boolean				= true;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,

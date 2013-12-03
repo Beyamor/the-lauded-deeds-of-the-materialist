@@ -14,11 +14,13 @@ package game.play.paths
 	{
 		private var	_nodes:Vector.<Vector.<Node>>,
 					_nodeList:Vector.<Node>,
-					_world:PlayWorld;
+					_world:PlayWorld,
+					_level:Level;
 		
 		public function PathFinder(world:PlayWorld, level:Level) 
 		{
 			_world		= world;
+			_level		= level;
 			_nodeList	= new Vector.<Node>;
 			_nodes		= new Vector.<Vector.<Node>>;
 			
@@ -126,32 +128,66 @@ package game.play.paths
 				}
 			}
 				
+			// Create the path from the nodes
 			var	pathNode:Node = toNode,
-				pathAlongNodes:Vector.<Point>	= new Vector.<Point>;
+				pathAlongNodes:Vector.<PathPoint> = new Vector.<PathPoint>;
 				
-			pathAlongNodes.unshift(new Point(to.x, to.y));
+			pathAlongNodes.unshift(new PathPoint(to.x, to.y));
 			while (pathNode) {
 				
-				pathAlongNodes.unshift(pathNode.center);				
+				pathAlongNodes.unshift(PathPoint.from(pathNode.center));				
 				pathNode = pathNode.parent;
 			}
-			pathAlongNodes.unshift(new Point(from.x, from.y));
+			pathAlongNodes.unshift(new PathPoint(from.x, from.y));
+			
+			// To preserve good corner tracing, don't allow corners to be merged
+			var pointIndex:int,
+				previousPoint:PathPoint,
+				currentPoint:PathPoint,
+				nextPoint:PathPoint;
+			
+			for (pointIndex = 2; pointIndex < pathAlongNodes.length - 2; ++pointIndex) {
+				
+				previousPoint	= pathAlongNodes[pointIndex - 1];
+				currentPoint	= pathAlongNodes[pointIndex];
+				nextPoint		= pathAlongNodes[pointIndex + 1];
+				
+				var	prevNodeX:int	= previousPoint.x / Node.WIDTH,
+					prevNodeY:int	= previousPoint.y / Node.HEIGHT,
+					currNodeX:int	= currentPoint.x / Node.WIDTH,
+					currNodeY:int	= currentPoint.y / Node.HEIGHT,
+					nextNodeX:int	= nextPoint.x / Node.WIDTH,
+					nextNodeY:int	= nextPoint.y / Node.HEIGHT,
+					
+					// from previous to next node
+					dx:int			= nextNodeX - prevNodeX,
+					dy:int			= nextNodeY - prevNodeY;
+					
+				if (Math.abs(dx) != 1 || Math.abs(dy) != 1) continue;
+				
+				// from previous to potential wall
+				dx = dx - (currNodeX - prevNodeX);
+				dy = dy - (currNodeY - prevNodeY);
+				
+				if (!_nodes[prevNodeX + dx][prevNodeY + dy]) currentPoint.isMergeable = false;
+			}
 			
 			// Having constructed a path, let's try to simplify it
-			path = new Vector.<Point>;
-			var	pointIndex:int	= 1,
-				previousPoint:Point,
-				currentPoint:Point,
-				nextPoint:Point;
-				
+			path = new Vector.<Point>;				
 			path.push(pathAlongNodes[0]);
-			previousPoint = path[0];			
+			
+			previousPoint = pathAlongNodes[0];				
+			pointIndex = 1;
 			while (pointIndex < pathAlongNodes.length - 1) {
 				
 				currentPoint	= pathAlongNodes[pointIndex];
 				nextPoint		= pathAlongNodes[pointIndex + 1];
 				
-				var	canBeMerged:Boolean = !_world.lineIntersectsWall(previousPoint, nextPoint);
+				var	canBeMerged:Boolean = currentPoint.isMergeable;
+				
+				// Check for no collisions along path
+				if (canBeMerged && _world.lineIntersectsWall(previousPoint, nextPoint))
+					canBeMerged = false;
 					
 				if (!canBeMerged) {
 					
@@ -167,4 +203,20 @@ package game.play.paths
 		}
 	}
 
+}
+import flash.geom.Point;
+
+class PathPoint extends Point {
+	
+	public var	isMergeable:Boolean = true;
+	
+	public function PathPoint(x:Number, y:Number) {
+		
+		super(x, y);
+	}
+	
+	public static function from(point:Point):PathPoint {
+		
+		return new PathPoint(point.x, point.y);
+	}
 }
