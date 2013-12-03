@@ -22,8 +22,7 @@ package game.play.entities.enemies
 			super(x, y, graphic);
 			
 			collisionHandlers = {
-				wall: Fn.constantly(true),
-				player: Fn.constantly(true)
+				wall: Fn.constantly(true)
 			}
 			
 			type = "enemy";

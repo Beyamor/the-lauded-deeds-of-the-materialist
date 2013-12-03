@@ -76,25 +76,13 @@ package game.play.entities
 				}
 			}
 			
-			// this is kinda hackyyyy
 			else {
-				
-				var collidedWithType:Object = { };
-				
-				for each (var delta:Array in [[0, 0], [1, 0], [ -1, 0], [0, 1], [0, -1]]) {
+				for (type in collisionHandlers) {
 					
-					var	dx:Number = delta[0],
-						dy:Number = delta[1];
-					
-					for (type in collisionHandlers) {
-						if (collidedWithType[type]) continue;
+					collision = collide(type, x, y);
+					if (collision) {
 						
-						collision = collide(type, x + dx, y + dy);
-						if (collision) {
-							
-							collisionHandlers[type](collision);
-							collidedWithType[type] = true;
-						}
+						collisionHandlers[type](collision);
 					}
 				}
 			}
