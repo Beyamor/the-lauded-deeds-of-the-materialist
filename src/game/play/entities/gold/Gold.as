@@ -20,12 +20,15 @@ package game.play.entities.gold
 		public static const	MIN_ACCEL:Number	= 25,
 							MAX_ACCEL:Number	= 50,
 							MAX_SPEED:Number	= 400,
-							ENTITY_VALUE:Number	= 50;
+							ENTITY_VALUE:Number	= 50,
+							SEEK_RANGE:Number	= 50,
+							SEEK_RANGE2:Number	= SEEK_RANGE * SEEK_RANGE;
 		
 		private var	_player:Player,
 					_accel:Number,
 					_speed:Number = 0,
-					_value:Number;
+					_value:Number,
+					_isSeeking:Boolean = false;
 		
 		public function Gold(x:Number, y:Number, value:Number) 
 		{
@@ -61,14 +64,27 @@ package game.play.entities.gold
 		{
 			super.update();
 			
-			_speed += _accel;
-			
 			var	dx:Number			= _player.x - x,
-				dy:Number			= _player.y - y,
-				direction:Number	= Math.atan2(dy, dx);
+				dy:Number			= _player.y - y;
+					
+			
+			if (!_isSeeking) {
 				
-			xVel = Math.cos(direction) * _speed;
-			yVel = Math.sin(direction) * _speed;
+				var	distance:Number		= dx * dx + dy * dy,
+					closeEnough:Boolean	= distance <= SEEK_RANGE2;
+					
+				_isSeeking = closeEnough;
+			}
+			
+			else {
+				
+				_speed = Math.min(_speed + _accel, MAX_SPEED);
+				
+				var	direction:Number = Math.atan2(dy, dx);
+					
+				xVel = Math.cos(direction) * _speed;
+				yVel = Math.sin(direction) * _speed;
+			}
 		}
 		
 		public static function drop(world:World, x:Number, y:Number, value:Number):void {
