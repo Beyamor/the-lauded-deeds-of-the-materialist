@@ -20,12 +20,12 @@ package game.play.entities.enemies.seeker
 	{
 		public static const	SPEED:Number					= 100,
 							FRAMES_PER_PATH_CALCULATION:int	= 20,
-							DRAW_PATH:Boolean				= true;
+							DRAW_PATH:Boolean				= false;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,
 					_pathFrame:int,
-					_isFirstCheck:Boolean = true;
+					_destination:Point;
 					
 		private var pathShape:Shape = new Shape, pathGraphics:Graphics = pathShape.graphics;
 		
@@ -49,6 +49,7 @@ package game.play.entities.enemies.seeker
 				
 				_playWorld	= (world as PlayWorld);
 				_player		= _playWorld.player;
+				_destination		= new Point(_player.x, _player.y);
 			}
 		}
 		
@@ -57,11 +58,10 @@ package game.play.entities.enemies.seeker
 			super.update();
 			
 			_pathFrame = (_pathFrame + 1) % FRAMES_PER_PATH_CALCULATION;
-			if (_pathFrame == 0 || _isFirstCheck) {
-				
-				_isFirstCheck = false;
+			if (_pathFrame == 0) {
 			
 				var	path:Vector.<Point> = _playWorld.pathFinder.find(this, _player, ["enemy"]);
+				_destination = path[1];
 				
 				if (DRAW_PATH) {
 					pathGraphics.clear();
@@ -73,11 +73,11 @@ package game.play.entities.enemies.seeker
 					}
 					pathGraphics.endFill();
 				}
-				
-				var	direction:Number = Angle.between(path[0], path[1]);
-				xVel = Math.cos(direction) * SPEED;
-				yVel = Math.sin(direction) * SPEED;
 			}
+			
+			var	direction:Number = Angle.between(this, _destination);
+			xVel = Math.cos(direction) * SPEED;
+			yVel = Math.sin(direction) * SPEED;
 		}
 		
 		override public function render():void 
