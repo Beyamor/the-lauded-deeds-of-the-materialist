@@ -15,8 +15,8 @@ package game.play.entities.shot
 	public class Shot extends PlayEntity 
 	{
 		public static const	SPEED:Number	= 500,
-							WIDTH:int		= 16,
-							HEIGHT:int		= 16;
+							WIDTH:int		= 8,
+							HEIGHT:int		= WIDTH;
 							
 		private var	vx:Number,
 					vy:Number;

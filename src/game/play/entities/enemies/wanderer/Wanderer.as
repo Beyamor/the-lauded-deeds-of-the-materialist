@@ -12,7 +12,7 @@ package game.play.entities.enemies.wanderer
 	 */
 	public class Wanderer extends Enemy
 	{
-		public static const	SPEED:Number	= 150;
+		public static const	SPEED:Number	= 80;
 		
 		private var _wanderTimer:Timer;
 		

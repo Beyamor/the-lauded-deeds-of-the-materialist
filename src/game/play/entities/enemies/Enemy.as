@@ -15,7 +15,7 @@ package game.play.entities.enemies
 		
 		public function Enemy(value:int, x:Number, y:Number, graphic:Graphic=null) {
 			
-			width = height = 48;
+			width = height = 32;
 			centerOrigin();
 			
 			_value = value;

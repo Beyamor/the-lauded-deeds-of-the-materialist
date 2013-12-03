@@ -15,9 +15,9 @@ package game.play.entities.player
 	 */
 	public class Player extends PlayEntity 
 	{
-		public static const	SPEED:Number	= 400,
-							WIDTH:int		= 48,
-							HEIGHT:int		= 48;
+		public static const	SPEED:Number	= 300,
+							WIDTH:int		= 32,
+							HEIGHT:int		= WIDTH;
 
 		private var	_canShoot:Boolean	= true,
 					_shotTimer:Timer;
