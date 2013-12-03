@@ -30,7 +30,8 @@ package game.play.paths
 		public var	weight:Number,
 					center:Point,
 					parent:Node,
-					neighbours:Vector.<Node>;
+					neighbours:Vector.<Node>,
+					g:Number;
 		
 		public function Node(world:World, nodes:Vector.<Vector.<Node>>, x:int, y:int) 
 		{
@@ -48,6 +49,7 @@ package game.play.paths
 			_hCalculated	= false;
 			parent			= null;
 			weight			= WIDTH;
+			g				= Infinity;
 			_target			= target;
 			
 			for (var collisionType:String in collisionTypes) {
@@ -88,13 +90,6 @@ package game.play.paths
 			}
 		}
 		
-		public function get g():Number {
-			
-			var	result:Number = weight;
-			if (parent) result += parent.g;
-			return result;
-		}
-		
 		public function get h():Number {
 			
 			if (_hCalculated) return _h;
@@ -105,6 +100,13 @@ package game.play.paths
 			_h				= Math.sqrt(dx * dx + dy * dy);
 			_hCalculated	= true;
 			return _h;
+		}
+		
+		public function gFor(other:Node):Number {
+			
+			var	result:Number = g + other.weight;
+			if (other._x != _x && other._y != _y) result += WIDTH / 2;
+			return result;
 		}
 	}
 

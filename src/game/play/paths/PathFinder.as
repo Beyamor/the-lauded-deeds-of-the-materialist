@@ -70,6 +70,7 @@ package game.play.paths
 				return path;
 			}
 			
+			fromNode.g = 0;
 			open.push(fromNode);
 			while (true) {
 				
@@ -101,8 +102,9 @@ package game.play.paths
 					
 					if (open.indexOf(neighbourNode) != -1) {
 						
-						if (nextNode.g < neighbourNode.parent.g)
-							neighbourNode.parent = nextNode;
+						if (nextNode.gFor(neighbourNode) < neighbourNode.g)
+							neighbourNode.parent	= nextNode;
+							neighbourNode.g			= nextNode.gFor(neighbourNode);
 						continue;
 					}
 					
@@ -113,7 +115,8 @@ package game.play.paths
 					
 					else {
 						
-						neighbourNode.parent = nextNode;
+						neighbourNode.parent	= nextNode;
+						neighbourNode.g			= nextNode.gFor(neighbourNode);
 						open.push(neighbourNode);
 					}
 				}
