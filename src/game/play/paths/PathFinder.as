@@ -119,15 +119,19 @@ package game.play.paths
 				}
 			}
 			
+			var dx:Number, dy:Number, d1:Number, d2:Number;
 			path = new Vector.<Point>;
 			var	pathNode:Node = toNode;
 			while (pathNode) {
 				
-				if (pathNode == fromNode) {
+				if (pathNode == toNode) {
+					
+					path.unshift(new Point(to.x, to.y));
+				}
+				else if (pathNode == fromNode) {
 					
 					path.unshift(new Point(from.x, from.y));
 				}
-				
 				else {
 				
 					path.unshift(pathNode.center);

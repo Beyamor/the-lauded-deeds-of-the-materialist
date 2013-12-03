@@ -27,8 +27,8 @@ package game.play.entities
 			
 			var	realXVel:Number	= xVel * FP.elapsed,
 				realYVel:Number	= yVel * FP.elapsed,
-				xSteps:int		= Math.floor(Math.abs(realXVel)),
-				ySteps:int		= Math.floor(Math.abs(realYVel)),
+				xSteps:Number	= Math.abs(realXVel),
+				ySteps:Number	= Math.abs(realYVel),
 				xStep:int		= FP.sign(realXVel),
 				yStep:int		= FP.sign(realYVel),
 				type:String,
@@ -36,9 +36,9 @@ package game.play.entities
 				xStop:Boolean	= false,
 				yStop:Boolean	= false;
 				
-			while (xSteps > 1 || ySteps > 1) {
+			while (xSteps > 0 || ySteps > 0) {
 				
-				if (xSteps > 1) {
+				if (xSteps > 0) {
 						
 					for (type in collisionHandlers) {
 						
@@ -55,7 +55,7 @@ package game.play.entities
 					xSteps -= 1;
 				}
 				
-				if (ySteps > 1) {
+				if (ySteps > 0) {
 					
 					for (type in collisionHandlers) {
 						

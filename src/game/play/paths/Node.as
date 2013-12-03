@@ -65,21 +65,20 @@ package game.play.paths
 			
 			neighbours = new Vector.<Node>;
 			
-			for each (var dx:int in [ -1, 0, 1]) {
-				for each (var dy:int in [ -1, 0, 1]) {
-					if (dx == 0 && dy == 0) continue;
+			for each (var delta:Array in [[ -1, 0], [1, 0], [0, -1], [0, 1]]) {
 				
-					var	neighbourX:int	= _x + dx,
-						neighbourY:int	= _y + dy;
-						
-					if (neighbourX < 0) continue;
-					if (neighbourY < 0) continue;
-					if (neighbourX >= MAX_LEVEL_X) continue;
-					if (neighbourY >= MAX_LEVEL_Y) continue;
-					if (_nodes[neighbourX][neighbourY] == null) continue;
+				var	dx:int			= delta[0],
+					dy:int			= delta[1],
+					neighbourX:int	= _x + dx,
+					neighbourY:int	= _y + dy;
 					
-					neighbours.push(_nodes[neighbourX][neighbourY]);
-				}
+				if (neighbourX < 0) continue;
+				if (neighbourY < 0) continue;
+				if (neighbourX >= MAX_LEVEL_X) continue;
+				if (neighbourY >= MAX_LEVEL_Y) continue;
+				if (_nodes[neighbourX][neighbourY] == null) continue;
+				
+				neighbours.push(_nodes[neighbourX][neighbourY]);
 			}
 		}
 		

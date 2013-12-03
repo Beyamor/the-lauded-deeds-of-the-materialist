@@ -14,7 +14,7 @@ package game.play.entities.enemies.seeker
 	 */
 	public class Seeker extends Enemy
 	{
-		public static const	SPEED:Number					= 300,
+		public static const	SPEED:Number					= 200,
 							FRAMES_PER_PATH_CALCULATION:int	= 20;
 		
 		private var	_player:Player,
@@ -60,7 +60,7 @@ package game.play.entities.enemies.seeker
 				xVel = Math.cos(direction) * SPEED;
 				yVel = Math.sin(direction) * SPEED;
 			}			
-		}		
+		}
 	}
 
 }
