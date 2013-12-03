@@ -11,7 +11,8 @@ package util
 		
 		private var	_callback:Function,
 					_elapsed:Number,
-					_loops:Boolean;
+					_loops:Boolean,
+					_stopped:Boolean	= false;
 		
 		public function Timer(args:Object) 
 		{
@@ -23,7 +24,8 @@ package util
 		
 		public function restart():void {
 			
-			_elapsed = 0;
+			_elapsed	= 0;
+			_stopped	= false;
 		}
 		
 		public function update():void {
@@ -38,10 +40,11 @@ package util
 				}
 			}
 			else {
-				
-				if (_elapsed >= period) {
+					
+				if (_elapsed >= period && !_stopped) {
 					
 					_callback();
+					_stopped = true;
 				}
 			}
 		}

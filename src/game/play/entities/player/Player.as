@@ -37,7 +37,7 @@ package game.play.entities.player
 			collisionHandlers = {
 				wall: Fn.constantly(true),
 				enemy: function():void {
-					FP.world = new PlayWorld();
+					//FP.world = new PlayWorld();
 				}
 			}
 			

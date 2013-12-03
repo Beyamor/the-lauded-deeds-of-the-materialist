@@ -23,7 +23,7 @@ package game.play
 				period:	Random.inRange(1, 2),
 				callback: Fn.bind(this, function():void {
 					
-					var	enemyClass:Class			= Random.choice(Seeker, Wanderer),
+					var	enemyClass:Class			= Random.choice(Seeker/*, Wanderer*/),
 						floors:Vector.<Entity>		= new Vector.<Entity>,
 						emptyFloors:Vector.<Entity>	= new Vector.<Entity>;
 						
@@ -39,7 +39,7 @@ package game.play
 					world.add(enemy);
 					
 					_timer.period = Random.inRange(1, 2);
-					_timer.restart();
+					//_timer.restart();
 				})
 			});
 		}

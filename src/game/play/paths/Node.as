@@ -11,7 +11,7 @@ package game.play.paths
 	 */
 	public class Node 
 	{
-		public static var	PER_CELL:int			= 1,
+		public static var	PER_CELL:int			= 2,
 							WIDTH:int				= Cell.WIDTH / PER_CELL,
 							HEIGHT:int				= Cell.HEIGHT / PER_CELL,
 							MAX_LEVEL_X:int			= Level.WIDTH * PER_CELL,
@@ -65,20 +65,27 @@ package game.play.paths
 			
 			neighbours = new Vector.<Node>;
 			
-			for each (var delta:Array in [[ -1, 0], [1, 0], [0, -1], [0, 1]]) {
+			for each (var dx:int in [ -1, 0, 1]) {
+				for each (var dy:int in [ -1, 0, 1]) {
+					if (dx == 0 && dy == 0) continue;
 				
-				var	dx:int			= delta[0],
-					dy:int			= delta[1],
-					neighbourX:int	= _x + dx,
-					neighbourY:int	= _y + dy;
+					var	neighbourX:int	= _x + dx,
+						neighbourY:int	= _y + dy;
+						
+					if (neighbourX < 0) continue;
+					if (neighbourY < 0) continue;
+					if (neighbourX >= MAX_LEVEL_X) continue;
+					if (neighbourY >= MAX_LEVEL_Y) continue;
+					if (_nodes[neighbourX][neighbourY] == null) continue;
 					
-				if (neighbourX < 0) continue;
-				if (neighbourY < 0) continue;
-				if (neighbourX >= MAX_LEVEL_X) continue;
-				if (neighbourY >= MAX_LEVEL_Y) continue;
-				if (_nodes[neighbourX][neighbourY] == null) continue;
-				
-				neighbours.push(_nodes[neighbourX][neighbourY]);
+					if (dx != 0 && dy != 0) {
+						
+						if (_nodes[_x + dx][_y] == null) continue;
+						if (_nodes[_x][_y + dy] == null) continue;
+					}
+					
+					neighbours.push(_nodes[neighbourX][neighbourY]);
+				}
 			}
 		}
 		
