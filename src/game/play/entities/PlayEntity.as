@@ -38,6 +38,9 @@ package game.play.entities
 					xStop:Boolean	= false,
 					yStop:Boolean	= false;
 					
+				if (xSteps < 0.05) xSteps = 0;
+				if (ySteps < 0.05) ySteps = 0;
+					
 				while (xSteps > 0 || ySteps > 0) {
 					
 					if (xSteps > 0) {

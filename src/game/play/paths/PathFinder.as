@@ -3,6 +3,7 @@ package game.play.paths
 	import flash.geom.Point;
 	import game.levels.Cell;
 	import game.levels.Level;
+	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	/**
 	 * ...
@@ -11,12 +12,14 @@ package game.play.paths
 	public class PathFinder 
 	{
 		private var	_nodes:Vector.<Vector.<Node>>,
-					_nodeList:Vector.<Node>;
+					_nodeList:Vector.<Node>,
+					_world:World;
 		
 		public function PathFinder(world:World, level:Level) 
 		{
-			_nodeList = new Vector.<Node>;
-			_nodes = new Vector.<Vector.<Node>>;
+			_world		= world;
+			_nodeList	= new Vector.<Node>;
+			_nodes		= new Vector.<Vector.<Node>>;
 			
 			for (var x:int = 0; x < Node.MAX_LEVEL_X; ++x) {
 				_nodes.push(new Vector.<Node>);
@@ -121,27 +124,46 @@ package game.play.paths
 					}
 				}
 			}
-			
-			var dx:Number, dy:Number, d1:Number, d2:Number;
-			path = new Vector.<Point>;
-			var	pathNode:Node = toNode;
+				
+			var	pathNode:Node = toNode,
+				pathAlongNodes:Vector.<Point>	= new Vector.<Point>;
+				
+			pathAlongNodes.unshift(new Point(to.x, to.y));
 			while (pathNode) {
 				
-				if (pathNode == toNode) {
-					
-					path.unshift(new Point(to.x, to.y));
-				}
-				else if (pathNode == fromNode) {
-					
-					path.unshift(new Point(from.x, from.y));
-				}
-				else {
-				
-					path.unshift(pathNode.center);
-				}
-				
+				pathAlongNodes.unshift(pathNode.center);				
 				pathNode = pathNode.parent;
 			}
+			pathAlongNodes.unshift(new Point(from.x, from.y));
+			
+			// Having constructed a path, let's try to simplify it
+			path = new Vector.<Point>;
+			var	pointIndex:int	= 1,
+				previousPoint:Point,
+				currentPoint:Point,
+				nextPoint:Point;
+				
+			path.push(pathAlongNodes[0]);
+			previousPoint = path[0];			
+			while (pointIndex < pathAlongNodes.length - 1) {
+				
+				currentPoint	= pathAlongNodes[pointIndex];
+				nextPoint		= pathAlongNodes[pointIndex + 1];
+				
+				var	collision:Entity	= _world.collideLine("wall",
+												previousPoint.x, previousPoint.y,
+												nextPoint.x, nextPoint.y),
+					canBeMerged:Boolean	= (collision == null);
+					
+				if (!canBeMerged) {
+					
+					path.push(currentPoint);
+					previousPoint = currentPoint;
+				}
+				
+				++pointIndex;
+			}			
+			path.push(pathAlongNodes[pathAlongNodes.length - 1]);
 			
 			return path;
 		}

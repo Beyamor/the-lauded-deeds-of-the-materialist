@@ -11,7 +11,7 @@ package game.play.paths
 	 */
 	public class Node 
 	{
-		public static var	PER_CELL:int			= 2,
+		public static var	PER_CELL:int			= 1,
 							WIDTH:int				= Cell.WIDTH / PER_CELL,
 							HEIGHT:int				= Cell.HEIGHT / PER_CELL,
 							MAX_LEVEL_X:int			= Level.WIDTH * PER_CELL,

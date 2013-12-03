@@ -77,7 +77,7 @@ package game.play.entities.enemies.seeker
 				var	direction:Number = Angle.between(path[0], path[1]);
 				xVel = Math.cos(direction) * SPEED;
 				yVel = Math.sin(direction) * SPEED;
-			}			
+			}
 		}
 		
 		override public function render():void 
