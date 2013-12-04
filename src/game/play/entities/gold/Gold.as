@@ -45,7 +45,9 @@ package game.play.entities.gold
 					
 					_player.gold += value * _playWorld.multiplier.value;
 					removeFromWorld();
-				})
+				}),
+				
+				wall: Fn.constantly(true)
 			};
 			
 			_accel = Random.inRange(MIN_ACCEL, MAX_ACCEL);
@@ -82,12 +84,8 @@ package game.play.entities.gold
 			
 			else {
 				
-				_speed = Math.min(_speed + _accel, MAX_SPEED);
-				
-				var	direction:Number = Math.atan2(dy, dx);
-					
-				xVel = Math.cos(direction) * _speed;
-				yVel = Math.sin(direction) * _speed;
+				speed		= Math.min(speed + _accel, MAX_SPEED);
+				direction	= Math.atan2(dy, dx);
 			}
 		}
 		

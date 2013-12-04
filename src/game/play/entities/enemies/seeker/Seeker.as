@@ -75,9 +75,8 @@ package game.play.entities.enemies.seeker
 				}
 			}
 			
-			var	direction:Number = Angle.between(this, _destination);
-			xVel = Math.cos(direction) * SPEED;
-			yVel = Math.sin(direction) * SPEED;
+			speed		= SPEED;
+			direction	= Angle.between(this, _destination);
 		}
 		
 		override public function render():void 

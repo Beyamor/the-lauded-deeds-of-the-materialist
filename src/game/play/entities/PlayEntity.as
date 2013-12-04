@@ -10,15 +10,45 @@ package game.play.entities
 	 */
 	public class PlayEntity extends Entity 
 	{
-		public var	xVel:Number,
-					yVel:Number,
+		public var	xVel:Number	= 0,
+					yVel:Number	= 0,
 					collisionHandlers:Object;
+					
+		private var	_direction:Number = 0;
 		
 		public function PlayEntity(x:Number, y:Number, graphic:Graphic) 
 		{
 			super(x, y, graphic);
 			
 			if (!collisionHandlers) collisionHandlers = { };
+		}
+		
+		public function get direction():Number {
+			
+			return Math.atan2(xVel, yVel);
+		}
+		
+		public function set direction(newDirection:Number):void {
+			
+			var	currentSpeed:Number	= speed;
+			
+			xVel = Math.cos(newDirection) * currentSpeed;
+			yVel = Math.sin(newDirection) * currentSpeed;
+			
+			_direction = newDirection;
+		}
+		
+		public function get speed():Number {
+			
+			return Math.sqrt(xVel * xVel + yVel * yVel);
+		}
+		
+		public function set speed(newSpeed:Number):void {
+			
+			var	currentDirection:Number = direction;
+			
+			xVel = Math.cos(currentDirection) * newSpeed;
+			yVel = Math.sin(currentDirection) * newSpeed;
 		}
 		
 		override public function update():void 

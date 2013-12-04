@@ -64,14 +64,16 @@ package game.play.entities.player
 			if (Input.check("move-left"))	dx -= 1;
 			if (Input.check("move-right"))	dx += 1;
 			
-			if (dx != 0 && dy != 0) {
-				
-				dx *= Math.SQRT1_2;
-				dy *= Math.SQRT1_2;
+			if (dx != 0 || dy != 0) {
+			
+				speed		= SPEED;
+				direction	= Math.atan2(dy, dx);
 			}
 			
-			xVel = dx * SPEED;
-			yVel = dy * SPEED;
+			else {
+				
+				speed = 0;
+			}
 			
 			// shooting
 			dx = dy = 0;

@@ -35,12 +35,12 @@ package game.play.entities.enemies.wanderer
 		
 		private function wander():void {
 			
+			speed = SPEED;
+			
 			var	targetX:Number	= Random.inRange(0, Level.PIXEL_WIDTH),
-				targetY:Number	= Random.inRange(0, Level.PIXEL_HEIGHT),
-				theta:Number	= Angle.between(this, { x: targetX, y: targetY } );
+				targetY:Number	= Random.inRange(0, Level.PIXEL_HEIGHT);
 				
-			xVel = Math.cos(theta) * SPEED;
-			yVel = Math.sin(theta) * SPEED;
+			direction = Angle.between(this, { x: targetX, y:targetY } );
 		}
 		
 		override public function update():void 
