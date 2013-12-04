@@ -59,9 +59,9 @@ package game.play
 			
 			_spawner = new Spawner(this);
 			
-			add(new HUD(player));
-			
 			multiplier = new GoldMultiplier();
+			
+			add(new HUD(this));
 		}
 		
 		override public function update():void 

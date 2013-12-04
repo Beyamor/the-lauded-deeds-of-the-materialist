@@ -2,6 +2,7 @@ package game.play.ui
 {
 	import flash.geom.Point;
 	import game.play.entities.player.Player;
+	import game.play.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Graphiclist;
@@ -14,10 +15,11 @@ package game.play.ui
 	{
 		public static const	ZERO:Point = new Point(0, 0);
 		
-		public function HUD(player:Player) 
+		public function HUD(world:PlayWorld) 
 		{
 			super(0, 0, new Graphiclist(
-				new GoldDisplay(player)
+				new GoldDisplay(world.player),
+				new MultiplierDisplay(world.multiplier)
 			));
 			
 			graphic.active = true;

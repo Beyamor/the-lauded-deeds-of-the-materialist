@@ -1,8 +1,8 @@
 package game.play.ui 
 {
-	import flash.geom.Point;
 	import flash.display.BitmapData;
-	import game.play.entities.player.Player;
+	import flash.geom.Point;
+	import game.play.GoldMultiplier;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Text;
 	
@@ -10,35 +10,37 @@ package game.play.ui
 	 * ...
 	 * @author beyamor
 	 */
-	public class GoldDisplay extends Graphic 
+	public class MultiplierDisplay extends Graphic 
 	{
-		private var	_player:Player,
-					_cachedGold:int,
+		private var	_multiplier:GoldMultiplier,
+					_cachedValue:int,
 					_display:Text;
 		
-		public function GoldDisplay(player:Player) 
+		public function MultiplierDisplay(multiplier:GoldMultiplier) 
 		{
-			_player		= player;
-			_cachedGold	= _player.gold;
-			active		= true;
+			_multiplier		= multiplier;
+			_cachedValue	= _multiplier.value;
+			active			= true;
 			
 			recreateDisplay();
 		}
 		
 		private function recreateDisplay():void {
 			
-			_display = new Text("Gold: " + _player.gold, 10, 10);
+			_display = new Text("x" + _multiplier.value, 10, 25);
 		}
 		
 		override public function update():void 
 		{
 			super.update();
 			
-			if (_cachedGold != _player.gold) {
+			if (_cachedValue != _multiplier.value) {
 				
-				_cachedGold = _player.gold;
+				_cachedValue = _multiplier.value;
 				recreateDisplay();
 			}
+			
+			_display.color = _multiplier.isAlive? 0x87B7E8 : 0xFFFFFF;
 		}
 		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 

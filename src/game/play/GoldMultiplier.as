@@ -12,21 +12,21 @@ package game.play
 							INCREMENT:Number	= 0.25,
 							LIFESPAN:Number		= 2;
 							
-		private var	_killTimer:Timer,
-					_isAlive:Boolean;
+		private var	_killTimer:Timer;
 					
-		public var	value:Number;
+		public var	value:Number,
+					isAlive:Boolean;
 		
 		public function GoldMultiplier() 
 		{
-			_isAlive	= false;
+			isAlive	= false;
 			value		= BASE;
 			
 			_killTimer = new Timer( {
 				period:	LIFESPAN,
 				callback: Fn.bind(this, function():void {
 					
-					_isAlive	= false;
+					isAlive	= false;
 					value		= BASE;
 				})
 			});
@@ -34,12 +34,12 @@ package game.play
 		
 		public function update():void {
 			
-			if (_isAlive) _killTimer.update();
+			if (isAlive) _killTimer.update();
 		}
 		
 		public function tap():void {
 			
-			_isAlive	= true;
+			isAlive	= true;
 			value		+= INCREMENT;
 			_killTimer.restart();
 		}
