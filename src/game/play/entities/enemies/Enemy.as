@@ -2,6 +2,7 @@ package game.play.entities.enemies
 {
 	import game.play.entities.gold.Gold;
 	import game.play.entities.PlayEntity;
+	import game.play.PlayWorld;
 	import net.flashpunk.Graphic;
 	import util.Fn;
 	
@@ -31,6 +32,10 @@ package game.play.entities.enemies
 		public function hit():void {
 			
 			if (world) {
+				
+				if (world is PlayWorld)
+					(world as PlayWorld).multiplier.tap();
+				
 				Gold.drop(world, x, y, _value);
 				removeFromWorld();
 			}

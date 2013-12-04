@@ -15,15 +15,14 @@ package game.play.entities.player
 	 */
 	public class Player extends PlayEntity 
 	{
-		public static const	SPEED:Number	= 300,
-							WIDTH:int		= 32,
-							HEIGHT:int		= WIDTH;
+		public static const	SPEED:Number				= 300,
+							WIDTH:int					= 32,
+							HEIGHT:int					= WIDTH;
 
 		private var	_canShoot:Boolean	= true,
 					_shotTimer:Timer;
 		
-		public var	gold:int			= 0,
-					multiplier:Number	= 1;
+		public var	gold:int					= 0;
 							
 		public function Player(x:Number, y:Number) 
 		{

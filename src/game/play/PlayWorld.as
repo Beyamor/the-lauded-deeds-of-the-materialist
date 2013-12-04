@@ -29,7 +29,8 @@ package game.play
 					_level:Level;
 		
 		public var	player:Player,
-					pathFinder:PathFinder;
+					pathFinder:PathFinder,
+					multiplier:GoldMultiplier;
 		
 		public function PlayWorld() 
 		{
@@ -59,6 +60,8 @@ package game.play
 			_spawner = new Spawner(this);
 			
 			add(new HUD(player));
+			
+			multiplier = new GoldMultiplier();
 		}
 		
 		override public function update():void 
@@ -66,6 +69,7 @@ package game.play
 			super.update();
 			_camera.update();
 			_spawner.update();
+			multiplier.update();
 			
 			if (Input.pressed("restart")) FP.world = new PlayWorld();
 		}

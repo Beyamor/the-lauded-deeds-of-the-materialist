@@ -25,6 +25,7 @@ package game.play.entities.gold
 							SEEK_RANGE2:Number	= SEEK_RANGE * SEEK_RANGE;
 		
 		private var	_player:Player,
+					_playWorld:PlayWorld,
 					_accel:Number,
 					_speed:Number = 0,
 					_value:Number,
@@ -42,7 +43,7 @@ package game.play.entities.gold
 			collisionHandlers = {
 				player: Fn.bind(this, function():void {
 					
-					_player.gold += value * _player.multiplier;
+					_player.gold += value * _playWorld.multiplier.value;
 					removeFromWorld();
 				})
 			};
@@ -56,7 +57,8 @@ package game.play.entities.gold
 			
 			if (world is PlayWorld) {
 				
-				_player = (world as PlayWorld).player;
+				_playWorld	= (world as PlayWorld);
+				_player		= _playWorld.player;
 			}
 		}
 		
