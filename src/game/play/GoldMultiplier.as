@@ -8,40 +8,58 @@ package game.play
 	 */
 	public class GoldMultiplier 
 	{
-		public static const	BASE:Number			= 1,
-							INCREMENT:Number	= 0.25,
-							LIFESPAN:Number		= 2;
+		public static const	BASE:Number				= 1,
+							INCREMENT:Number		= 0.25,
+							DECREMENT:Number		= 0.05,
+							LIFESPAN:Number			= 1,
+							DECREMENT_RATE:Number	= 0.1;
 							
-		private var	_killTimer:Timer;
+		private var	_killTimer:Timer,
+					_decrementTimer:Timer,
+					_isAlive:Boolean;
 					
-		public var	value:Number,
-					isAlive:Boolean;
+		public var	value:Number;
 		
 		public function GoldMultiplier() 
 		{
-			isAlive	= false;
+			_isAlive	= false;
 			value		= BASE;
 			
 			_killTimer = new Timer( {
 				period:	LIFESPAN,
 				callback: Fn.bind(this, function():void {
 					
-					isAlive	= false;
-					value		= BASE;
+					_isAlive = false;
+					_decrementTimer.restart();
+				})
+			});
+			
+			_decrementTimer = new Timer( {
+				period: DECREMENT_RATE,
+				loops: true,
+				callback: Fn.bind(this, function():void {
+					
+					value = Math.max(BASE, value - DECREMENT);
 				})
 			});
 		}
 		
 		public function update():void {
 			
-			if (isAlive) _killTimer.update();
+			if (_isAlive)	_killTimer.update();
+			else			_decrementTimer.update();
 		}
 		
 		public function tap():void {
 			
-			isAlive	= true;
-			value		+= INCREMENT;
+			_isAlive = true;
+			value += INCREMENT;
 			_killTimer.restart();
+		}
+		
+		public function get isActive():Boolean {
+			
+			return value > 1;
 		}
 	}
 

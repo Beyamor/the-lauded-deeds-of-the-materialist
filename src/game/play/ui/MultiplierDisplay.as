@@ -13,7 +13,7 @@ package game.play.ui
 	public class MultiplierDisplay extends Graphic 
 	{
 		private var	_multiplier:GoldMultiplier,
-					_cachedValue:int,
+					_cachedValue:Number,
 					_display:Text;
 		
 		public function MultiplierDisplay(multiplier:GoldMultiplier) 
@@ -27,7 +27,9 @@ package game.play.ui
 		
 		private function recreateDisplay():void {
 			
-			_display = new Text("x" + _multiplier.value, 10, 25);
+			var	displayString:String = "x" + (Math.round(_multiplier.value * 100) / 100);
+			
+			_display = new Text(displayString, 10, 25);
 		}
 		
 		override public function update():void 
@@ -40,7 +42,7 @@ package game.play.ui
 				recreateDisplay();
 			}
 			
-			_display.color = _multiplier.isAlive? 0x87B7E8 : 0xFFFFFF;
+			_display.color = _multiplier.isActive? 0x87B7E8 : 0xFFFFFF;
 		}
 		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 
