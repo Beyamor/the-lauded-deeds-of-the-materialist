@@ -40,9 +40,9 @@ package game.play.entities.gold
 			super(x, y, new GoldSprite(this));
 			
 			collisionHandlers = {
-				player: Fn.bind(this, function(_:Entity):void {
+				player: Fn.bind(this, function():void {
 					
-					_player.gold += value;
+					_player.gold += value * _player.multiplier;
 					removeFromWorld();
 				})
 			};

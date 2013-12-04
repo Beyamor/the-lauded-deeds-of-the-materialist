@@ -22,7 +22,8 @@ package game.play.entities.player
 		private var	_canShoot:Boolean	= true,
 					_shotTimer:Timer;
 		
-		public var	gold:int	= 0;
+		public var	gold:int			= 0,
+					multiplier:Number	= 1;
 							
 		public function Player(x:Number, y:Number) 
 		{
