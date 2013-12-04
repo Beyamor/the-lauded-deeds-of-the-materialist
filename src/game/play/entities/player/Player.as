@@ -47,6 +47,8 @@ package game.play.entities.player
 					_canShoot = true;
 				})
 			});
+			
+			level = 50;
 		}
 		
 		override public function update():void 

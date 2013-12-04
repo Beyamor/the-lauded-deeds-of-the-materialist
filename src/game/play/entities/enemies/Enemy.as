@@ -26,7 +26,8 @@ package game.play.entities.enemies
 				wall: Fn.constantly(true)
 			}
 			
-			type = "enemy";
+			type	= "enemy";
+			level	= 60;
 		}
 		
 		public function hit():void {

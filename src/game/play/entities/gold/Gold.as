@@ -49,6 +49,8 @@ package game.play.entities.gold
 			};
 			
 			_accel = Random.inRange(MIN_ACCEL, MAX_ACCEL);
+			
+			level = 100;
 		}
 		
 		override public function added():void 

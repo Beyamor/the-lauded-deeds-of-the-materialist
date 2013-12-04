@@ -15,7 +15,7 @@ package game.play.entities.wall
 			
 			width	= Cell.WIDTH;
 			height	= Cell.HEIGHT;
-			level	= 200;
+			level	= 0;
 			type	= "wall";
 		}
 		

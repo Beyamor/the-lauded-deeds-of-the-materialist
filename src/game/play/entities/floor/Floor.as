@@ -16,7 +16,7 @@ package game.play.entities.floor
 			
 			width	= Cell.WIDTH;
 			height	= Cell.HEIGHT;
-			level	= 300;
+			level	= 200;
 		}
 		
 	}
