@@ -94,7 +94,7 @@ package game.play.entities.gold
 			while (value > 0) {
 				
 				var	angle:Number	= Random.angle,
-					radius:Number	= Random.inRange(5, 15),
+					radius:Number	= Random.inRange(10, 15),
 					gold:Gold		= new Gold(
 										x + Math.cos(angle) * radius,
 										y + Math.sin(angle) * radius,
