@@ -27,9 +27,13 @@ package game.play.ui
 		
 		private function recreateDisplay():void {
 			
-			var	displayString:String = "x" + (Math.round(_multiplier.value * 100) / 100);
+			var	displayString:String	= "x" + (Math.round(_multiplier.value * 100) / 100),
+				fontSize:int			= Math.floor(_multiplier.value) * 2 + 14,
+				prevSize:int			= Text.size;
 			
-			_display = new Text(displayString, 10, 25);
+			Text.size		= fontSize;
+			_display		= new Text(displayString, 10, 25);
+			Text.size		= prevSize;
 		}
 		
 		override public function update():void 
