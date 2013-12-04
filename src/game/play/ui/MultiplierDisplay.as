@@ -42,7 +42,9 @@ package game.play.ui
 				recreateDisplay();
 			}
 			
-			_display.color = _multiplier.isActive? 0x87B7E8 : 0xFFFFFF;
+			if (_multiplier.isAlive)		_display.color	= 0x87B7E8;
+			else if (_multiplier.isDying)	_display.color	= 0xDE240B;
+			else							_display.color	= 0xFFFFFF;
 		}
 		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 

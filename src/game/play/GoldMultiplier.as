@@ -29,8 +29,8 @@ package game.play
 				period:	LIFESPAN,
 				callback: Fn.bind(this, function():void {
 					
-					_isAlive = false;
 					_decrementTimer.restart();
+					_isAlive = false;
 				})
 			});
 			
@@ -46,8 +46,8 @@ package game.play
 		
 		public function update():void {
 			
-			if (_isAlive)	_killTimer.update();
-			else			_decrementTimer.update();
+			if (_isAlive)			_killTimer.update();
+			else if (value > BASE)	_decrementTimer.update();
 		}
 		
 		public function tap():void {
@@ -57,9 +57,14 @@ package game.play
 			_killTimer.restart();
 		}
 		
-		public function get isActive():Boolean {
+		public function get isAlive():Boolean {
 			
-			return value > 1;
+			return _isAlive
+		}
+		
+		public function get isDying():Boolean {
+			
+			return (!_isAlive) && (value > BASE);
 		}
 	}
 
