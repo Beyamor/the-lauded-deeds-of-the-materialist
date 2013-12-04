@@ -9,10 +9,10 @@ package game.play
 	public class GoldMultiplier 
 	{
 		public static const	BASE:Number				= 1,
-							INCREMENT:Number		= 0.25,
-							DECREMENT:Number		= 0.05,
-							LIFESPAN:Number			= 1,
-							DECREMENT_RATE:Number	= 0.1;
+							INCREMENT:Number		= 0.1,
+							DECREMENT:Number		= INCREMENT,
+							LIFESPAN:Number			= 0.75,
+							DECREMENT_RATE:Number	= 0.2;
 							
 		private var	_killTimer:Timer,
 					_decrementTimer:Timer,
