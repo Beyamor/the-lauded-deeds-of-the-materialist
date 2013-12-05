@@ -22,12 +22,12 @@ package game.play.entities.enemies
 		private var	_value:int,
 					_isActive:Boolean	= false;
 		
-		public function Enemy(value:int, x:Number, y:Number, graphic:Graphic=null) {
+		public function Enemy(x:Number, y:Number, graphic:Graphic=null) {
 			
 			width = height = 32;
 			centerOrigin();
 			
-			_value = value;
+			_value = Values.lookup(Object(this).constructor);
 			super(x, y, graphic);
 			
 			collisionHandlers = {

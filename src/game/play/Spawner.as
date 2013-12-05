@@ -1,8 +1,10 @@
 package game.play 
 {
 	import flash.geom.Point;
+	import flash.utils.getQualifiedClassName;
 	import game.levels.Cell;
 	import game.play.entities.enemies.seeker.Seeker;
+	import game.play.entities.enemies.Values;
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.floor.Floor;
 	import net.flashpunk.Entity;
@@ -39,7 +41,7 @@ package game.play
 					enemy:Entity		= new enemyClass(position.x, position.y);
 		
 				world.add(enemy);					
-				_budget -= enemyClass.VALUE;
+				_budget -= Values.lookup(enemyClass);
 				
 				if (_budget > 0) {
 					

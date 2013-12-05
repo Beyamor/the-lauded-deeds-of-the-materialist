@@ -20,8 +20,7 @@ package game.play.entities.enemies.seeker
 	{
 		public static const	SPEED:Number					= 100,
 							FRAMES_PER_PATH_CALCULATION:int	= 20,
-							DRAW_PATH:Boolean				= false,
-							VALUE:int						= 100;
+							DRAW_PATH:Boolean				= false;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,
@@ -32,7 +31,7 @@ package game.play.entities.enemies.seeker
 		
 		public function Seeker(x:Number, y:Number) 
 		{
-			super(VALUE, x, y);
+			super(x, y);
 			
 			graphic = new CircularEntitySprite(this, {
 				color: 0xF05193
