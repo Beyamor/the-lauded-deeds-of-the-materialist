@@ -52,9 +52,7 @@ package game.play.entities.gold
 					
 					_player.gold += value * _playWorld.multiplier.value;
 					removeFromWorld();
-				}),
-				
-				wall: Fn.constantly(true)
+				})
 			};
 			
 			_accel = Random.inRange(MIN_ACCEL, MAX_ACCEL);
