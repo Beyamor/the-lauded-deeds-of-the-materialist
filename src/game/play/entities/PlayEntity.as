@@ -3,6 +3,7 @@ package game.play.entities
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
+	import util.UpdateList;
 	
 	/**
 	 * ...
@@ -16,11 +17,15 @@ package game.play.entities
 					
 		private var	_direction:Number = 0;
 		
+		protected var updateables:UpdateList;
+		
 		public function PlayEntity(x:Number, y:Number, graphic:Graphic) 
 		{
 			super(x, y, graphic);
 			
 			if (!collisionHandlers) collisionHandlers = { };
+			
+			updateables = new UpdateList();
 		}
 		
 		public function get direction():Number {
@@ -54,6 +59,8 @@ package game.play.entities
 		override public function update():void 
 		{
 			super.update();
+			
+			updateables.update();
 			
 			if (xVel != 0 || yVel != 0) {
 				

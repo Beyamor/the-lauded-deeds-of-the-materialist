@@ -7,6 +7,7 @@ package game.play.entities.gold
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
+	import util.effects.Blinker;
 	import util.Fn;
 	import util.Random;
 	import util.Timer;
@@ -53,6 +54,8 @@ package game.play.entities.gold
 			_accel = Random.inRange(MIN_ACCEL, MAX_ACCEL);
 			
 			level = 100;
+			
+			updateables.add(new Blinker(this, {start: true}));
 		}
 		
 		override public function added():void 

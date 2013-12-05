@@ -1,0 +1,68 @@
+package util.effects 
+{
+	import net.flashpunk.Entity;
+	import util.Fn;
+	import util.Timer;
+	import util.Updateable;
+	import util.UpdateList;
+	
+	/**
+	 * ...
+	 * @author beyamor
+	 */
+	public class Blinker implements Updateable 
+	{
+		private var	_timers:UpdateList,
+					_isRunning:Boolean = false;
+		
+		public function Blinker(entity:Entity, opts:Object=null) 
+		{
+			if (!opts) opts = { };
+			
+			_timers = new UpdateList();
+			
+			// Blinking
+			_timers.add(new Timer( {
+					period:		(opts.period? opts.period : 0.1),
+					loops:		true,
+					callback:	function():void {
+						
+						entity.visible = !entity.visible;
+					}
+			}));
+			
+			if (opts.duration) {
+				
+				// Stopping
+				_timers.add( {
+					period:		opts.duration,
+					callback:	Fn.bind(this, stop)
+				})
+			}
+			
+			if (opts.start) start();
+		}
+		
+		public function start():void {
+			
+			_isRunning = true;
+		}
+		
+		public function stop():void {
+			
+			_isRunning = false;
+		}
+		
+		/* INTERFACE util.Updateable */
+		
+		public function update():void 
+		{
+			if (_isRunning) {
+				
+				_timers.update();
+			}
+		}
+		
+	}
+
+}
