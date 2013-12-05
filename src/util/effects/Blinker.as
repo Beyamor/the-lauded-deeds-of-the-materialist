@@ -13,13 +13,15 @@ package util.effects
 	public class Blinker implements Updateable 
 	{
 		private var	_timers:UpdateList,
-					_isRunning:Boolean = false;
+					_isRunning:Boolean = false,
+					_thing:*;
 		
 		public function Blinker(thing:*, opts:Object=null) 
 		{
 			if (!opts) opts = { };
 			
-			_timers = new UpdateList();
+			_timers	= new UpdateList();
+			_thing	= thing;
 			
 			// Blinking
 			_timers.add(new Timer( {
@@ -55,6 +57,7 @@ package util.effects
 		public function stop():void {
 			
 			_isRunning = false;
+			_thing.visible = true;
 		}
 		
 		/* INTERFACE util.Updateable */

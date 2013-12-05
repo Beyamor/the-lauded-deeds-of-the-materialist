@@ -40,10 +40,8 @@ package game.play.entities.enemies.seeker
 			_pathFrame = Random.intInRange(0, FRAMES_PER_PATH_CALCULATION);
 		}
 		
-		override public function added():void 
+		override protected function onActivation():void 
 		{
-			super.added();
-		
 			if (world is PlayWorld) {
 				
 				_playWorld	= (world as PlayWorld);
@@ -52,10 +50,8 @@ package game.play.entities.enemies.seeker
 			}
 		}
 		
-		override public function update():void 
+		override protected function act():void 
 		{
-			super.update();
-			
 			_pathFrame = (_pathFrame + 1) % FRAMES_PER_PATH_CALCULATION;
 			if (_pathFrame == 0) {
 			

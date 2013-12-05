@@ -20,17 +20,6 @@ package game.play.entities.enemies.wanderer
 		{
 			super(100, x, y);
 			graphic = new WandererSprite(this);
-			
-			var that:Wanderer = this;
-			_wanderTimer = new Timer( {
-				period:	Random.inRange(1, 2),
-				loops:	true,
-				onEnd:	function():void {
-					that.wander();
-					_wanderTimer.period = Random.inRange(1, 2);
-				}
-			});
-			wander();
 		}
 		
 		private function wander():void {
@@ -43,10 +32,22 @@ package game.play.entities.enemies.wanderer
 			direction = Angle.between(this, { x: targetX, y:targetY } );
 		}
 		
-		override public function update():void 
+		override protected function onActivation():void 
 		{
-			super.update();
-			
+			var that:Wanderer = this;
+			_wanderTimer = new Timer( {
+				period:	Random.inRange(1, 2),
+				loops:	true,
+				onEnd:	function():void {
+					that.wander();
+					_wanderTimer.period = Random.inRange(1, 2);
+				}
+			});
+			wander();
+		}
+		
+		override protected function act():void 
+		{
 			_wanderTimer.update();
 		}
 	}

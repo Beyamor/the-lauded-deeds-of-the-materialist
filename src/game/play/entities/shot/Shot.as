@@ -41,7 +41,7 @@ package game.play.entities.shot
 					return true;
 				},
 				
-				enemy: function(enemy:Entity):Boolean {
+				enemy: function(enemy:Enemy):Boolean {
 					
 					that.removeFromWorld();
 					(enemy as Enemy).hit();
