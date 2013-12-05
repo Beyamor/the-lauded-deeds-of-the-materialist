@@ -15,7 +15,7 @@ package util.effects
 		private var	_timers:UpdateList,
 					_isRunning:Boolean = false;
 		
-		public function Blinker(entity:Entity, opts:Object=null) 
+		public function Blinker(thing:*, opts:Object=null) 
 		{
 			if (!opts) opts = { };
 			
@@ -27,7 +27,7 @@ package util.effects
 					loops:		true,
 					callback:	function():void {
 						
-						entity.visible = !entity.visible;
+						thing.visible = !thing.visible;
 					}
 			}));
 			
