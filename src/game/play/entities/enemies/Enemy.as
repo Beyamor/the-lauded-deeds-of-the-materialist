@@ -8,6 +8,9 @@ package game.play.entities.enemies
 	import util.effects.Blinker;
 	import util.effects.FadeIn;
 	import util.Fn;
+	import util.sequencing.items.ParallelItems;
+	import util.sequencing.items.SequencedCallback;
+	import util.sequencing.Sequencer;
 	
 	/**
 	 * ...
@@ -41,16 +44,19 @@ package game.play.entities.enemies
 			
 			graphic['alpha'] = 0; // whateeeever
 			
-			updateables.add(new FadeIn(graphic, {
-				start:		true,
-				duration:	INACTIVE_WINDOW,
-				onEnd:		Fn.bind(graphic, function():void {
-
+			updateables.add(new Sequencer(
+				new FadeIn(graphic, {
+					start:		true,
+					duration:	INACTIVE_WINDOW
+				}),
+				
+				new SequencedCallback(Fn.bind(this, function():void {
+					
 					type		= "enemy"; // Eh, only become an enemy when activated, saves us some checks
 					_isActive	= true;
 					onActivation();
-				})
-			}));
+				}))
+			));
 		}
 		
 		protected function onActivation():void {

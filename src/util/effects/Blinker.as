@@ -2,6 +2,7 @@ package util.effects
 {
 	import net.flashpunk.Entity;
 	import util.Fn;
+	import util.sequencing.SequenceItem;
 	import util.Timer;
 	import util.Updateable;
 	import util.UpdateList;
@@ -10,11 +11,12 @@ package util.effects
 	 * ...
 	 * @author beyamor
 	 */
-	public class Blinker implements Updateable 
+	public class Blinker implements SequenceItem 
 	{
 		private var	_timers:UpdateList,
 					_isRunning:Boolean = false,
-					_thing:*;
+					_thing:*,
+					_isFinished:Boolean	= false;
 		
 		public function Blinker(thing:*, opts:Object=null) 
 		{
@@ -42,6 +44,7 @@ package util.effects
 						
 						stop();
 						if (opts.onEnd) opts.onEnd();
+						_isFinished = true;
 					})
 				}));
 			}
@@ -60,8 +63,6 @@ package util.effects
 			_thing.visible = true;
 		}
 		
-		/* INTERFACE util.Updateable */
-		
 		public function update():void 
 		{
 			if (_isRunning) {
@@ -70,6 +71,10 @@ package util.effects
 			}
 		}
 		
+		public function get isFinished():Boolean {
+			
+			return _isFinished;
+		}
 	}
 
 }
