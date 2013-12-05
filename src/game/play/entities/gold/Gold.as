@@ -1,5 +1,6 @@
 package game.play.entities.gold 
 {
+	import flash.events.TimerEvent;
 	import game.play.entities.PlayEntity;
 	import game.play.entities.player.Player;
 	import game.play.PlayWorld;
@@ -23,14 +24,17 @@ package game.play.entities.gold
 							MAX_SPEED:Number	= 400,
 							ENTITY_VALUE:Number	= 50,
 							SEEK_RANGE:Number	= 50,
-							SEEK_RANGE2:Number	= SEEK_RANGE * SEEK_RANGE;
+							SEEK_RANGE2:Number	= SEEK_RANGE * SEEK_RANGE,
+							LIFESPAN:Number		= 5,
+							BLINK_TIME:Number	= 2;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,
 					_accel:Number,
 					_speed:Number = 0,
 					_value:Number,
-					_isSeeking:Boolean = false;
+					_isSeeking:Boolean = false,
+					_disappearBlinker:Blinker;
 		
 		public function Gold(x:Number, y:Number, value:Number) 
 		{
@@ -55,7 +59,27 @@ package game.play.entities.gold
 			
 			level = 100;
 			
-			updateables.add(new Blinker(this, {start: true}));
+			_disappearBlinker = new Blinker(this, {
+				period:		0.25,
+				duration:	BLINK_TIME
+			});
+			updateables.add(_disappearBlinker);
+			
+			updateables.add(
+				// Start blinking
+				new Timer({
+					period:		LIFESPAN - BLINK_TIME,
+					callback:	function():void {
+						_disappearBlinker.start()
+					}
+				}),
+				
+				// Disappear
+				new Timer( {
+					period:		LIFESPAN,
+					callback:	Fn.bind(this, removeFromWorld)
+				})
+			);
 		}
 		
 		override public function added():void 

@@ -34,10 +34,14 @@ package util.effects
 			if (opts.duration) {
 				
 				// Stopping
-				_timers.add( {
+				_timers.add(new Timer({
 					period:		opts.duration,
-					callback:	Fn.bind(this, stop)
-				})
+					callback:	Fn.bind(this, function():void {
+						
+						stop();
+						if (opts.onEnd) opts.onEnd();
+					})
+				}));
 			}
 			
 			if (opts.start) start();
