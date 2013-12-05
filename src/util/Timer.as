@@ -10,6 +10,7 @@ package util
 		public var	period:Number;
 		
 		private var	_callback:Function,
+					_onTick:Function,
 					_elapsed:Number,
 					_loops:Boolean,
 					_stopped:Boolean	= false;
@@ -18,6 +19,7 @@ package util
 		{
 			this.period	= args.period;
 			_callback	= args.callback;
+			_onTick		= args.onTick;
 			_loops		= args.loops;
 			_elapsed	= 0;
 		}
@@ -31,6 +33,9 @@ package util
 		public function update():void {
 			
 			_elapsed += FP.elapsed;
+			
+			if (_onTick) _onTick();
+			
 			if (_loops) {
 				
 				while (_elapsed >= period) {
@@ -44,9 +49,14 @@ package util
 				if (_elapsed >= period && !_stopped) {
 					
 					_stopped = true;
-					_callback();
+					if (_callback) _callback();
 				}
 			}
+		}
+		
+		public function get percentElapsed():Number {
+			
+			return Math.min(1, (_elapsed / period));
 		}
 	}
 

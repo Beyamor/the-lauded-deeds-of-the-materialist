@@ -9,6 +9,7 @@ package game.play.entities.gold
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
 	import util.effects.Blinker;
+	import util.effects.Fader;
 	import util.Fn;
 	import util.Random;
 	import util.Timer;
@@ -59,12 +60,12 @@ package game.play.entities.gold
 			level = 100;
 			
 			updateables.add(
-				// Start blinking
+				// Start fading
 				new Timer({
 					period:		LIFESPAN - BLINK_TIME,
 					callback:	Fn.bind(this, function():void {
 						
-						updateables.add(new Blinker(this, {
+						updateables.add(new Fader(graphic, {
 							period:		0.25,
 							start:		true,
 							duration:	BLINK_TIME
