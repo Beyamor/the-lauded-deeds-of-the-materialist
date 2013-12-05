@@ -13,6 +13,7 @@ package game.play.entities.gold
 	import util.Fn;
 	import util.Random;
 	import util.Timer;
+	import util.UpdateList;
 	
 	/**
 	 * ...
@@ -27,14 +28,15 @@ package game.play.entities.gold
 							SEEK_RANGE:Number	= 50,
 							SEEK_RANGE2:Number	= SEEK_RANGE * SEEK_RANGE,
 							LIFESPAN:Number		= 5,
-							BLINK_TIME:Number	= 2;
+							VANISH_TIME:Number	= 2;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,
 					_accel:Number,
 					_speed:Number = 0,
 					_value:Number,
-					_isSeeking:Boolean = false;
+					_isSeeking:Boolean = false,
+					_vanishTimers:UpdateList;
 		
 		public function Gold(x:Number, y:Number, value:Number) 
 		{
@@ -59,16 +61,16 @@ package game.play.entities.gold
 			
 			level = 100;
 			
-			updateables.add(
+			_vanishTimers = new UpdateList(
 				// Start fading
 				new Timer({
-					period:	LIFESPAN - BLINK_TIME,
+					period:	LIFESPAN - VANISH_TIME,
 					onEnd:	Fn.bind(this, function():void {
 						
-						updateables.add(new Fader(graphic, {
+						_vanishTimers.add(new Fader(graphic, {
 							period:		0.25,
 							start:		true,
-							duration:	BLINK_TIME
+							duration:	VANISH_TIME
 						}));
 					})
 				}),
@@ -101,6 +103,8 @@ package game.play.entities.gold
 					
 			
 			if (!_isSeeking) {
+				
+				_vanishTimers.update();
 				
 				var	distance:Number		= dx * dx + dy * dy,
 					closeEnough:Boolean	= distance <= SEEK_RANGE2;
