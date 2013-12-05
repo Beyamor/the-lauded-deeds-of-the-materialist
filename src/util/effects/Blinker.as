@@ -23,9 +23,9 @@ package util.effects
 			
 			// Blinking
 			_timers.add(new Timer( {
-					period:		(opts.period? opts.period : 0.1),
-					loops:		true,
-					callback:	function():void {
+					period:	(opts.period? opts.period : 0.1),
+					loops:	true,
+					onEnd:	function():void {
 						
 						thing.visible = !thing.visible;
 					}
@@ -35,8 +35,8 @@ package util.effects
 				
 				// Stopping
 				_timers.add(new Timer({
-					period:		opts.duration,
-					callback:	Fn.bind(this, function():void {
+					period:	opts.duration,
+					onEnd:	Fn.bind(this, function():void {
 						
 						stop();
 						if (opts.onEnd) opts.onEnd();

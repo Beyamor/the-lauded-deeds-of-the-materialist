@@ -62,8 +62,8 @@ package game.play.entities.gold
 			updateables.add(
 				// Start fading
 				new Timer({
-					period:		LIFESPAN - BLINK_TIME,
-					callback:	Fn.bind(this, function():void {
+					period:	LIFESPAN - BLINK_TIME,
+					onEnd:	Fn.bind(this, function():void {
 						
 						updateables.add(new Fader(graphic, {
 							period:		0.25,
@@ -75,8 +75,8 @@ package game.play.entities.gold
 				
 				// Disappear
 				new Timer( {
-					period:		LIFESPAN,
-					callback:	Fn.bind(this, removeFromWorld)
+					period:	LIFESPAN,
+					onEnd:	Fn.bind(this, removeFromWorld)
 				})
 			);
 		}

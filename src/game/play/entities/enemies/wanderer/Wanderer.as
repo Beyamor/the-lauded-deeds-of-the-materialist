@@ -23,9 +23,9 @@ package game.play.entities.enemies.wanderer
 			
 			var that:Wanderer = this;
 			_wanderTimer = new Timer( {
-				period: Random.inRange(1, 2),
-				loops: true,
-				callback: function():void {
+				period:	Random.inRange(1, 2),
+				loops:	true,
+				onEnd:	function():void {
 					that.wander();
 					_wanderTimer.period = Random.inRange(1, 2);
 				}

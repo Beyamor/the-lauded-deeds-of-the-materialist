@@ -28,7 +28,7 @@ package game.play
 			
 			_killTimer = new Timer( {
 				period:	LIFESPAN,
-				callback: Fn.bind(this, function():void {
+				onEnd:	Fn.bind(this, function():void {
 					
 					_decrementTimer.restart();
 					_isAlive = false;
@@ -36,9 +36,9 @@ package game.play
 			});
 			
 			_decrementTimer = new Timer( {
-				period: DECREMENT_RATE,
-				loops: true,
-				callback: Fn.bind(this, function():void {
+				period:	DECREMENT_RATE,
+				loops:	true,
+				onEnd:	Fn.bind(this, function():void {
 					
 					value = Math.max(BASE, value - DECREMENT);
 				})

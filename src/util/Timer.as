@@ -9,7 +9,7 @@ package util
 	{
 		public var	period:Number;
 		
-		private var	_callback:Function,
+		private var	_onEnd:Function,
 					_onTick:Function,
 					_elapsed:Number,
 					_loops:Boolean,
@@ -18,7 +18,7 @@ package util
 		public function Timer(args:Object) 
 		{
 			this.period	= args.period;
-			_callback	= args.callback;
+			_onEnd		= args.onEnd;
 			_onTick		= args.onTick;
 			_loops		= args.loops;
 			_elapsed	= 0;
@@ -40,7 +40,7 @@ package util
 				
 				while (_elapsed >= period) {
 					
-					_callback();
+					_onEnd();
 					_elapsed -= period;
 				}
 			}
@@ -49,7 +49,7 @@ package util
 				if (_elapsed >= period && !_stopped) {
 					
 					_stopped = true;
-					if (_callback) _callback();
+					if (_onEnd != null) _onEnd();
 				}
 			}
 		}

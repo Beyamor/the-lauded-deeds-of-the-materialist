@@ -22,7 +22,7 @@ package game.play
 		{
 			_timer	= new Timer( {
 				period:	Random.inRange(1, 2),
-				callback: Fn.bind(this, function():void {
+				onEnd:	Fn.bind(this, function():void {
 					
 					var	enemyClass:Class			= Random.choice(Seeker, Wanderer, Wanderer, Wanderer),
 						floors:Vector.<Entity>		= new Vector.<Entity>,

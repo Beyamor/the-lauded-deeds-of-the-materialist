@@ -24,7 +24,7 @@ package util.effects
 					thing.alpha = 1 - _timer.percentElapsed;
 				},
 				
-				callback: Fn.bind(this, stop)
+				onEnd:	Fn.bind(this, stop)
 			});
 			
 			if (opts.start) start();
