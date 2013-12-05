@@ -33,8 +33,7 @@ package game.play.entities.gold
 					_accel:Number,
 					_speed:Number = 0,
 					_value:Number,
-					_isSeeking:Boolean = false,
-					_disappearBlinker:Blinker;
+					_isSeeking:Boolean = false;
 		
 		public function Gold(x:Number, y:Number, value:Number) 
 		{
@@ -59,19 +58,18 @@ package game.play.entities.gold
 			
 			level = 100;
 			
-			_disappearBlinker = new Blinker(this, {
-				period:		0.25,
-				duration:	BLINK_TIME
-			});
-			updateables.add(_disappearBlinker);
-			
 			updateables.add(
 				// Start blinking
 				new Timer({
 					period:		LIFESPAN - BLINK_TIME,
-					callback:	function():void {
-						_disappearBlinker.start()
-					}
+					callback:	Fn.bind(this, function():void {
+						
+						updateables.add(new Blinker(this, {
+							period:		0.25,
+							start:		true,
+							duration:	BLINK_TIME
+						}));
+					})
 				}),
 				
 				// Disappear
