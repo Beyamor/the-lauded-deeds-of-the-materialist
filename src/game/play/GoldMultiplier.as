@@ -67,6 +67,12 @@ package game.play
 			
 			return (!_isAlive) && (value > BASE);
 		}
+		
+		public function kill():void {
+			
+			_isAlive	= false;
+			value		= BASE;
+		}
 	}
 
 }

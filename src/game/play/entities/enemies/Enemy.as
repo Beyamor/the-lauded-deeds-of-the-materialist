@@ -34,7 +34,8 @@ package game.play.entities.enemies
 				wall: Fn.constantly(true)
 			}
 			
-			level = 60;
+			level	= 60;
+			type	= "inactive-enemy";
 		}
 		
 		override public function added():void 

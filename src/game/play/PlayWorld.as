@@ -26,7 +26,9 @@ package game.play
 	public class PlayWorld extends World 
 	{
 		private var _level:Level,
-					_updateables:UpdateList;
+					_updateables:UpdateList,
+					_reifier:LevelReifier,
+					_playerCam:Camera;
 		
 		public var	player:Player,
 					pathFinder:PathFinder,
@@ -47,16 +49,14 @@ package game.play
 			var constructor:Constructor = new MirrorBothConstructor();
 			_level = constructor.construct();
 			
-			var reifier:LevelReifier = new LevelReifier();
-			for each (var entity:Entity in reifier.reify(_level)) {
+			_reifier = new LevelReifier();
+			for each (var entity:Entity in _reifier.reify(_level)) {
 				
 				add(entity);
 			}
-			player = reifier.player;
 			
-			var playerCam:Camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
-								new EntityCamera(player,
-									new WorldCamera(this)));
+			player = new Player(_reifier.initialPlayerPosition.x, _reifier.initialPlayerPosition.y);
+			add(player);
 							
 			pathFinder = new PathFinder(this, _level);
 			
@@ -67,10 +67,10 @@ package game.play
 			add(new HUD(this));
 			
 			_updateables = new UpdateList(
-				playerCam,
 				spawner,
 				multiplier
 			);
+			resetCamera();
 		}
 		
 		override public function update():void 
@@ -107,6 +107,35 @@ package game.play
 		public function playerWasKilled():void {
 			
 			playthrough.lives -= 1;
+			
+			restart();
+		}
+		
+		private function restart():void {
+			
+			var	entitiesToRemove:Vector.<Entity> = new Vector.<Entity>;
+			for each (var typeToRemove:String in ["player", "enemy", "inactive-enemy", "gold"]) {
+				
+				getType(typeToRemove, entitiesToRemove);
+			}
+			
+			removeList(entitiesToRemove);
+			
+			player = new Player(_reifier.initialPlayerPosition.x, _reifier.initialPlayerPosition.y);
+			add(player);
+			
+			resetCamera();
+			
+			multiplier.kill();
+		}
+		
+		private function resetCamera():void {
+			
+			_updateables.remove(_playerCam);
+			_playerCam = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
+									new EntityCamera(player,
+										new WorldCamera(this)));
+			_updateables.add(_playerCam);
 		}
 	}
 

@@ -1,5 +1,6 @@
 package game.play 
 {
+	import flash.geom.Point;
 	import game.levels.Cell;
 	import game.levels.Level;
 	import game.play.entities.enemies.seeker.Seeker;
@@ -16,7 +17,7 @@ package game.play
 	 */
 	public class LevelReifier 
 	{
-		public var player:Player;
+		public var	initialPlayerPosition:Point;
 		
 		public function LevelReifier() 
 		{
@@ -43,8 +44,7 @@ package game.play
 			
 			cell = Random.any(freeCells);
 			freeCells.splice(freeCells.indexOf(cell), 1);
-			player = new Player((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
-			entities.push(player);
+			initialPlayerPosition = new Point((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
 			
 			return entities;
 		}
