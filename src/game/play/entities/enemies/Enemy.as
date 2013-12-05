@@ -6,6 +6,7 @@ package game.play.entities.enemies
 	import game.play.PlayWorld;
 	import net.flashpunk.Graphic;
 	import util.effects.Blinker;
+	import util.effects.FadeIn;
 	import util.Fn;
 	
 	/**
@@ -32,17 +33,23 @@ package game.play.entities.enemies
 			}
 			
 			level = 60;
+		}
+		
+		override public function added():void 
+		{
+			super.added();
 			
-			updateables.add(new Blinker(this, {
+			graphic['alpha'] = 0; // whateeeever
+			
+			updateables.add(new FadeIn(graphic, {
+				start:		true,
 				duration:	INACTIVE_WINDOW,
-				period:		0.2,
-				onEnd:		Fn.bind(this, function():void {
+				onEnd:		Fn.bind(graphic, function():void {
 
 					type		= "enemy"; // Eh, only become an enemy when activated, saves us some checks
 					_isActive	= true;
 					onActivation();
-				}),
-				start:		true
+				})
 			}));
 		}
 		
