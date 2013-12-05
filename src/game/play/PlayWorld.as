@@ -18,6 +18,7 @@ package game.play
 	import util.cameras.Camera;
 	import util.cameras.EntityCamera;
 	import util.cameras.WorldCamera;
+	import util.Timer;
 	import util.UpdateList;
 	
 	/**

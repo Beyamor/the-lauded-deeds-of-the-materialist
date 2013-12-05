@@ -12,13 +12,14 @@ package game.play.entities.enemies.wanderer
 	 */
 	public class Wanderer extends Enemy
 	{
-		public static const	SPEED:Number	= 80;
+		public static const	SPEED:Number	= 80,
+							VALUE:int		= 50;
 		
 		private var _wanderTimer:Timer;
 		
 		public function Wanderer(x:Number, y:Number) 
 		{
-			super(100, x, y);
+			super(VALUE, x, y);
 			graphic = new WandererSprite(this);
 		}
 		
