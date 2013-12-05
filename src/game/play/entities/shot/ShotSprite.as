@@ -13,8 +13,7 @@ package game.play.entities.shot
 		public function ShotSprite(entity:Entity) 
 		{
 			super(entity, {
-				outline: 0x202060,
-				thickness: 3
+				color: 0x202060
 			});
 		}
 		

@@ -12,8 +12,7 @@ package game.play.entities.enemies.wanderer
 		public function WandererSprite(entity:Entity) 
 		{
 			super(entity, {
-				outline: 0x288025,
-				thickness: 3
+				color: 0x288025
 			});
 		}
 		

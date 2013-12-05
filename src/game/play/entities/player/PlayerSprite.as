@@ -11,8 +11,7 @@ package game.play.entities.player
 		public function PlayerSprite(entity:Entity) 
 		{
 			super(entity, {
-				outline: 0x404040,
-				thickness: 3
+				color: 0x404040
 			});
 		}
 	}

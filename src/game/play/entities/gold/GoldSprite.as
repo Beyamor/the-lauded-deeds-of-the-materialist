@@ -10,16 +10,20 @@ package game.play.entities.gold
 	 */
 	public class GoldSprite extends ProgrammaticGraphic 
 	{
+		private var	_entity:Entity;
 		
 		public function GoldSprite(entity:Entity) 
 		{
-			_graphics.beginFill(0xD6A742);
-			_graphics.drawRect(0, 0, entity.width, entity.height);
-			_graphics.endFill();
-			
-			center(entity.width, entity.height);
+			_entity = entity;
+			centerOn(entity);
 		}
 		
+		override protected function draw():void 
+		{
+			_graphics.beginFill(0xD6A742);
+			_graphics.drawRect(0, 0, _entity.width, _entity.height);
+			_graphics.endFill();
+		}
 	}
 
 }

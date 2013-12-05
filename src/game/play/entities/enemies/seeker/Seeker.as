@@ -34,8 +34,7 @@ package game.play.entities.enemies.seeker
 			super(100, x, y);
 			
 			graphic = new CircularEntitySprite(this, {
-				outline: 0xF05193,
-				thickness: 3
+				color: 0xF05193
 			});
 			
 			_pathFrame = Random.intInRange(0, FRAMES_PER_PATH_CALCULATION);
