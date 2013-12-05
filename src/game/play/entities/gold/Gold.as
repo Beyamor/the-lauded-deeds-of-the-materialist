@@ -9,7 +9,7 @@ package game.play.entities.gold
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
 	import util.effects.Blinker;
-	import util.effects.Fader;
+	import util.effects.FadeOut;
 	import util.Fn;
 	import util.Random;
 	import util.Timer;
@@ -65,7 +65,7 @@ package game.play.entities.gold
 					period:	LIFESPAN - VANISH_TIME,
 					onEnd:	Fn.bind(this, function():void {
 						
-						_vanishTimers.add(new Fader(graphic, {
+						_vanishTimers.add(new FadeOut(graphic, {
 							period:		0.25,
 							start:		true,
 							duration:	VANISH_TIME

@@ -34,7 +34,7 @@ package util
 			
 			_elapsed += FP.elapsed;
 			
-			if (_onTick) _onTick();
+			if (_onTick != null) _onTick();
 			
 			if (_loops) {
 				

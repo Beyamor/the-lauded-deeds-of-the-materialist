@@ -8,12 +8,12 @@ package util.effects
 	 * ...
 	 * @author beyamor
 	 */
-	public class Fader implements Updateable 
+	public class FadeOut implements Updateable 
 	{
 		private var	_timer:Timer,
 					_running:Boolean	= false;
 		
-		public function Fader(thing:*, opts:Object=null) 
+		public function FadeOut(thing:*, opts:Object=null) 
 		{
 			if (!opts) opts = {}
 			
