@@ -8,11 +8,10 @@ package game.play.entities.gold
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
-	import util.effects.Blinker;
-	import util.effects.FadeOut;
 	import util.Fn;
 	import util.Random;
 	import util.sequencing.items.Delay;
+	import util.sequencing.items.effects.FadeOut;
 	import util.sequencing.items.SequencedCallback;
 	import util.sequencing.Sequencer;
 	import util.Timer;
@@ -65,11 +64,7 @@ package game.play.entities.gold
 			_vanishSequence = new Sequencer(
 				new Delay(LIFESPAN - VANISH_TIME),
 				
-				new FadeOut(graphic, {
-					period:		0.25,
-					start:		true,
-					duration:	VANISH_TIME
-				}),
+				new FadeOut(graphic, VANISH_TIME),
 				
 				new SequencedCallback(Fn.bind(this, removeFromWorld))
 			);

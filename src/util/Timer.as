@@ -58,6 +58,11 @@ package util
 			
 			return Math.min(1, (_elapsed / period));
 		}
+		
+		public function get hasFinished():Boolean {
+			
+			return (_elapsed >= period);
+		}
 	}
 
 }

@@ -5,9 +5,8 @@ package game.play.entities.enemies
 	import game.play.entities.PlayEntity;
 	import game.play.PlayWorld;
 	import net.flashpunk.Graphic;
-	import util.effects.Blinker;
-	import util.effects.FadeIn;
 	import util.Fn;
+	import util.sequencing.items.effects.FadeIn;
 	import util.sequencing.items.ParallelItems;
 	import util.sequencing.items.SequencedCallback;
 	import util.sequencing.Sequencer;
@@ -45,10 +44,7 @@ package game.play.entities.enemies
 			graphic['alpha'] = 0; // whateeeever
 			
 			updateables.add(new Sequencer(
-				new FadeIn(graphic, {
-					start:		true,
-					duration:	INACTIVE_WINDOW
-				}),
+				new FadeIn(graphic, INACTIVE_WINDOW),
 				
 				new SequencedCallback(Fn.bind(this, function():void {
 					
