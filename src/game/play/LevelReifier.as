@@ -5,6 +5,7 @@ package game.play
 	import game.play.entities.enemies.seeker.Seeker;
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.floor.Floor;
+	import game.play.entities.floor.FloorSprite;
 	import game.play.entities.player.Player;
 	import game.play.entities.wall.Wall;
 	import net.flashpunk.Entity;
@@ -23,6 +24,8 @@ package game.play
 		}
 		
 		public function reify(level:Level):Vector.<Entity> {
+			
+			FloorSprite.changeToNextPalette();
 			
 			var entities:Vector.<Entity>	= new Vector.<Entity>,
 				freeCells:Vector.<Cell>		= new Vector.<Cell>;
