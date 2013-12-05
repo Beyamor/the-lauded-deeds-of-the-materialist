@@ -5,7 +5,7 @@ package util
 	 * ...
 	 * @author beyamor
 	 */
-	public class Timer 
+	public class Timer implements Updateable
 	{
 		public var	period:Number;
 		

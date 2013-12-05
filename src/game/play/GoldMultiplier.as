@@ -2,11 +2,12 @@ package game.play
 {
 	import util.Fn;
 	import util.Timer;
+	import util.Updateable;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class GoldMultiplier 
+	public class GoldMultiplier implements Updateable
 	{
 		public static const	BASE:Number				= 1,
 							INCREMENT:Number		= 0.1,

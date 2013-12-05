@@ -9,11 +9,12 @@ package game.play
 	import util.Fn;
 	import util.Random;
 	import util.Timer;
+	import util.Updateable;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class Spawner 
+	public class Spawner implements Updateable
 	{
 		private var	_timer:Timer;
 		

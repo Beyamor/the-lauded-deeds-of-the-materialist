@@ -17,6 +17,7 @@ package game.play
 	import util.cameras.Camera;
 	import util.cameras.EntityCamera;
 	import util.cameras.WorldCamera;
+	import util.UpdateList;
 	
 	/**
 	 * ...
@@ -24,9 +25,8 @@ package game.play
 	 */
 	public class PlayWorld extends World 
 	{
-		private var _camera:Camera,
-					_spawner:Spawner,
-					_level:Level;
+		private var _level:Level,
+					_updateables:UpdateList;
 		
 		public var	player:Player,
 					pathFinder:PathFinder,
@@ -51,25 +51,29 @@ package game.play
 			}
 			player = reifier.player;
 			
-			_camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
-						new EntityCamera(player,
-							new WorldCamera(this)));
+			var playerCam:Camera = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
+								new EntityCamera(player,
+									new WorldCamera(this)));
 							
 			pathFinder = new PathFinder(this, _level);
 			
-			_spawner = new Spawner(this);
+			var spawner:Spawner = new Spawner(this);
 			
 			multiplier = new GoldMultiplier();
 			
 			add(new HUD(this));
+			
+			_updateables = new UpdateList(
+				playerCam,
+				spawner,
+				multiplier
+			);
 		}
 		
 		override public function update():void 
 		{
 			super.update();
-			_camera.update();
-			_spawner.update();
-			multiplier.update();
+			_updateables.update();
 			
 			if (Input.pressed("restart")) FP.world = new PlayWorld();
 		}
