@@ -75,6 +75,11 @@ package game.play
 			
 			_sequence.update();
 		}
+		
+		public function get isFinished():Boolean {
+			
+			return _sequence.isEmpty;
+		}
 	}
 
 }

@@ -30,7 +30,9 @@ package game.play
 		private var _level:Level,
 					_updateables:UpdateList,
 					_reifier:LevelReifier,
-					_playerCam:Camera;
+					_playerCam:Camera,
+					_spawner:Spawner,
+					_pendingCompletion:Boolean	= false;
 		
 		public var	player:Player,
 					pathFinder:PathFinder,
@@ -62,14 +64,14 @@ package game.play
 							
 			pathFinder = new PathFinder(this, _level);
 			
-			var spawner:Spawner = new Spawner(this);
+			_spawner = new Spawner(this);
 			
 			multiplier = new GoldMultiplier();
 			
 			add(new HUD(this));
 			
 			_updateables = new UpdateList(
-				spawner,
+				_spawner,
 				multiplier
 			);
 			resetCamera();
@@ -81,6 +83,19 @@ package game.play
 			_updateables.update();
 			
 			if (Input.pressed("restart")) FP.world = new StartScreen;
+			
+			if (!_pendingCompletion && _spawner.isFinished && (typeCount("enemy") == 0) && (typeCount("inactive-enemy") == 0)) {
+				
+				_updateables.add(new Timer( {
+					period:	3,
+					start:	true,
+					onEnd:	function():void {
+						
+						_pendingCompletion	= true;
+						FP.world			= new PlayWorld(playthrough);
+					}
+				}));
+			}
 		}
 		
 		public function lineIntersectsWall(start:Point, end:Point):Boolean {
