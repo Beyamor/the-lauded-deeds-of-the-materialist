@@ -2,6 +2,7 @@ package game.play.entities.player
 {
 	import game.play.entities.PlayEntity;
 	import game.play.entities.shot.Shot;
+	import game.play.Playthrough;
 	import game.play.PlayWorld;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -21,8 +22,6 @@ package game.play.entities.player
 
 		private var	_canShoot:Boolean	= true,
 					_shotTimer:Timer;
-		
-		public var	gold:int					= 0;
 							
 		public function Player(x:Number, y:Number) 
 		{
@@ -37,7 +36,7 @@ package game.play.entities.player
 			collisionHandlers = {
 				wall: Fn.constantly(true),
 				enemy: function():void {
-					FP.world = new PlayWorld();
+					FP.world = new PlayWorld(new Playthrough);
 				}
 			}
 			

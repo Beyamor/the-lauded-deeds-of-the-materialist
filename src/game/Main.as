@@ -2,6 +2,7 @@ package game
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import game.play.Playthrough;
 	import game.play.PlayWorld;
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
@@ -41,7 +42,7 @@ package game
 			Input.define("shoot-right", Key.RIGHT);
 			Input.define("restart", Key.R);
 			
-			FP.world = new PlayWorld();
+			FP.world = new PlayWorld(new Playthrough);
 		}
 		
 	}

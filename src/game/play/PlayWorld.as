@@ -30,11 +30,14 @@ package game.play
 		
 		public var	player:Player,
 					pathFinder:PathFinder,
-					multiplier:GoldMultiplier;
+					multiplier:GoldMultiplier,
+					playthrough:Playthrough;
 		
-		public function PlayWorld() 
+		public function PlayWorld(playthrough:Playthrough) 
 		{
 			super();
+			
+			this.playthrough = playthrough;
 		}
 		
 		override public function begin():void 
@@ -75,7 +78,7 @@ package game.play
 			super.update();
 			_updateables.update();
 			
-			if (Input.pressed("restart")) FP.world = new PlayWorld();
+			if (Input.pressed("restart")) FP.world = new PlayWorld(new Playthrough);
 		}
 		
 		public function lineIntersectsWall(start:Point, end:Point):Boolean {

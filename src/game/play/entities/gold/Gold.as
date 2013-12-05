@@ -52,7 +52,7 @@ package game.play.entities.gold
 			collisionHandlers = {
 				player: Fn.bind(this, function():void {
 					
-					_player.gold += value * _playWorld.multiplier.value;
+					_playWorld.playthrough.gold += value * _playWorld.multiplier.value;
 					removeFromWorld();
 				})
 			};
