@@ -37,6 +37,11 @@ package game.play.entities.floor
 			
 			paletteIndex = (paletteIndex + 1) % PALETTES.length;
 		}
+		
+		public static function restartPaletteCycle():void {
+			
+			paletteIndex = -1;
+		}
 	}
 
 }

@@ -25,7 +25,10 @@ package game.start
 			
 			if (Input.pressed(Key.ANY)) {
 			
-				FP.world = new PlayWorld(new Playthrough);
+				var	playthrough:Playthrough = new Playthrough();
+				playthrough.start();
+				
+				FP.world = new PlayWorld(playthrough);
 			}
 		}
 	}

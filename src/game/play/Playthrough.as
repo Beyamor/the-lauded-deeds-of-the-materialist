@@ -1,5 +1,6 @@
 package game.play 
 {
+	import game.play.entities.floor.FloorSprite;
 	/**
 	 * ...
 	 * @author beyamor
@@ -16,6 +17,10 @@ package game.play
 			
 		}
 		
+		public function start():void {
+			
+			FloorSprite.restartPaletteCycle();
+		}
 	}
 
 }
