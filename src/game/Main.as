@@ -4,6 +4,7 @@ package game
 	import flash.events.Event;
 	import game.play.Playthrough;
 	import game.play.PlayWorld;
+	import game.start.StartScreen;
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
@@ -42,7 +43,7 @@ package game
 			Input.define("shoot-right", Key.RIGHT);
 			Input.define("restart", Key.R);
 			
-			FP.world = new PlayWorld(new Playthrough);
+			FP.world = new StartScreen();
 		}
 		
 	}

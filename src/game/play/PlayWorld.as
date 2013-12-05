@@ -9,6 +9,7 @@ package game.play
 	import game.play.entities.player.Player;
 	import game.play.paths.PathFinder;
 	import game.play.ui.HUD;
+	import game.start.StartScreen;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -78,7 +79,7 @@ package game.play
 			super.update();
 			_updateables.update();
 			
-			if (Input.pressed("restart")) FP.world = new PlayWorld(new Playthrough);
+			if (Input.pressed("restart")) FP.world = new StartScreen;
 		}
 		
 		public function lineIntersectsWall(start:Point, end:Point):Boolean {
@@ -108,7 +109,15 @@ package game.play
 			
 			playthrough.lives -= 1;
 			
-			restart();
+			if (playthrough.lives > 0) {
+				
+				restart();
+			}
+			
+			else {
+				
+				FP.world = new StartScreen;
+			}
 		}
 		
 		private function restart():void {
