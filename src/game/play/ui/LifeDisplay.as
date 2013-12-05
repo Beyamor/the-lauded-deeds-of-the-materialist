@@ -1,8 +1,7 @@
 package game.play.ui 
 {
-	import flash.geom.Point;
 	import flash.display.BitmapData;
-	import game.play.entities.player.Player;
+	import flash.geom.Point;
 	import game.play.Playthrough;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Text;
@@ -11,16 +10,16 @@ package game.play.ui
 	 * ...
 	 * @author beyamor
 	 */
-	public class GoldDisplay extends Graphic 
+	public class LifeDisplay extends Graphic 
 	{
 		private var	_playthrough:Playthrough,
-					_cachedGold:int,
+					_cachedLives:int,
 					_display:Text;
 		
-		public function GoldDisplay(playthrough:Playthrough) 
+		public function LifeDisplay(playthrough:Playthrough) 
 		{
 			_playthrough	= playthrough;
-			_cachedGold		= _playthrough.gold;
+			_cachedLives	= _playthrough.lives;
 			active			= true;
 			
 			recreateDisplay();
@@ -28,16 +27,16 @@ package game.play.ui
 		
 		private function recreateDisplay():void {
 			
-			_display = new Text("Gold: " + _playthrough.gold, 10, 25);
+			_display = new Text("Lives: " + _playthrough.lives, 10, 10);
 		}
 		
 		override public function update():void 
 		{
 			super.update();
 			
-			if (_cachedGold != _playthrough.gold) {
+			if (_cachedLives != _playthrough.lives) {
 				
-				_cachedGold = _playthrough.gold;
+				_cachedLives = _playthrough.lives;
 				recreateDisplay();
 			}
 		}

@@ -32,7 +32,7 @@ package game.play.ui
 				prevSize:int			= Text.size;
 			
 			Text.size		= fontSize;
-			_display		= new Text(displayString, 10, 25);
+			_display		= new Text(displayString, 10, 40);
 			Text.size		= prevSize;
 		}
 		

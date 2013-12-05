@@ -18,6 +18,7 @@ package game.play.ui
 		public function HUD(world:PlayWorld) 
 		{
 			super(0, 0, new Graphiclist(
+				new LifeDisplay(world.playthrough),
 				new GoldDisplay(world.playthrough),
 				new MultiplierDisplay(world.multiplier)
 			));
