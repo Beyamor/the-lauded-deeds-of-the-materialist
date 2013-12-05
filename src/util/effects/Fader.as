@@ -1,6 +1,7 @@
 package util.effects 
 {
 	import util.Fn;
+	import util.sequencing.SequenceItem;
 	import util.Timer;
 	import util.Updateable;
 	
@@ -8,10 +9,11 @@ package util.effects
 	 * ...
 	 * @author beyamor
 	 */
-	public class Fader implements Updateable 
+	public class Fader implements SequenceItem 
 	{
 		private var	_timer:Timer,
-					_running:Boolean	= false;
+					_running:Boolean	= false,
+					_isFinished:Boolean	= false;
 		
 		public function Fader(thing:*, opts:Object=null) 
 		{
@@ -28,6 +30,7 @@ package util.effects
 					
 					stop();
 					if (opts.onEnd != null) opts.onEnd();
+					_isFinished = true;
 				})
 			});
 			
@@ -50,11 +53,14 @@ package util.effects
 			return 0.5;
 		}
 		
-		/* INTERFACE util.Updateable */
-		
 		public function update():void 
 		{
 			if (_running) _timer.update();
+		}
+		
+		public function get isFinished():Boolean {
+			
+			return _isFinished;
 		}
 	}
 

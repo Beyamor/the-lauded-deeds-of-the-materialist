@@ -12,6 +12,9 @@ package game.play.entities.gold
 	import util.effects.FadeOut;
 	import util.Fn;
 	import util.Random;
+	import util.sequencing.items.Delay;
+	import util.sequencing.items.SequencedCallback;
+	import util.sequencing.Sequencer;
 	import util.Timer;
 	import util.UpdateList;
 	
@@ -36,7 +39,7 @@ package game.play.entities.gold
 					_speed:Number = 0,
 					_value:Number,
 					_isSeeking:Boolean = false,
-					_vanishTimers:UpdateList;
+					_vanishSequence:Sequencer;
 		
 		public function Gold(x:Number, y:Number, value:Number) 
 		{
@@ -59,25 +62,16 @@ package game.play.entities.gold
 			
 			level = 100;
 			
-			_vanishTimers = new UpdateList(
-				// Start fading
-				new Timer({
-					period:	LIFESPAN - VANISH_TIME,
-					onEnd:	Fn.bind(this, function():void {
-						
-						_vanishTimers.add(new FadeOut(graphic, {
-							period:		0.25,
-							start:		true,
-							duration:	VANISH_TIME
-						}));
-					})
+			_vanishSequence = new Sequencer(
+				new Delay(LIFESPAN - VANISH_TIME),
+				
+				new FadeOut(graphic, {
+					period:		0.25,
+					start:		true,
+					duration:	VANISH_TIME
 				}),
 				
-				// Disappear
-				new Timer( {
-					period:	LIFESPAN,
-					onEnd:	Fn.bind(this, removeFromWorld)
-				})
+				new SequencedCallback(Fn.bind(this, removeFromWorld))
 			);
 		}
 		
@@ -102,7 +96,7 @@ package game.play.entities.gold
 			
 			if (!_isSeeking) {
 				
-				_vanishTimers.update();
+				_vanishSequence.update();
 				
 				var	distance:Number		= dx * dx + dy * dy,
 					closeEnough:Boolean	= distance <= SEEK_RANGE2;
