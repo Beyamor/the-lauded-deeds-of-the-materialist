@@ -103,6 +103,11 @@ package game.play
 			
 			return false;
 		}
+		
+		public function playerWasKilled():void {
+			
+			playthrough.lives -= 1;
+		}
 	}
 
 }

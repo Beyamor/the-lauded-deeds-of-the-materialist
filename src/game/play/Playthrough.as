@@ -6,7 +6,10 @@ package game.play
 	 */
 	public class Playthrough 
 	{
-		public var	gold:int	= 0;
+		public static const	INITIAL_LIVES:int	= 3;
+		
+		public var	gold:int	= 0,
+					lives:int	= INITIAL_LIVES;
 		
 		public function Playthrough() 
 		{
