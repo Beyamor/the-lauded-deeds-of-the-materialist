@@ -1,30 +1,25 @@
 package game.play.entities.stairs 
 {
 	import net.flashpunk.Entity;
+	import net.flashpunk.graphics.Image;
 	import util.graphics.ProgrammaticGraphic;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class StairsSprite extends ProgrammaticGraphic 
+	public class StairsSprite extends Image 
 	{
+		[Embed (source="/images/stairs.png" )]
+		public static const SOURCE:Class;
+		
 		private var	_entity:Entity;
 		
 		public function StairsSprite(entity:Entity) 
 		{
-			_entity = entity;
+			super(SOURCE);
 			
-			centerOn(entity);
-		}
-		
-		override protected function draw():void 
-		{
-			super.draw();
-			
-			_graphics.beginFill(0x000000);
-			_graphics.lineStyle(3, 0xCE9963);
-			_graphics.drawRect(0, 0, _entity.width, _entity.height);
+			centerOO();
 		}
 	}
 
