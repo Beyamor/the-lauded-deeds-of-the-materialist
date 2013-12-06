@@ -36,14 +36,23 @@ package game.play
 			
 			var	spawn:Function = Fn.bind(this, function():void {
 				
-				var	enemyClass:Class	= Random.any(ENEMY_CLASSES),
+				var	possibleClasses:Vector.<Class> = new Vector.<Class>();
+				for each (var enemyClass:Class in ENEMY_CLASSES) {
+					
+					var	value:int = Values.lookup(enemyClass);
+					if (value <= _budget) possibleClasses.push(enemyClass);
+				}
+				
+				if (possibleClasses.length == 0) throw new Error("Whoa, no enemies fit the budget");
+				
+				var	selectedClass:Class	= Random.any(possibleClasses),
 					position:Point		= getEnemyLocation(),
-					enemy:Entity		= new enemyClass(position.x, position.y);
+					enemy:Entity		= new selectedClass(position.x, position.y);
 		
 				world.add(enemy);					
 				_budget -= Values.lookup(enemyClass);
 				
-				if (_budget > 0) {
+				if (_budget >= Values.smallest) {
 					
 					_sequence.add(
 						new Delay(Random.inRange(0.5, 1)),

@@ -20,6 +20,18 @@ package game.play.entities.enemies
 			if (!values[name]) throw new Error("No value for " + name);
 			return values[name];
 		}
+		
+		public static function get smallest():int {
+			
+			var result:int = int.MAX_VALUE;
+			
+			for each (var value:int in values) {
+				
+				result = Math.min(result, value);
+			}
+			
+			return result;
+		}
 	}
 
 }
