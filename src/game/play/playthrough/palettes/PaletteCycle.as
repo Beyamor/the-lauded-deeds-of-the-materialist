@@ -1,4 +1,4 @@
-package game.play.playthrough 
+package game.play.playthrough.palettes 
 {
 	import util.Random;
 	/**
@@ -7,12 +7,12 @@ package game.play.playthrough
 	 */
 	public class PaletteCycle 
 	{
-		private var	_palettes:Array,
+		private var	_palettes:Vector.<Palette> = new Vector.<Palette>,
 					_index:int = 0;
 		
 		public function PaletteCycle(... palettes) 
 		{
-			_palettes = palettes;
+			for each (var palette:Palette in palettes) _palettes.push(palette);
 		}
 		
 		public function cycle():void {
@@ -20,7 +20,7 @@ package game.play.playthrough
 			_index = (_index + 1) % _palettes.length;
 		}
 		
-		public function get current():Array {
+		public function get current():Palette {
 			
 			return _palettes[_index];
 		}

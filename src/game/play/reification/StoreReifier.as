@@ -2,6 +2,7 @@ package game.play.reification
 {
 	import game.levels.Level;
 	import game.play.entities.stairs.Stairs;
+	import game.play.playthrough.palettes.Palette;
 	import game.play.playthrough.Playthrough;
 	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
@@ -31,7 +32,7 @@ package game.play.reification
 			return entities;
 		}
 		
-		override protected function get floorPalette():Array 
+		override protected function get floorPalette():Palette 
 		{
 			return _playthrough.storeFloorPalette;
 		}

@@ -1,8 +1,8 @@
 package game.play.entities.floor 
 {
 	import game.levels.Cell;
+	import game.play.playthrough.palettes.Palette;
 	import util.graphics.ProgrammaticGraphic;
-	import util.Random;
 	
 	/**
 	 * ...
@@ -12,9 +12,9 @@ package game.play.entities.floor
 	{
 		private var	_color:uint;
 		
-		public function FloorSprite(palette:Array) 
+		public function FloorSprite(palette:Palette) 
 		{
-			_color = Random.any(palette);
+			_color = palette.anyColor;
 		}
 		
 		override protected function draw():void 

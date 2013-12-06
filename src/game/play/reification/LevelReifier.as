@@ -9,6 +9,7 @@ package game.play.reification
 	import game.play.entities.floor.FloorSprite;
 	import game.play.entities.player.Player;
 	import game.play.entities.wall.Wall;
+	import game.play.playthrough.palettes.Palette;
 	import game.play.playthrough.Playthrough;
 	import net.flashpunk.Entity;
 	import util.Random;
@@ -44,7 +45,7 @@ package game.play.reification
 			return entities;
 		}
 		
-		protected function get floorPalette():Array {
+		protected function get floorPalette():Palette {
 			
 			return _playthrough.regularFloorPalettes.current;
 		}
