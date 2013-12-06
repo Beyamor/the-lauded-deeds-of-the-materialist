@@ -10,10 +10,11 @@ package game.common.playthrough
 	{
 		public static const	INITIAL_LIVES:int	= 3;
 		
-		public var	gold:int	= 0,
-					lives:int	= INITIAL_LIVES,
+		public var	gold:int			= 0,
+					lives:int			= INITIAL_LIVES,
 					regularFloorPalettes:PaletteCycle,
-					storeFloorPalette:Palette;
+					storeFloorPalette:Palette,
+					livesPurchased:int	= 0;
 					
 		private var	_depth:int	= 1;
 		

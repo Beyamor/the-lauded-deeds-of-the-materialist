@@ -3,7 +3,6 @@ package game.store
 	import game.common.entities.player.Player;
 	import game.common.PlayerCam;
 	import game.common.playthrough.Playthrough;
-	import game.common.reification.StoreReifier;
 	import game.levels.constructors.Constructor;
 	import game.levels.constructors.StoreConstructor;
 	import game.levels.Level;
