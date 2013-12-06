@@ -40,7 +40,7 @@ package util
 				
 				while (_elapsed >= period) {
 					
-					_onEnd();
+					if (_onEnd != null) _onEnd();
 					_elapsed -= period;
 				}
 			}

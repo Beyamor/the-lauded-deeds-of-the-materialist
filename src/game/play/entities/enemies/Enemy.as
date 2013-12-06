@@ -21,6 +21,8 @@ package game.play.entities.enemies
 		
 		private var	_value:int,
 					_isActive:Boolean	= false;
+					
+		protected var	boostsMultipier:Boolean = true;
 		
 		public function Enemy(x:Number, y:Number, graphic:Graphic=null) {
 			
@@ -78,7 +80,7 @@ package game.play.entities.enemies
 			
 			if (world) {
 				
-				if (world is PlayWorld)
+				if (boostsMultipier && world is PlayWorld)
 					(world as PlayWorld).multiplier.tap();
 				
 				Gold.drop(world, x, y, _value);

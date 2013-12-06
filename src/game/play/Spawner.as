@@ -53,7 +53,12 @@ package game.play
 				world.add(enemy);					
 				_budget -= Values.lookup(selectedClass);
 				
-				if (_budget >= Values.smallest) {
+				var smallestValue:int = int.MAX_VALUE;
+				for each (enemyClass in classesForDepth) {
+					smallestValue = Math.min(smallestValue, Values.lookup(enemyClass));
+				}
+				
+				if (_budget >= smallestValue) {
 					
 					_sequence.add(
 						new Delay(Random.inRange(0.25, 0.5)),
