@@ -9,7 +9,7 @@ package game.play.worlds
 	import game.play.entities.player.Player;
 	import game.play.entities.stairs.Stairs;
 	import game.play.GoldMultiplier;
-	import game.play.LevelReifier;
+	import game.play.reification.LevelReifier;
 	import game.play.paths.PathFinder;
 	import game.play.Playthrough;
 	import game.play.Spawner;
@@ -90,8 +90,7 @@ package game.play.worlds
 				
 				add(new Stairs(function():void {
 							
-							++playthrough.depth;
-							FP.world = new PlayWorld(playthrough);
+							FP.world = new Store(playthrough);
 				}));
 				
 				_stairsSpawned = true;
