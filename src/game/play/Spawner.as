@@ -32,7 +32,7 @@ package game.play
 		{			
 			_world		= world;
 			_sequence	= new Sequencer();
-			_budget		= 1000;
+			_budget		= 1000 * world.playthrough.depth;
 			
 			var	spawn:Function = Fn.bind(this, function():void {
 				
@@ -55,7 +55,7 @@ package game.play
 				if (_budget >= Values.smallest) {
 					
 					_sequence.add(
-						new Delay(Random.inRange(0.5, 1)),
+						new Delay(Random.inRange(0.5, 0.75)),
 						new SequencedCallback(spawn)
 					);
 				}
