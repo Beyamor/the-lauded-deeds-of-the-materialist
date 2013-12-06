@@ -42,7 +42,7 @@ package game.common.entities.player
 			}
 			
 			_shotTimer = new Timer({
-				period:	0.25,
+				period:	0.4,
 				onEnd:	Fn.bind(this, function():void {
 					_canShoot = true;
 				})
