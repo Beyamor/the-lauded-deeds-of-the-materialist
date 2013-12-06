@@ -2,6 +2,7 @@ package game.common.playthrough
 {
 	import game.common.playthrough.palettes.Palette;
 	import game.common.playthrough.palettes.PaletteCycle;
+	import game.store.entities.life.Life;
 	/**
 	 * ...
 	 * @author beyamor
@@ -39,6 +40,15 @@ package game.common.playthrough
 		public function get depth():int {
 			
 			return _depth;
+		}
+		
+		public function purchase(life:Life):void {
+			
+			if (gold < life.price) throw new Error("Can't afford life");
+			
+			gold			-= life.price;
+			lives			+= 1;
+			livesPurchased	+= 1;
 		}
 	}
 

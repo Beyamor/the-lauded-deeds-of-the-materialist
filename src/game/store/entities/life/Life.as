@@ -2,6 +2,7 @@ package game.store.entities.life
 {
 	import game.common.playthrough.Playthrough;
 	import net.flashpunk.Entity;
+	import net.flashpunk.utils.Input;
 	
 	/**
 	 * ...
@@ -25,12 +26,23 @@ package game.store.entities.life
 		
 		public function get price():int {
 			
-			return Math.pow(1000, _playthrough.livesPurchased + 1);
+			return 1000 * Math.pow(10, _playthrough.livesPurchased);
 		}
 		
 		public function get canBeAfforded():Boolean {
 			
 			return (price <= _playthrough.gold);
+		}
+		
+		override public function update():void 
+		{
+			super.update();
+			
+			if (Input.pressed("action") && canBeAfforded && collide("player", x, y)) {
+				
+				_playthrough.purchase(this);
+				world.remove(this);
+			}
 		}
 	}
 
