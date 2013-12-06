@@ -7,6 +7,7 @@ package game.play.worlds
 	import game.play.PlayerCam;
 	import game.play.playthrough.Playthrough;
 	import game.play.reification.StoreReifier;
+	import game.play.ui.huds.StoreHUD;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	import util.UpdateList;
@@ -40,6 +41,8 @@ package game.play.worlds
 			
 			var	player:Player = new Player(Level.PIXEL_CENTER.x, Level.PIXEL_CENTER.y);
 			add(player);
+			
+			add(new StoreHUD(_playthrough));
 			
 			_updateables = new UpdateList(
 				new PlayerCam(this, player)

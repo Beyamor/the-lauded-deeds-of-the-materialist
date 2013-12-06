@@ -1,7 +1,10 @@
-package game.play.ui 
+package game.play.ui.huds 
 {
 	import flash.geom.Point;
 	import game.play.entities.player.Player;
+	import game.play.ui.displays.GoldDisplay;
+	import game.play.ui.displays.LifeDisplay;
+	import game.play.ui.displays.MultiplierDisplay;
 	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -11,25 +14,15 @@ package game.play.ui
 	 * ...
 	 * @author beyamor
 	 */
-	public class HUD extends Entity 
+	public class PlayHUD extends HUD 
 	{
-		public static const	ZERO:Point = new Point(0, 0);
-		
-		public function HUD(world:PlayWorld) 
+		public function PlayHUD(world:PlayWorld) 
 		{
-			super(0, 0, new Graphiclist(
+			super(
 				new LifeDisplay(world.playthrough),
 				new GoldDisplay(world.playthrough),
 				new MultiplierDisplay(world.multiplier)
-			));
-			
-			graphic.active = true;
-			level = -100;
-		}
-		
-		override public function render():void 
-		{
-			graphic.render(renderTarget? renderTarget : FP.buffer, ZERO, ZERO);
+			);
 		}
 	}
 

@@ -14,7 +14,7 @@ package game.play.worlds
 	import game.play.reification.LevelReifier;
 	import game.play.paths.PathFinder;
 	import game.play.Spawner;
-	import game.play.ui.HUD;
+	import game.play.ui.huds.PlayHUD;
 	import game.start.StartScreen;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -71,7 +71,7 @@ package game.play.worlds
 			
 			multiplier = new GoldMultiplier();
 			
-			add(new HUD(this));
+			add(new PlayHUD(this));
 			
 			_updateables = new UpdateList(
 				_spawner,

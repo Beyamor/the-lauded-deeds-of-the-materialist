@@ -1,4 +1,4 @@
-package game.play.ui 
+package game.play.ui.displays 
 {
 	import flash.geom.Point;
 	import flash.display.BitmapData;
