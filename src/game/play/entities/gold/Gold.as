@@ -29,8 +29,8 @@ package game.play.entities.gold
 							ENTITY_VALUE:Number	= 50,
 							SEEK_RANGE:Number	= 50,
 							SEEK_RANGE2:Number	= SEEK_RANGE * SEEK_RANGE,
-							LIFESPAN:Number		= 5,
-							VANISH_TIME:Number	= 2;
+							LIFESPAN:Number		= 3,
+							VANISH_TIME:Number	= 1;
 		
 		private var	_player:Player,
 					_playWorld:PlayWorld,
