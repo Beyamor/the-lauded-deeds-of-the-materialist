@@ -48,6 +48,9 @@ package game.common.entities.shot
 					return true;
 				}
 			};
+			
+			type	= "shot";
+			level	= 80;
 		}
 	}
 
