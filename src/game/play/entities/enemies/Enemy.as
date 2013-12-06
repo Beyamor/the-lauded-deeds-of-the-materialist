@@ -28,6 +28,7 @@ package game.play.entities.enemies
 			centerOrigin();
 			
 			_value = Values.lookup(Object(this).constructor);
+			
 			super(x, y, graphic);
 			
 			collisionHandlers = {

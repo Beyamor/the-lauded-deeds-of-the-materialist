@@ -93,7 +93,7 @@ package game.play.entities.player
 					dy *= Math.SQRT1_2;
 				}
 				
-				world.add(new Shot(x, y, Math.atan2(dy, dx)));
+				if (world) world.add(new Shot(x, y, Math.atan2(dy, dx)));
 				_canShoot = false;
 				_shotTimer.restart();
 			}
