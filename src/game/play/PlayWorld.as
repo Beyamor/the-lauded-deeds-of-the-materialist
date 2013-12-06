@@ -91,8 +91,9 @@ package game.play
 					start:	true,
 					onEnd:	function():void {
 						
-						_pendingCompletion	= true;
+						playthrough.depth += 1;
 						FP.world			= new PlayWorld(playthrough);
+						_pendingCompletion	= true;
 					}
 				}));
 			}

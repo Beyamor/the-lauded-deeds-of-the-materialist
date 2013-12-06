@@ -10,7 +10,8 @@ package game.play
 		public static const	INITIAL_LIVES:int	= 3;
 		
 		public var	gold:int	= 0,
-					lives:int	= INITIAL_LIVES;
+					lives:int	= INITIAL_LIVES,
+					depth:int	= 1;
 		
 		public function Playthrough() 
 		{
