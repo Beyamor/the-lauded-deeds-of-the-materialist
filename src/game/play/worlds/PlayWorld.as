@@ -9,6 +9,7 @@ package game.play.worlds
 	import game.play.entities.player.Player;
 	import game.play.entities.stairs.Stairs;
 	import game.play.GoldMultiplier;
+	import game.play.PlayerCam;
 	import game.play.reification.LevelReifier;
 	import game.play.paths.PathFinder;
 	import game.play.Playthrough;
@@ -19,10 +20,7 @@ package game.play.worlds
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.World;
-	import util.cameras.BoundedCamera;
 	import util.cameras.Camera;
-	import util.cameras.EntityCamera;
-	import util.cameras.WorldCamera;
 	import util.Timer;
 	import util.UpdateList;
 	
@@ -160,9 +158,7 @@ package game.play.worlds
 		private function resetCamera():void {
 			
 			_updateables.remove(_playerCam);
-			_playerCam = new BoundedCamera(0, 0, Level.PIXEL_WIDTH, Level.PIXEL_HEIGHT,
-									new EntityCamera(player,
-										new WorldCamera(this)));
+			_playerCam = new PlayerCam(this, player);
 			_updateables.add(_playerCam);
 		}
 	}
