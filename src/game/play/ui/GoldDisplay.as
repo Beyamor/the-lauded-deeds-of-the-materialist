@@ -3,7 +3,7 @@ package game.play.ui
 	import flash.geom.Point;
 	import flash.display.BitmapData;
 	import game.play.entities.player.Player;
-	import game.play.Playthrough;
+	import game.play.playthrough.Playthrough;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Text;
 	

@@ -5,7 +5,7 @@ package game.play.worlds
 	import game.levels.Level;
 	import game.play.entities.player.Player;
 	import game.play.PlayerCam;
-	import game.play.Playthrough;
+	import game.play.playthrough.Playthrough;
 	import game.play.reification.StoreReifier;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;

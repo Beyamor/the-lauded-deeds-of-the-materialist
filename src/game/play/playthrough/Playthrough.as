@@ -1,4 +1,4 @@
-package game.play 
+package game.play.playthrough 
 {
 	import game.play.entities.floor.FloorSprite;
 	/**

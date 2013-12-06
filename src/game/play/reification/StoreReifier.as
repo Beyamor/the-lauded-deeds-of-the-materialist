@@ -2,7 +2,7 @@ package game.play.reification
 {
 	import game.levels.Level;
 	import game.play.entities.stairs.Stairs;
-	import game.play.Playthrough;
+	import game.play.playthrough.Playthrough;
 	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;

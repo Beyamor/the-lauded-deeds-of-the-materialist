@@ -2,7 +2,7 @@ package game.play.ui
 {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
-	import game.play.Playthrough;
+	import game.play.playthrough.Playthrough;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Text;
 	

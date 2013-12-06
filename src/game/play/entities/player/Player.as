@@ -2,7 +2,6 @@ package game.play.entities.player
 {
 	import game.play.entities.PlayEntity;
 	import game.play.entities.shot.Shot;
-	import game.play.Playthrough;
 	import game.play.worlds.PlayWorld;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
