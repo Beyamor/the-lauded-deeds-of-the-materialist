@@ -23,7 +23,7 @@ package game.start
 		{
 			super.update();
 			
-			if (Input.pressed(Key.ANY)) {
+			if (Input.pressed("action")) {
 			
 				var	playthrough:Playthrough = new Playthrough();
 				playthrough.start();

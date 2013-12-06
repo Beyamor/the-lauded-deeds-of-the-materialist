@@ -7,6 +7,7 @@ package game.play.worlds
 	import game.levels.Level;
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.player.Player;
+	import game.play.entities.stairs.Stairs;
 	import game.play.GoldMultiplier;
 	import game.play.LevelReifier;
 	import game.play.paths.PathFinder;
@@ -36,7 +37,7 @@ package game.play.worlds
 					_reifier:LevelReifier,
 					_playerCam:Camera,
 					_spawner:Spawner,
-					_pendingCompletion:Boolean	= false;
+					_stairsSpawned:Boolean	= false;
 		
 		public var	player:Player,
 					pathFinder:PathFinder,
@@ -85,18 +86,15 @@ package game.play.worlds
 		{
 			super.update();
 			
-			if (!_pendingCompletion && _spawner.isFinished && (typeCount("enemy") == 0) && (typeCount("inactive-enemy") == 0)) {
+			if (!_stairsSpawned && _spawner.isFinished && (typeCount("enemy") == 0) && (typeCount("inactive-enemy") == 0)) {
 				
-				_updateables.add(new Timer( {
-					period:	3,
-					start:	true,
-					onEnd:	function():void {
-						
-						playthrough.depth += 1;
-						FP.world			= new PlayWorld(playthrough);
-						_pendingCompletion	= true;
-					}
+				add(new Stairs(function():void {
+							
+							++playthrough.depth;
+							FP.world = new PlayWorld(playthrough);
 				}));
+				
+				_stairsSpawned = true;
 			}
 			
 			_updateables.update();
