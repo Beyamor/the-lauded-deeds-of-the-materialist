@@ -2,13 +2,12 @@ package game.play
 {
 	import flash.geom.Point;
 	import flash.utils.getQualifiedClassName;
+	import game.common.entities.floor.Floor;
 	import game.levels.Cell;
 	import game.play.entities.enemies.bouncer.Bouncer;
 	import game.play.entities.enemies.seeker.Seeker;
 	import game.play.entities.enemies.Values;
 	import game.play.entities.enemies.wanderer.Wanderer;
-	import game.play.entities.floor.Floor;
-	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	import util.Fn;

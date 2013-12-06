@@ -1,9 +1,9 @@
 package game.play.entities.gold 
 {
 	import flash.events.TimerEvent;
-	import game.play.entities.PlayEntity;
-	import game.play.entities.player.Player;
-	import game.play.worlds.PlayWorld;
+	import game.common.entities.PlayEntity;
+	import game.common.entities.player.Player;
+	import game.play.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;

@@ -1,8 +1,8 @@
 package game.play.entities.enemies.bouncer 
 {
+	import game.common.entities.wall.Wall;
 	import game.levels.Cell;
 	import game.play.entities.enemies.Enemy;
-	import game.play.entities.wall.Wall;
 	import net.flashpunk.Graphic;
 	import util.graphics.CircularEntitySprite;
 	import util.Random;

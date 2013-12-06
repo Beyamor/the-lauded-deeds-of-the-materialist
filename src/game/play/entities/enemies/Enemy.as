@@ -1,9 +1,9 @@
 package game.play.entities.enemies 
 {
 	import flash.utils.Timer;
+	import game.common.entities.PlayEntity;
 	import game.play.entities.gold.Gold;
-	import game.play.entities.PlayEntity;
-	import game.play.worlds.PlayWorld;
+	import game.play.PlayWorld;
 	import net.flashpunk.Graphic;
 	import util.Fn;
 	import util.sequencing.items.effects.FadeIn;
