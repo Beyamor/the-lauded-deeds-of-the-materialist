@@ -20,7 +20,8 @@ package game.common.entities.player
 							HEIGHT:int					= WIDTH;
 
 		private var	_canShoot:Boolean	= true,
-					_shotTimer:Timer;
+					_shotTimer:Timer,
+					_isAlive:Boolean	= true;
 							
 		public function Player(x:Number, y:Number) 
 		{
@@ -37,7 +38,13 @@ package game.common.entities.player
 				
 				enemy: function():void {
 					
-					if (world is PlayWorld) (world as PlayWorld).playerWasKilled();
+					if (_isAlive) {
+						
+						_isAlive = false;
+					
+						if (world is PlayWorld)
+							(world as PlayWorld).playerWasKilled();
+					}
 				}
 			}
 			
