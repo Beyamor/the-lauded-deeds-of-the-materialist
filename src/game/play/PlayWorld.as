@@ -22,6 +22,10 @@ package game.play
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.World;
 	import util.cameras.Camera;
+	import util.Fn;
+	import util.sequencing.items.Delay;
+	import util.sequencing.items.SequencedCallback;
+	import util.sequencing.Sequencer;
 	import util.Timer;
 	import util.UpdateList;
 	
@@ -129,7 +133,20 @@ package game.play
 			
 			if (playthrough.lives > 0) {
 				
-				restart();
+				var deathSequence:Sequencer = new Sequencer(
+					new SequencedCallback(Fn.bind(this, function():void {
+						remove(player)
+					})),
+					
+					new Delay(1),
+					
+					new SequencedCallback(Fn.bind(this, function():void {
+						
+						_updateables.remove(deathSequence);
+						restart();
+					}))
+				);
+				_updateables.add(deathSequence);
 			}
 			
 			else {
@@ -141,7 +158,7 @@ package game.play
 		private function restart():void {
 			
 			var	entitiesToRemove:Vector.<Entity> = new Vector.<Entity>;
-			for each (var typeToRemove:String in ["player", "enemy", "inactive-enemy", "gold", "shot"]) {
+			for each (var typeToRemove:String in ["enemy", "inactive-enemy", "gold", "shot"]) {
 				
 				getType(typeToRemove, entitiesToRemove);
 			}
