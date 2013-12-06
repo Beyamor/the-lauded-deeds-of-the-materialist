@@ -6,7 +6,7 @@ package game.levels
 	 */
 	public class Cell 
 	{
-		public static const	WIDTH:int		= 64,
+		public static const	WIDTH:int		= 72,
 							HEIGHT:int		= WIDTH;
 							
 		public var	type:String,

@@ -42,9 +42,7 @@ package game.play
 				}
 			}
 			
-			cell = Random.any(freeCells);
-			freeCells.splice(freeCells.indexOf(cell), 1);
-			initialPlayerPosition = new Point((cell.x + 0.5) * Cell.WIDTH, (cell.y + 0.5) * Cell.HEIGHT);
+			initialPlayerPosition = new Point((Level.CENTER_X + 0.5) * Cell.WIDTH, (Level.CENTER_Y + 0.5) * Cell.HEIGHT);
 			
 			return entities;
 		}

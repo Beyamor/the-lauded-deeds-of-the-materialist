@@ -6,12 +6,14 @@ package game.levels
 	 */
 	public class Level 
 	{
-		public static const	INNER_WIDTH:int		= 10,
-							INNER_HEIGHT:int	= 8,
+		public static const	INNER_WIDTH:int		= 9,
+							INNER_HEIGHT:int	= 7,
 							WIDTH:int			= INNER_WIDTH + 2,
 							HEIGHT:int			= INNER_HEIGHT + 2,
 							PIXEL_WIDTH:int		= WIDTH * Cell.WIDTH,
-							PIXEL_HEIGHT:int	= HEIGHT * Cell.HEIGHT;
+							PIXEL_HEIGHT:int	= HEIGHT * Cell.HEIGHT,
+							CENTER_X:int		= WIDTH / 2,
+							CENTER_Y:int		= HEIGHT / 2;
 						
 		private var	_cells:Vector.<Vector.<Cell>>,
 					_cellList:Vector.<Cell>;
@@ -54,7 +56,12 @@ package game.levels
 		
 		public function get isValid():Boolean {
 			
-			return allEmptyCellsAreReachable;
+			return centerIsFree && allEmptyCellsAreReachable;
+		}
+		
+		private function get centerIsFree():Boolean {
+			
+			return cells[CENTER_X][CENTER_Y].isEmpty;
 		}
 		
 		private function get allEmptyCellsAreReachable():Boolean {
