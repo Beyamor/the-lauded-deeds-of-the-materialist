@@ -3,7 +3,7 @@ package game.play.paths
 	import flash.geom.Point;
 	import game.levels.Cell;
 	import game.levels.Level;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	/**

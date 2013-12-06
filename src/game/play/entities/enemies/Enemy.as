@@ -3,7 +3,7 @@ package game.play.entities.enemies
 	import flash.utils.Timer;
 	import game.play.entities.gold.Gold;
 	import game.play.entities.PlayEntity;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Graphic;
 	import util.Fn;
 	import util.sequencing.items.effects.FadeIn;

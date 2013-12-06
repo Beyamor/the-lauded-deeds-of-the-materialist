@@ -2,7 +2,7 @@ package game.play.ui
 {
 	import flash.geom.Point;
 	import game.play.entities.player.Player;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Graphiclist;

@@ -8,6 +8,7 @@ package game.play
 	import game.play.entities.enemies.Values;
 	import game.play.entities.enemies.wanderer.Wanderer;
 	import game.play.entities.floor.Floor;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	import util.Fn;

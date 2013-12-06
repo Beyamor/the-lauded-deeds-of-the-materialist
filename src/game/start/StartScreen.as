@@ -1,7 +1,7 @@
 package game.start 
 {
 	import game.play.Playthrough;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;

@@ -3,7 +3,7 @@ package game.play.entities.gold
 	import flash.events.TimerEvent;
 	import game.play.entities.PlayEntity;
 	import game.play.entities.player.Player;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;

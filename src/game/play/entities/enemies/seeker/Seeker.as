@@ -6,7 +6,7 @@ package game.play.entities.enemies.seeker
 	import flash.geom.Point;
 	import game.play.entities.enemies.Enemy;
 	import game.play.entities.player.Player;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import net.flashpunk.FP;
 	import util.Angle;
 	import util.graphics.CircularEntitySprite;

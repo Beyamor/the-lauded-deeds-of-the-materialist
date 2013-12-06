@@ -3,7 +3,7 @@ package game
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import game.play.Playthrough;
-	import game.play.PlayWorld;
+	import game.play.worlds.PlayWorld;
 	import game.start.StartScreen;
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
