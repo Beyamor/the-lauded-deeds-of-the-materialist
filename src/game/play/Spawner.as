@@ -51,7 +51,7 @@ package game.play
 					enemy:Entity		= new selectedClass(position.x, position.y);
 		
 				world.add(enemy);					
-				_budget -= Values.lookup(enemyClass);
+				_budget -= Values.lookup(selectedClass);
 				
 				if (_budget >= Values.smallest) {
 					
