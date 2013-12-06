@@ -29,7 +29,7 @@ package game.common.playthrough.palettes
 			GREEN_FLOOR:Palette	= palette(0xC0D1AE, 0xB6C9A1, 0xA4BD8A),
 			BROWN_FLOOR:Palette	= palette(0xA67041, 0xA8764A, 0xB07846),
 			BLUE_FLOOR:Palette	= palette(0xCCDDE6, 0xD7E5F7, 0xE4ECF0),
-			STORE_FLOOR:Palette	= palette(0x000000);
+			STORE_FLOOR:Palette	= palette(0xB5B4AA, 0xBDBCAE, 0xC2C1BA);
 	}
 
 }
