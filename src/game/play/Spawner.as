@@ -23,11 +23,9 @@ package game.play
 	 */
 	public class Spawner implements Updateable
 	{
-		public static const	ENEMY_CLASSES:Array = [Bouncer, Seeker];
-		
 		private var	_sequence:Sequencer,
 					_budget:int,
-					_world:World;
+					_world:PlayWorld;
 		
 		public function Spawner(world:PlayWorld) 
 		{			
@@ -37,8 +35,10 @@ package game.play
 			
 			var	spawn:Function = Fn.bind(this, function():void {
 				
-				var	possibleClasses:Vector.<Class> = new Vector.<Class>();
-				for each (var enemyClass:Class in ENEMY_CLASSES) {
+				var	classesForDepth:Array			= SpawnPatterns.getClasses(_world.playthrough.depth),
+					possibleClasses:Vector.<Class>	= new Vector.<Class>();
+					
+				for each (var enemyClass:Class in classesForDepth) {
 					
 					var	value:int = Values.lookup(enemyClass);
 					if (value <= _budget) possibleClasses.push(enemyClass);
