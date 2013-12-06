@@ -141,7 +141,7 @@ package game.play
 		private function restart():void {
 			
 			var	entitiesToRemove:Vector.<Entity> = new Vector.<Entity>;
-			for each (var typeToRemove:String in ["player", "enemy", "inactive-enemy", "gold"]) {
+			for each (var typeToRemove:String in ["player", "enemy", "inactive-enemy", "gold", "shot"]) {
 				
 				getType(typeToRemove, entitiesToRemove);
 			}

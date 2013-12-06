@@ -59,7 +59,8 @@ package game.play.entities.gold
 			
 			_accel = Random.inRange(MIN_ACCEL, MAX_ACCEL);
 			
-			level = 100;
+			level	= 100;
+			type	= "gold";
 			
 			_vanishSequence = new Sequencer(
 				new Delay(LIFESPAN - VANISH_TIME),
