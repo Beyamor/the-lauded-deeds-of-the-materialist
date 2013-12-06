@@ -10,9 +10,9 @@ package game.play.entities.floor
 	public class Floor extends Entity 
 	{
 		
-		public function Floor(cellX:int, cellY:int) 
+		public function Floor(cellX:int, cellY:int, palette:Array) 
 		{
-			super(cellX * Cell.WIDTH, cellY * Cell.HEIGHT, new FloorSprite);
+			super(cellX * Cell.WIDTH, cellY * Cell.HEIGHT, new FloorSprite(palette));
 			
 			width	= Cell.WIDTH;
 			height	= Cell.HEIGHT;

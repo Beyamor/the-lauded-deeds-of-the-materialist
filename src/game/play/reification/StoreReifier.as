@@ -13,13 +13,9 @@ package game.play.reification
 	 */
 	public class StoreReifier extends LevelReifier 
 	{
-		private var	_playthrough:Playthrough;
-		
 		public function StoreReifier(playthrough:Playthrough) 
 		{
-			super();
-			
-			_playthrough = playthrough;
+			super(playthrough);
 		}
 		
 		override public function reify(level:Level):Vector.<Entity> 
@@ -28,11 +24,16 @@ package game.play.reification
 			
 			entities.push(new Stairs(function():void {
 				
-				++_playthrough.depth;
+				_playthrough.increaseDepth();
 				FP.world = new PlayWorld(_playthrough)
 			}));
 			
 			return entities;
+		}
+		
+		override protected function get floorPalette():Array 
+		{
+			return _playthrough.storeFloorPalette;
 		}
 	}
 

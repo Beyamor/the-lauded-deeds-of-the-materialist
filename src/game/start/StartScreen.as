@@ -26,7 +26,6 @@ package game.start
 			if (Input.pressed("action")) {
 			
 				var	playthrough:Playthrough = new Playthrough();
-				playthrough.start();
 				
 				FP.world = new PlayWorld(playthrough);
 			}

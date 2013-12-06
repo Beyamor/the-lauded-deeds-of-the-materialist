@@ -56,7 +56,7 @@ package game.play.worlds
 			var constructor:Constructor = new MirrorBothConstructor();
 			_level = constructor.construct();
 			
-			_reifier = new LevelReifier();
+			_reifier = new LevelReifier(playthrough);
 			for each (var entity:Entity in _reifier.reify(_level)) {
 				
 				add(entity);

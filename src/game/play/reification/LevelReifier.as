@@ -9,6 +9,7 @@ package game.play.reification
 	import game.play.entities.floor.FloorSprite;
 	import game.play.entities.player.Player;
 	import game.play.entities.wall.Wall;
+	import game.play.playthrough.Playthrough;
 	import net.flashpunk.Entity;
 	import util.Random;
 	/**
@@ -17,14 +18,14 @@ package game.play.reification
 	 */
 	public class LevelReifier 
 	{
-		public function LevelReifier() 
+		protected var	_playthrough:Playthrough;
+		
+		public function LevelReifier(playthough:Playthrough) 
 		{
-			
+			_playthrough = playthough;
 		}
 		
 		public function reify(level:Level):Vector.<Entity> {
-			
-			FloorSprite.changeToNextPalette();
 			
 			var entities:Vector.<Entity>	= new Vector.<Entity>,
 				freeCells:Vector.<Cell>		= new Vector.<Cell>;
@@ -35,12 +36,17 @@ package game.play.reification
 						entities.push(new Wall(cell.x, cell.y));
 				}
 				else {
-						entities.push(new Floor(cell.x, cell.y));
+						entities.push(new Floor(cell.x, cell.y, floorPalette));
 						freeCells.push(cell);
 				}
 			}
 			
 			return entities;
+		}
+		
+		protected function get floorPalette():Array {
+			
+			return _playthrough.regularFloorPalettes.current;
 		}
 	}
 
