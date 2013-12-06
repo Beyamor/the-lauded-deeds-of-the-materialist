@@ -17,8 +17,6 @@ package game.play
 	 */
 	public class LevelReifier 
 	{
-		public var	initialPlayerPosition:Point;
-		
 		public function LevelReifier() 
 		{
 			
@@ -41,8 +39,6 @@ package game.play
 						freeCells.push(cell);
 				}
 			}
-			
-			initialPlayerPosition = new Point((Level.CENTER_X + 0.5) * Cell.WIDTH, (Level.CENTER_Y + 0.5) * Cell.HEIGHT);
 			
 			return entities;
 		}

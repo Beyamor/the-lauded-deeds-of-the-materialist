@@ -1,5 +1,6 @@
 package game.levels 
 {
+	import flash.geom.Point;
 	/**
 	 * ...
 	 * @author beyamor
@@ -13,7 +14,8 @@ package game.levels
 							PIXEL_WIDTH:int		= WIDTH * Cell.WIDTH,
 							PIXEL_HEIGHT:int	= HEIGHT * Cell.HEIGHT,
 							CENTER_X:int		= WIDTH / 2,
-							CENTER_Y:int		= HEIGHT / 2;
+							CENTER_Y:int		= HEIGHT / 2,
+							PIXEL_CENTER:Point	= new Point((CENTER_X + 0.5) * Cell.WIDTH, (CENTER_Y + 0.5) * Cell.HEIGHT);
 						
 		private var	_cells:Vector.<Vector.<Cell>>,
 					_cellList:Vector.<Cell>;

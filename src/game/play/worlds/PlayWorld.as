@@ -63,7 +63,7 @@ package game.play.worlds
 				add(entity);
 			}
 			
-			player = new Player(_reifier.initialPlayerPosition.x, _reifier.initialPlayerPosition.y);
+			player = new Player(Level.PIXEL_CENTER.x, Level.PIXEL_CENTER.y);
 			add(player);
 							
 			pathFinder = new PathFinder(this, _level);
@@ -152,7 +152,7 @@ package game.play.worlds
 			
 			removeList(entitiesToRemove);
 			
-			player = new Player(_reifier.initialPlayerPosition.x, _reifier.initialPlayerPosition.y);
+			player = new Player(Level.PIXEL_CENTER.x, Level.PIXEL_CENTER.y);
 			add(player);
 			
 			resetCamera();
