@@ -14,6 +14,7 @@ package game.play
 	import game.play.GoldMultiplier;
 	import game.play.paths.PathFinder;
 	import game.play.Spawner;
+	import game.play.ui.GameOverScreen;
 	import game.play.ui.PlayHUD;
 	import game.start.StartScreen;
 	import game.store.Store;
@@ -151,7 +152,8 @@ package game.play
 			
 			else {
 				
-				FP.world = new StartScreen;
+				remove(player);
+				add(new GameOverScreen(playthrough));
 			}
 		}
 		
