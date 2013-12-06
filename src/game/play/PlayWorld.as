@@ -80,9 +80,6 @@ package game.play
 		override public function update():void 
 		{
 			super.update();
-			_updateables.update();
-			
-			if (Input.pressed("restart")) FP.world = new StartScreen;
 			
 			if (!_pendingCompletion && _spawner.isFinished && (typeCount("enemy") == 0) && (typeCount("inactive-enemy") == 0)) {
 				
@@ -97,6 +94,10 @@ package game.play
 					}
 				}));
 			}
+			
+			_updateables.update();
+			
+			if (Input.pressed("restart")) FP.world = new StartScreen;
 		}
 		
 		public function lineIntersectsWall(start:Point, end:Point):Boolean {

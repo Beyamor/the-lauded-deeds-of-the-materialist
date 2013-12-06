@@ -11,6 +11,7 @@ package game.play.entities.enemies
 	{
 		private static const values:Object = {
 			Wanderer:	50,
+			Bouncer:	50,
 			Seeker:		100
 		};
 		

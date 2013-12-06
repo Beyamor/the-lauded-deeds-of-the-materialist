@@ -3,6 +3,7 @@ package game.play
 	import flash.geom.Point;
 	import flash.utils.getQualifiedClassName;
 	import game.levels.Cell;
+	import game.play.entities.enemies.bouncer.Bouncer;
 	import game.play.entities.enemies.seeker.Seeker;
 	import game.play.entities.enemies.Values;
 	import game.play.entities.enemies.wanderer.Wanderer;
@@ -22,7 +23,7 @@ package game.play
 	 */
 	public class Spawner implements Updateable
 	{
-		public static const	ENEMY_CLASSES:Array = [Seeker, Wanderer];
+		public static const	ENEMY_CLASSES:Array = [Bouncer, Seeker];
 		
 		private var	_sequence:Sequencer,
 					_budget:int,
