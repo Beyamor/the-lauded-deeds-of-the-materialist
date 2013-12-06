@@ -1,5 +1,6 @@
 package util.sequencing 
 {
+	import util.sequencing.items.SequencedCallback;
 	import util.Updateable;
 	
 	/**
@@ -14,9 +15,9 @@ package util.sequencing
 		{
 			_items = new Vector.<SequenceItem>();
 			
-			for each (var item:SequenceItem in initialItems) {
+			for each (var item:* in initialItems) {
 				
-				_items.push(item);
+				add(item);
 			}
 		}
 		
@@ -49,9 +50,11 @@ package util.sequencing
 		
 		public function add(... items):void {
 			
-			for each (var item:SequenceItem in items) {
+			for each (var item:* in items) {
 				
-				_items.push(item);
+				if (item is SequenceItem)	_items.push(item as SequenceItem);
+				else if (item is Function)	_items.push(new SequencedCallback(item as Function));
+				else						throw new Error("Don't know how to add item");
 			}
 		}
 	}

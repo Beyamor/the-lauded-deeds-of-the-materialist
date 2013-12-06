@@ -134,17 +134,17 @@ package game.play
 			if (playthrough.lives > 0) {
 				
 				var deathSequence:Sequencer = new Sequencer(
-					new SequencedCallback(Fn.bind(this, function():void {
+					Fn.bind(this, function():void {
 						remove(player)
-					})),
+					}),
 					
 					new Delay(1),
 					
-					new SequencedCallback(Fn.bind(this, function():void {
+					Fn.bind(this, function():void {
 						
 						_updateables.remove(deathSequence);
 						restart();
-					}))
+					})
 				);
 				_updateables.add(deathSequence);
 			}
