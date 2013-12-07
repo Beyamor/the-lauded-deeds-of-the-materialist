@@ -32,7 +32,7 @@ package game.play.entities.enemies.mother
 				start:	true,
 				onEnd:	function():void {
 					
-					enemy.world.add(new Child(enemy.x, enemy.y));
+					if (enemy.world) enemy.world.add(new Child(enemy.x, enemy.y));
 				}
 			});
 		}
