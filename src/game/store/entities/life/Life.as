@@ -26,7 +26,7 @@ package game.store.entities.life
 		
 		public function get price():int {
 			
-			return 1000 * Math.pow(10, _playthrough.livesPurchased);
+			return 1000 * Math.pow(5, _playthrough.livesPurchased);
 		}
 		
 		public function get canBeAfforded():Boolean {
