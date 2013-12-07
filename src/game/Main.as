@@ -22,7 +22,7 @@ package game
 		public function Main():void 
 		{
 			super(WIDTH, HEIGHT);
-			FP.screen.color = 0xFFFFFF;
+			FP.screen.color = 0x000000;
 		}
 		
 		override public function init():void 
