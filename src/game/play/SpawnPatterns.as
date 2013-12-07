@@ -12,7 +12,8 @@ package game.play
 		private static const PATTERNS:Array = [
 		//[Bouncer],
 		//[Bouncer, Seeker]
-		[Mother]
+		//[Mother]
+		[Seeker]
 		];
 		
 		public static function getClasses(depth:int):Array {

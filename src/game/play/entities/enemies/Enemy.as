@@ -2,6 +2,7 @@ package game.play.entities.enemies
 {
 	import flash.utils.Timer;
 	import game.common.entities.PlayEntity;
+	import game.play.entities.enemies.behaviours.Behaviour;
 	import game.play.entities.gold.Gold;
 	import game.play.PlayWorld;
 	import net.flashpunk.Graphic;
@@ -20,11 +21,11 @@ package game.play.entities.enemies
 		public static const	INACTIVE_WINDOW:Number	= 1;
 		
 		private var	_value:int,
-					_isActive:Boolean	= false;
+					_behaviour:Behaviour;
 					
 		protected var	boostsMultipier:Boolean = true;
 		
-		public function Enemy(x:Number, y:Number, graphic:Graphic=null) {
+		public function Enemy(x:Number, y:Number, initialBehaviour:Behaviour) {
 			
 			width = height = 32;
 			centerOrigin();
@@ -39,6 +40,8 @@ package game.play.entities.enemies
 			
 			level	= 60;
 			type	= "inactive-enemy";
+			
+			_behaviour = initialBehaviour;
 		}
 		
 		override public function added():void 
@@ -53,27 +56,10 @@ package game.play.entities.enemies
 				new SequencedCallback(Fn.bind(this, function():void {
 					
 					type		= "enemy"; // Eh, only become an enemy when activated, saves us some checks
-					_isActive	= true;
-					onActivation();
+					_behaviour.start();
+					updateables.add(_behaviour);
 				}))
 			));
-		}
-		
-		protected function onActivation():void {
-			
-			// Override in subclass
-		}
-		
-		protected function act():void {
-			
-			// Override in subclass
-		}
-		
-		override public function update():void 
-		{
-			super.update();
-			
-			if (_isActive) act();
 		}
 		
 		public function hit():void {
