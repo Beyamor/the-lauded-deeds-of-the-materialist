@@ -12,7 +12,9 @@ package game.play.entities.enemies
 			Bouncer:	50,
 			Seeker:		100,
 			Mother:		300,
-			Child:		0
+			Child:		0,
+			Burster:	120, // plus a little extra since the potential bonus is so big
+			Burstlet:	25
 		};
 		
 		public static function lookup(clazz:Class):int {

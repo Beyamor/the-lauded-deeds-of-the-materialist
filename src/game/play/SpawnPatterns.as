@@ -1,6 +1,7 @@
 package game.play 
 {
 	import game.play.entities.enemies.bouncer.Bouncer;
+	import game.play.entities.enemies.burster.Burster;
 	import game.play.entities.enemies.mother.Mother;
 	import game.play.entities.enemies.seeker.Seeker;
 	/**
@@ -12,7 +13,8 @@ package game.play
 		private static const PATTERNS:Array = [
 		[Bouncer],
 		[Bouncer, Seeker],
-		[Bouncer, Seeker, Mother]
+		[Bouncer, Seeker, Burster],
+		[Bouncer, Seeker, Burster, Mother]
 		];
 		
 		public static function getClasses(depth:int):Array {

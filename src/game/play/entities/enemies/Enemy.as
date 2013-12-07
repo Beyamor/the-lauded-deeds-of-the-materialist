@@ -24,6 +24,7 @@ package game.play.entities.enemies
 					_behaviour:Behaviour;
 					
 		protected var	boostsMultipier:Boolean	= true,
+						dropsGold:Boolean		= true,
 						inactiveWindow:Number	= INACTIVE_WINDOW;
 		
 		public function Enemy(x:Number, y:Number, initialBehaviour:Behaviour) {
@@ -70,7 +71,9 @@ package game.play.entities.enemies
 				if (world is PlayWorld)
 					(world as PlayWorld).multiplier.tap(boostsMultipier);
 				
-				Gold.drop(world, x, y, _value);
+				if (dropsGold)
+					Gold.drop(world, x, y, _value);
+					
 				removeFromWorld();
 			}
 		}
