@@ -19,7 +19,11 @@ package game.play.ui
 		{
 			centerOrigin();
 			
-			var	text:Text = new Text("Game Over!\nYou got " + playthrough.gold + " gold\nPress `E` to play again\n");
+			var	text:Text = new Text(
+				"Game Over!\n" +
+				"You collected " + playthrough.gold + " gold and made it " +
+					playthrough.depth + " level" + (playthrough.depth > 1? "s" : "") + " down\n" +
+				"Press `E` to play again");
 			text.centerOO();
 			
 			super(0, 0, text);
