@@ -51,10 +51,10 @@ package game.play
 			else if (value > BASE)	_decrementTimer.update();
 		}
 		
-		public function tap():void {
+		public function tap(gain:Boolean):void {
 			
 			_isAlive = true;
-			value += INCREMENT;
+			if (gain) value += INCREMENT;
 			_killTimer.restart();
 		}
 		

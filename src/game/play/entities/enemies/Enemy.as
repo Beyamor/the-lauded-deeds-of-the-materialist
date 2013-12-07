@@ -23,7 +23,8 @@ package game.play.entities.enemies
 		private var	_value:int,
 					_behaviour:Behaviour;
 					
-		protected var	boostsMultipier:Boolean = true;
+		protected var	boostsMultipier:Boolean	= true,
+						inactiveWindow:Number	= INACTIVE_WINDOW;
 		
 		public function Enemy(x:Number, y:Number, initialBehaviour:Behaviour) {
 			
@@ -51,7 +52,7 @@ package game.play.entities.enemies
 			graphic['alpha'] = 0; // whateeeever
 			
 			updateables.add(new Sequencer(
-				new FadeIn(graphic, INACTIVE_WINDOW),
+				new FadeIn(graphic, inactiveWindow),
 				
 				new SequencedCallback(Fn.bind(this, function():void {
 					
@@ -66,8 +67,8 @@ package game.play.entities.enemies
 			
 			if (world) {
 				
-				if (boostsMultipier && world is PlayWorld)
-					(world as PlayWorld).multiplier.tap();
+				if (world is PlayWorld)
+					(world as PlayWorld).multiplier.tap(boostsMultipier);
 				
 				Gold.drop(world, x, y, _value);
 				removeFromWorld();

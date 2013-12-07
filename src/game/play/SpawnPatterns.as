@@ -10,10 +10,9 @@ package game.play
 	public class SpawnPatterns 
 	{
 		private static const PATTERNS:Array = [
-		//[Bouncer],
-		//[Bouncer, Seeker]
-		//[Mother]
-		[Seeker]
+		[Bouncer],
+		[Bouncer, Seeker],
+		[Bouncer, Seeker, Mother]
 		];
 		
 		public static function getClasses(depth:int):Array {

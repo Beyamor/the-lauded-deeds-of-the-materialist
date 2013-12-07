@@ -11,7 +11,7 @@ package game.play.entities.enemies
 			Wanderer:	50,
 			Bouncer:	50,
 			Seeker:		100,
-			Mother:		150,
+			Mother:		250,
 			Child:		0
 		};
 		
