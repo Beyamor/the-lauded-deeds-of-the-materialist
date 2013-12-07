@@ -61,7 +61,7 @@ package game.play
 				if (_budget >= smallestValue) {
 					
 					_sequence.add(
-						new Delay(Random.inRange(0.25, 0.5)),
+						new Delay(Random.inRange(0.5, 0.75)),
 						new SequencedCallback(spawn)
 					);
 				}
